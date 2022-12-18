@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Карточка №</title>
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/card_edit.css"/>
+
+</head>
+<body>
+<div class="cardEdit">
+    <table class="tCardEdit">
+        <tbody>
+        <tr>
+            <td class="c2" colspan="2">
+                Карта передачи ПО №
+            </td>
+            <td>
+                <label>
+                    <input id="C_NUM_CARD">
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td class="c1">
+                Ответственный за передачу
+            </td>
+            <td class="c3">
+                <label>
+                    <input id="C_OTV">
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td class="c1">
+                Подсистема
+            </td>
+            <td class="c2">
+                <label for="C_SYSTEM">
+                    <select class="sl1" id="C_SYSTEM">
+                        <option>
+                            ЕМД-ПП
+                        </option>
+                        <option>
+                            РРД-ГП
+                        </option>
+                    </select>
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td class="c1">
+                Дата создания
+            </td>
+            <td class="c3">
+                <label for="C_DATE_CREATE">
+                    <input type="datetime-local" id="C_DATE_CREATE">
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td class="c1">
+                Дата корректировки
+            </td>
+            <td class="c3">
+                <label for="C_DATE_KORR">
+                    <input type="datetime-local" id="C_DATE_KORR">
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td class="c1">
+                Статус передачи
+            </td>
+            <td class="c3">
+                <label for="C_STATYS">
+                    <select class="sl2" id="C_STATYS">
+                        <option>
+                            На согласовании
+                        </option>
+                        <option>
+                            Готовится
+                        </option>
+                        <option>
+                            На тестировании
+                        </option>
+                        <option>
+                            Протестирован успешно
+                        </option>
+                    </select>
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td class="c2" colspan="2">
+                <label id="C_LETTER">
+
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td class="c2" colspan="2">
+                Передаваемые наряды:
+            </td>
+        </tr>
+        <tr>
+            <td class="c2" colspan="2">
+                <label id="C_ORDER_LIST">
+                    Наряд
+                </label>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table class="tCardMenu">
+        <tr>
+            <td class="tm1">
+                <form th:action="c_save_card">
+                    <input type="submit" value="Сохранить" id="C_SAVE_CARD"/>
+                </form>
+            </td>
+            <td class="tm1">
+                <form th:action="c_undo_change">
+                    <input type="submit" value="Отменить изменения" id="C_UNDO_CHANGE"/>
+                </form>
+            </td>
+
+        </tr>
+    </table>
+</div>
+</body>
+</html>

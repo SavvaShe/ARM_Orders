@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="Menu" th:fragment="menu">
+    <table class="tMenu">
+        <tbody>
+        <tr class="tr1">
+            <td class="r1">
+                <form  th:action="/orders">
+                <button type="button" id="ORDERS_LIST">
+                    Наряды
+                </button>
+                </form>
+            </td>
+            <td class="r1">
+                <form  th:action="/cards">
+                    <button type="button" id="CARD_LIST">
+                        Карты передачи
+                    </button>
+                </form>
+            </td>
+            <td class="r1">
+                <form  th:action="/dashboard">
+                    <button type="button" id="DASHBOARD">
+                        Доска
+                    </button>
+                </form>
+            </td>
+            <td class="r1">
+                <form  th:action="/settings">
+                    <button type="button" id="SETTINGS">
+                        Настройки
+                    </button>
+                </form>
+            </td>
+            <td class="r1">
+                <form  th:action="/services">
+                    <button type="button" id="SERVICES">
+                        Сервисы
+                    </button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

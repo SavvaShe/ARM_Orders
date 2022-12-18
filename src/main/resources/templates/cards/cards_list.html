@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Карты</title>
+</head>
+<body>
+    <div th:insert="~{header::menu}">
+    </div>
+    <div class="filtCard">
+        <table class="tFiltCard">
+            <tbody>
+            <tr>
+                <td class="fil">
+                    ID карты
+                </td>
+                <td class="fil">
+                    <form th:action="id_card">
+                        <label for="C_ID">
+                            <input type="text" id="C_ID">
+                        </label>
+                    </form>
+                </td>
+
+                <td class="fil">
+                    Дата корректировки
+                </td>
+                <td class="fil">
+                    <form th:action="date_adjust">
+                        <label for="C_DATE_KORR">
+                            <input type="date" id="C_DATE_KORR">
+                        </label>
+                    </form>
+                </td>
+                <td class="fil">
+                    Статус
+                </td>
+                <td class="fil">
+                    <form th:action="card_status">
+                    <label for="C_STATUS">
+                        <input type="text" id="C_STATUS">
+                    </label>
+                    </form>
+                </td>
+
+            </tr>
+            <tr>
+                <td class="fil" >
+                    Номер карты
+                </td>
+                <td class="fil">
+                    <form th:action="card_num">
+                        <label for="C_NUM_CARD">
+                            <input type="text" id="C_NUM_CARD">
+                        </label>
+                    </form>
+                </td>
+
+                <td class="fil">
+                    Дата создания
+                </td>
+                <td class="fil">
+                    <form th:action="date_create">
+                        <label for="C_DATE_CREATE">
+                            <input type="date" id="C_DATE_CREATE">
+                        </label>
+                    </form>
+                </td>
+                <td class="fil">
+                    Ответственный
+                </td>
+                <td class="fil">
+                    <form th:action="card_responsible">
+                        <label for="C_OTV">
+                            <input type="text" id="C_OTV">
+                        </label>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td class="tNewCard">
+                    <form th:action="create_card">
+                        <input type="submit" value="Создать" onclick="window.open('../CARDs/CardEdit.html')">
+                    </form>
+                </td>
+                <td class="tExportExcel">
+                    <form th:action="excel_export">
+                        <input type="submit" value="Экспорт в Excel" >
+                    </form>
+                </td>
+                <td class="none"></td>
+                <td class="none"></td>
+                <td class="none"></td>
+                <td class="none"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="cardList">
+        <table class="tCardList"  id="maintab">
+            <thead>
+            <tr class="tCardListFilt">
+                <td class="fil1">
+                    id карты
+                </td>
+                <td class="fil2">
+                    Номер карты
+                </td>
+                <td class="fil3">
+                    Статус
+                </td>
+                <td class="fil4">
+                    Ответственный
+                </td>
+                <td class="fil5">
+                    Дата корректировки
+                </td>
+                <td class="fil6">
+                    Дата создания
+                </td>
+                <td class="fil7">
+                    Номер письма
+                </td>
+                <td class="fil8">
+                    Подсистема
+                </td>
+            </tr>
+            </thead>
+            <tbody class="mdata">
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

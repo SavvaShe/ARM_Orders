@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Карточка №</title>
+  <link rel="stylesheet" type="text/css" media="all" href="../../css/card_view.css"/>
+</head>
+<body>
+<div th:insert="menu.html::menu">
+</div>
+
+<div class="cardView">
+  <table  class="tСardView">
+    <tbody>
+    <tr>
+      <td class="c2" colspan="2">
+        <label>
+          Карта передачи ПО №
+        </label>
+      </td>
+    </tr>
+    <tr>
+      <td class="с1">
+        Письмо
+      </td>
+      <td class="c3">
+                <span id="C_LETTER">
+                </span>
+      </td>
+    </tr>
+    <tr>
+      <td class="c1">
+        Подсистема
+      </td>
+      <td class="c2">
+                <span id="C_SYSTEM">
+                </span>
+      </td>
+    </tr>
+    <tr>
+      <td class="c1">
+        Ответственный за передачу
+      </td>
+      <td class="c3">
+                <span id="C_OTV">
+                </span>
+      </td>
+    </tr>
+    <tr>
+      <td class="c1">
+        Дата создания
+      </td>
+      <td class="c3">
+        <!--/*@thymesVar id="standardDate" type=""*/-->
+        <!--                <span id="C_DATE_CREATE" th:text="${#dates.formatISO(standardDate, 'dd-MM-yyyy HH:mm')}">-->
+        <!--                </span>-->
+      </td>
+    </tr>
+    <tr>
+      <td class="c1">
+        Дата корректировки
+      </td>
+      <td class="c3">
+                <span id="C_DATE_KORR">
+                </span>
+      </td>
+    </tr>
+    <tr>
+      <td class="c1">
+        Статус передачи
+      </td>
+      <td class="c3">
+                <span ID="C_STATUS">
+                </span>
+      </td>
+    </tr>
+    <tr>
+      <td class="c2" colspan="2">
+        Передаваемые наряды:
+      </td>
+    </tr>
+    <tr>
+      <td class="c2" colspan="2">
+                <span id="C_ORDER_LIST">
+                </span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <table class="tCardMenu">
+    <tr>
+      <td class="tm1">
+        <a th:href="@{'/korr'}">Корректировать</a>
+      </td>
+      <!--      <td class="tm1">-->
+      <!--        <form>-->
+      <!--        <input type="submit" value="В эталон" id="C_STAT"/>-->
+      <!--  &lt;!&ndash;          Выпадающий список с соответствующими пунктами &ndash;&gt;-->
+      <!--        </form>-->
+      <!--      </td>-->
+      <td class="tm1">
+        <form>
+          <!--        <input type="submit" value="Закрыть" id="C_CLOSE"/>-->
+          <a th:href="@{'/card_list'}">Карты</a>
+        </form>
+      </td>
+      <!--      <td class="tm1">-->
+      <!--        <form th:action="/story">-->
+      <!--        <input type="submit" value="История" id="C_HISTORY"/>-->
+      <!--        </form>-->
+      <!--      </td>-->
+    </tr>
+  </table>
+</div>
+</body>
+</html>
