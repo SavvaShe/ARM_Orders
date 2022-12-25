@@ -3,6 +3,7 @@ package v2.controllers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import v2.Service.CardService;
@@ -13,7 +14,7 @@ import v2.model.response.CardResponse;
 import java.util.List;
 
 @RestController
-@RequestMapping("src/main/resources/templates/cards")
+@RequestMapping("cards")
 @RequiredArgsConstructor
 public class CardController {
     private CardService cardService;
@@ -37,7 +38,7 @@ public class CardController {
     }
 
 
-//    //Получаем карточку по id
+///    //Получаем карточку по id
 //    @GetMapping(value = "/{IdCard}", produces = APPLICATION_JSON_VALUE)
 //    public CardResponse findById(@PathVariable Integer IdCard) {
 //        return cardService.findById(IdCard);
@@ -50,8 +51,8 @@ public class CardController {
         return mav;
     }
 
-//
-//    //Создаем карту
+
+////    //Создаем карту
 //    @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 //    public CardResponse create(@RequestBody CreateCardRequest request) {
 //        return cardService.createCard(request);
@@ -67,17 +68,17 @@ public class CardController {
         mav.addObject("cardskorr",cardResponse);
         return mav;
     }
-    @PostMapping("/new")
-    public String create(@RequestBody CreateCardRequest request){
-        cardService.createCard(request);
-        return "redirect:/card_list";
-    }
+//    @PostMapping("/new")
+//    public String create(@RequestBody CreateCardRequest request){
+//        cardService.createCard(request);
+//        return "redirect:/card_list";
+//    }
 
-
-
-//    //Обновляем карту по id
+//
+//
+//////    //Обновляем карту по id
 //    @PatchMapping(value = "/{IdCard}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-//    public CardResponse update(@PathVariable Integer IdCard, @RequestBody CreateCardRequest request) {
+//   public CardResponse update(@PathVariable Integer IdCard, @RequestBody CreateCardRequest request) {
 //        return cardService.update(IdCard, request);
 //    }
     @PostMapping("/korr")
@@ -85,7 +86,7 @@ public class CardController {
     cardService.update(idCards,request);
     return "redirect:/card_list";
 }
-//    //Удаляем карту по id
+//////    //Удаляем карту по id
 //    @ResponseStatus(HttpStatus.NO_CONTENT)
 //    @DeleteMapping(value = "/{IdCard}", produces = APPLICATION_JSON_VALUE)
 //    public void delete(@PathVariable Integer IdCard) {
@@ -103,4 +104,13 @@ public class CardController {
         mav.addObject("result", result);
         return mav;
     }
+//    @GetMapping("/card_list")
+//    public String openList(Mode0 l model) {
+//        model.addAttribute("cardList", cardService.findAll());
+//        return "card_list";
+//    }
+//    @GetMapping("/edit")
+//    public String openEditCards(){
+//        return "cards_edit";
+//    }
 }

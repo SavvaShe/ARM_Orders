@@ -9,32 +9,17 @@
 <div th:insert="menu.html::menu">
 </div>
 
-<div class="cardView">
-  <table  class="tСardView">
+<div class="cardEdit">
+  <table class="tCardEdit">
     <tbody>
     <tr>
       <td class="c2" colspan="2">
+        Карта передачи ПО №
+      </td>
+      <td>
         <label>
-          Карта передачи ПО №
+          <input id="C_NUM_CARD">
         </label>
-      </td>
-    </tr>
-    <tr>
-      <td class="с1">
-        Письмо
-      </td>
-      <td class="c3">
-                <span id="C_LETTER">
-                </span>
-      </td>
-    </tr>
-    <tr>
-      <td class="c1">
-        Подсистема
-      </td>
-      <td class="c2">
-                <span id="C_SYSTEM">
-                </span>
       </td>
     </tr>
     <tr>
@@ -42,8 +27,26 @@
         Ответственный за передачу
       </td>
       <td class="c3">
-                <span id="C_OTV">
-                </span>
+        <label>
+          <input id="C_OTV">
+        </label>
+      </td>
+    </tr>
+    <tr>
+      <td class="c1">
+        Подсистема
+      </td>
+      <td class="c2">
+        <label for="C_SYSTEM">
+          <select class="sl1" id="C_SYSTEM">
+            <option>
+              ЕМД-ПП
+            </option>
+            <option>
+              РРД-ГП
+            </option>
+          </select>
+        </label>
       </td>
     </tr>
     <tr>
@@ -51,9 +54,9 @@
         Дата создания
       </td>
       <td class="c3">
-        <!--/*@thymesVar id="standardDate" type=""*/-->
-        <!--                <span id="C_DATE_CREATE" th:text="${#dates.formatISO(standardDate, 'dd-MM-yyyy HH:mm')}">-->
-        <!--                </span>-->
+        <label for="C_DATE_CREATE">
+          <input type="datetime-local" id="C_DATE_CREATE">
+        </label>
       </td>
     </tr>
     <tr>
@@ -61,8 +64,9 @@
         Дата корректировки
       </td>
       <td class="c3">
-                <span id="C_DATE_KORR">
-                </span>
+        <label for="C_DATE_KORR">
+          <input type="datetime-local" id="C_DATE_KORR">
+        </label>
       </td>
     </tr>
     <tr>
@@ -70,8 +74,29 @@
         Статус передачи
       </td>
       <td class="c3">
-                <span ID="C_STATUS">
-                </span>
+        <label for="C_STATYS">
+          <select class="sl2" id="C_STATYS">
+            <option>
+              На согласовании
+            </option>
+            <option>
+              Готовится
+            </option>
+            <option>
+              На тестировании
+            </option>
+            <option>
+              Протестирован успешно
+            </option>
+          </select>
+        </label>
+      </td>
+    </tr>
+    <tr>
+      <td class="c2" colspan="2">
+        <label id="C_LETTER">
+
+        </label>
       </td>
     </tr>
     <tr>
@@ -81,8 +106,9 @@
     </tr>
     <tr>
       <td class="c2" colspan="2">
-                <span id="C_ORDER_LIST">
-                </span>
+        <label id="C_ORDER_LIST">
+          Наряд
+        </label>
       </td>
     </tr>
     </tbody>
@@ -91,25 +117,16 @@
   <table class="tCardMenu">
     <tr>
       <td class="tm1">
-        <a th:href="@{'/korr'}">Корректировать</a>
-      </td>
-      <!--      <td class="tm1">-->
-      <!--        <form>-->
-      <!--        <input type="submit" value="В эталон" id="C_STAT"/>-->
-      <!--  &lt;!&ndash;          Выпадающий список с соответствующими пунктами &ndash;&gt;-->
-      <!--        </form>-->
-      <!--      </td>-->
-      <td class="tm1">
-        <form>
-          <!--        <input type="submit" value="Закрыть" id="C_CLOSE"/>-->
-          <a th:href="@{'/card_list'}">Карты</a>
+        <form th:action="c_save_card">
+          <input type="submit" value="Сохранить" id="C_SAVE_CARD"/>
         </form>
       </td>
-      <!--      <td class="tm1">-->
-      <!--        <form th:action="/story">-->
-      <!--        <input type="submit" value="История" id="C_HISTORY"/>-->
-      <!--        </form>-->
-      <!--      </td>-->
+      <td class="tm1">
+        <form th:action="c_undo_change">
+          <input type="submit" value="Отменить изменения" id="C_UNDO_CHANGE"/>
+        </form>
+      </td>
+
     </tr>
   </table>
 </div>
