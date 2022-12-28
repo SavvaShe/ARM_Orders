@@ -137,13 +137,13 @@ input[type='datetime-local']{
     text-align: center;
     padding: 5px 0 5px 0;
 }
-.fil1{
+.fil1 {
     border-collapse: collapse;
     border: 0.5px solid #326690;
     text-align: center;
     padding: 5px 0 5px 0;
     width: 10%;
     font-size: 12px;
-    background:#326690;
-    color:white;
+    background: #326690;
+    color: white;
 }

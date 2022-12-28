@@ -1,130 +1,133 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Карты</title>
-</head>
+    <link rel="stylesheet" type="text/css" media="all" href="../../../css/card_list.css"/>
 
+
+</head>
 <body>
-<div class="cardEdit">
-    <table class="tCardEdit">
+<div th:insert="fragments/menu.html">
+</div>
+
+<div class="filtCard">
+    <table class="tFiltCard">
         <tbody>
         <tr>
-            <td class="c2" colspan="2">
-                Карта передачи ПО №
+            <td class="fil">
+                ID карты
             </td>
-            <td>
-                <label>
-                    <input id="C_NUM_CARD">
+            <td class="fil">
+                <label for="C_ID">
+                    <input type="text" id="C_ID">
                 </label>
             </td>
-        </tr>
-        <tr>
-            <td class="c1">
-                Ответственный за передачу
-            </td>
-            <td class="c3">
-                <label>
-                    <input id="C_OTV">
-                </label>
-            </td>
-        </tr>
-        <tr>
-            <td class="c1">
-                Подсистема
-            </td>
-            <td class="c2">
-                <label for="C_SYSTEM">
-                    <select class="sl1" id="C_SYSTEM">
-                        <option>
-                            ЕМД-ПП
-                        </option>
-                        <option>
-                            РРД-ГП
-                        </option>
-                    </select>
-                </label>
-            </td>
-        </tr>
-        <tr>
-            <td class="c1">
-                Дата создания
-            </td>
-            <td class="c3">
-                <label for="C_DATE_CREATE">
-                    <input type="datetime-local" id="C_DATE_CREATE">
-                </label>
-            </td>
-        </tr>
-        <tr>
-            <td class="c1">
+
+            <td class="fil">
                 Дата корректировки
             </td>
-            <td class="c3">
+            <td class="fil">
                 <label for="C_DATE_KORR">
-                    <input type="datetime-local" id="C_DATE_KORR">
+                    <input type="date" id="C_DATE_KORR">
                 </label>
             </td>
-        </tr>
-        <tr>
-            <td class="c1">
-                Статус передачи
+            <td class="fil">
+                Статус
             </td>
-            <td class="c3">
-                <label for="C_STATYS">
-                    <select class="sl2" id="C_STATYS">
-                        <option>
-                            На согласовании
-                        </option>
-                        <option>
-                            Готовится
-                        </option>
-                        <option>
-                            На тестировании
-                        </option>
-                        <option>
-                            Протестирован успешно
-                        </option>
-                    </select>
+            <td class="fil">
+                <label for="C_STATUS">
+                    <input type="text" id="C_STATUS">
                 </label>
             </td>
-        </tr>
-        <tr>
-            <td class="c2" colspan="2">
-                <label id="C_LETTER">
 
+        </tr>
+        <tr>
+            <td class="fil" >
+                Номер карты
+            </td>
+            <td class="fil">
+                <label for="C_NUM_CARD">
+                    <input type="text" id="C_NUM_CARD">
+                </label>
+            </td>
+
+            <td class="fil">
+                Дата создания
+            </td>
+            <td class="fil">
+                <label for="C_DATE_CREATE">
+                    <input type="date" id="C_DATE_CREATE">
+                </label>
+            </td>
+            <td class="fil">
+                Ответственный
+            </td>
+            <td class="fil">
+                <label for="C_OTV">
+                    <input type="text" id="C_OTV">
                 </label>
             </td>
         </tr>
         <tr>
-            <td class="c2" colspan="2">
-                Передаваемые наряды:
+            <td class="tNewCard">
+                <input th:action="@{'/card_edit'}" type="submit" value="Создать">
             </td>
-        </tr>
-        <tr>
-            <td class="c2" colspan="2">
-                <label id="C_ORDER_LIST">
-                    Наряд
-                </label>
+            <td class="tExportExcel">
+                <input th:action="@{'/export_to_excel'}" type="submit" value="Экспорт в Excel">
             </td>
+            <td class="none"></td>
+            <td class="none"></td>
+            <td class="none"></td>
+            <td class="none"></td>
         </tr>
         </tbody>
     </table>
+</div>
+<div class="cardList">
+    <table class="tCardList"  id="maintab">
+        <thead>
+        <tr class="tCardListFilt">
+            <th class="fil1">
+                id карты
+            </th>
+            <th class="fil2">
+                Ответственный
+            </th>
+            <th class="fil3">
+                Номер карты
+            </th>
+            <th class="fil4">
+                Номер письма
+            </th>
+            <th class="fil5">
+                Система
+            </th>
+            <th class="fil6">
+                Дата корректировки
+            </th>
+            <th class="fil7">
+                Дата создания
+            </th>
+            <th class="fil8">
+                Дата отправления письма
+            </th>
+        </tr>
+        </thead>
+        <tbody class="mdata">
+        <tr th:each="lst : ${cardsList}" th:action="@{'/open_card'}">
+            <td th:text="${lst.idCards}">1</td>
+            <td th:text="${lst.idOtv}">1</td>
+            <td th:text="${lst.numberCard}">12</td>
+            <td th:text="${lst.numberLetter}">32</td>
+            <td th:text="${lst.system}">2</td>
+            <td th:text="${lst.dateCorrect}">12.12.2022</td>
+            <td th:text="${lst.dateCreate}">03.08.2002</td>
+            <td th:text="${lst.sendLetter}">22.12.2001</td>
 
-    <table class="tCardMenu">
-        <tr>
-            <td class="tm1">
-                <form th:action="c_save_card">
-                    <input type="submit" value="Сохранить" id="C_SAVE_CARD"/>
-                </form>
-            </td>
-            <td class="tm1">
-                <form th:action="c_undo_change">
-                    <input type="submit" value="Отменить изменения" id="C_UNDO_CHANGE"/>
-                </form>
-            </td>
 
         </tr>
+        </tbody>
     </table>
 </div>
 </body>

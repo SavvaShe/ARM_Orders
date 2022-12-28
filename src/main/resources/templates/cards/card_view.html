@@ -1,35 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Карточка №</title>
-  <link rel="stylesheet" type="text/css" media="all" href="../../css/card_view.css"/>
+  <title>Карточка передачи ПО</title>
+  <link rel="stylesheet" type="text/css" media="all" href="../../../css/card_view.css"/>
+
 </head>
 <body>
-<div th:insert="menu.html::menu">
-</div>
 
-<div class="cardEdit">
-  <table class="tCardEdit">
+<div class="cardView">
+  <table  class="tСardView">
+    <thead>
+
+    </thead>
     <tbody>
+
     <tr>
       <td class="c2" colspan="2">
-        Карта передачи ПО №
-      </td>
-      <td>
         <label>
-          <input id="C_NUM_CARD">
+          Карта передачи ПО №
         </label>
       </td>
     </tr>
     <tr>
-      <td class="c1">
-        Ответственный за передачу
+      <td class="с1">
+        Письмо
       </td>
       <td class="c3">
-        <label>
-          <input id="C_OTV">
-        </label>
+                <span id="C_LETTER">
+
+                </span>
       </td>
     </tr>
     <tr>
@@ -37,16 +37,19 @@
         Подсистема
       </td>
       <td class="c2">
-        <label for="C_SYSTEM">
-          <select class="sl1" id="C_SYSTEM">
-            <option>
-              ЕМД-ПП
-            </option>
-            <option>
-              РРД-ГП
-            </option>
-          </select>
-        </label>
+                <span id="C_SYSTEM">
+
+                </span>
+      </td>
+    </tr>
+    <tr>
+      <td class="c1">
+        Ответственный за передачу
+      </td>
+      <td class="c3">
+                <span id="C_OTV">
+
+                </span>
       </td>
     </tr>
     <tr>
@@ -54,9 +57,9 @@
         Дата создания
       </td>
       <td class="c3">
-        <label for="C_DATE_CREATE">
-          <input type="datetime-local" id="C_DATE_CREATE">
-        </label>
+                <span id="C_DATE_CREATE">
+
+                </span>
       </td>
     </tr>
     <tr>
@@ -64,9 +67,9 @@
         Дата корректировки
       </td>
       <td class="c3">
-        <label for="C_DATE_KORR">
-          <input type="datetime-local" id="C_DATE_KORR">
-        </label>
+                <span id="C_DATE_KORR">
+
+                </span>
       </td>
     </tr>
     <tr>
@@ -74,29 +77,9 @@
         Статус передачи
       </td>
       <td class="c3">
-        <label for="C_STATYS">
-          <select class="sl2" id="C_STATYS">
-            <option>
-              На согласовании
-            </option>
-            <option>
-              Готовится
-            </option>
-            <option>
-              На тестировании
-            </option>
-            <option>
-              Протестирован успешно
-            </option>
-          </select>
-        </label>
-      </td>
-    </tr>
-    <tr>
-      <td class="c2" colspan="2">
-        <label id="C_LETTER">
+                <span ID="C_STATUS">
 
-        </label>
+                </span>
       </td>
     </tr>
     <tr>
@@ -106,27 +89,36 @@
     </tr>
     <tr>
       <td class="c2" colspan="2">
-        <label id="C_ORDER_LIST">
-          Наряд
-        </label>
+                <span id="C_ORDER_LIST">
+
+                </span>
       </td>
     </tr>
+
     </tbody>
   </table>
 
   <table class="tCardMenu">
     <tr>
       <td class="tm1">
-        <form th:action="c_save_card">
-          <input type="submit" value="Сохранить" id="C_SAVE_CARD"/>
-        </form>
+        <input type="submit" value="Корректировать" th:action="@{'/korr'}">
+<!--        <a th:href="@{'/korr'}">Корректировать</a>-->
       </td>
+      <!--      <td class="tm1">-->
+      <!--        <form>-->
+      <!--        <input type="submit" value="В эталон" id="C_STAT"/>-->
+      <!--  &lt;!&ndash;          Выпадающий список с соответствующими пунктами &ndash;&gt;-->
+      <!--        </form>-->
+      <!--      </td>-->
       <td class="tm1">
-        <form th:action="c_undo_change">
-          <input type="submit" value="Отменить изменения" id="C_UNDO_CHANGE"/>
-        </form>
+        <input type="submit" th:action="@{'/card_list'}" value="Карты">
+          <!--        <input type="submit" value="Закрыть" id="C_CLOSE"/>-->
       </td>
-
+      <!--      <td class="tm1">-->
+      <!--        <form th:action="/story">-->
+      <!--        <input type="submit" value="История" id="C_HISTORY"/>-->
+      <!--        </form>-->
+      <!--      </td>-->
     </tr>
   </table>
 </div>

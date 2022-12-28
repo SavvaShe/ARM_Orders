@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.thymeleaf.context.WebContext;
 import v2.Service.CardService;
 import v2.domain.CardV2;
 import v2.model.request.CreateCardRequest;
@@ -34,45 +35,57 @@ public class CardController {
         List<CardResponse> cardsList = cardService.findAll();
         ModelAndView mav = new ModelAndView("card_list");
         mav.addObject("listCards", cardsList);
+//        WebContext ctx = new WebContext();
+//        ctx.setVariable("cards_list", cardsList);
         return mav;
     }
 
 
-///    //Получаем карточку по id
+    ///    //Получаем карточку по id
 //    @GetMapping(value = "/{IdCard}", produces = APPLICATION_JSON_VALUE)
 //    public CardResponse findById(@PathVariable Integer IdCard) {
 //        return cardService.findById(IdCard);
 //    }
     @GetMapping("/card_view")
-    public ModelAndView findById(@RequestParam int idCards){
+    public ModelAndView findById(@RequestParam int idCards) {
         ModelAndView mav = new ModelAndView("card_view");
         CardResponse cardResponse = cardService.findById(idCards);
-        mav.addObject("cards",cardResponse);
+        mav.addObject("cards", cardResponse);
         return mav;
     }
 
 
-////    //Создаем карту
+    ////    //Создаем карту
 //    @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 //    public CardResponse create(@RequestBody CreateCardRequest request) {
 //        return cardService.createCard(request);
 //    }
     @GetMapping("/edit")
-    public String openEditCards(){
+    public String openEditCards() {
         return "cards_edit";
     }
+
     @GetMapping("/edit_id")
-    public ModelAndView openEditWithId(@RequestParam int idCards){
+    public ModelAndView openEditWithId(@RequestParam int idCards) {
         ModelAndView mav = new ModelAndView("card_edit");
         CardResponse cardResponse = cardService.findById(idCards);
-        mav.addObject("cardskorr",cardResponse);
+        mav.addObject("cardskorr", cardResponse);
         return mav;
     }
-//    @PostMapping("/new")
-//    public String create(@RequestBody CreateCardRequest request){
-//        cardService.createCard(request);
-//        return "redirect:/card_list";
+
+    //Обработка открытия карточки из card_list
+//    @GetMapping("/open_card")
+//    public String openViewCard(){
+//        cardService.findById();  //ЧТО ПЕРЕДАЕТСЯ?
+//        return"card_view";
 //    }
+
+    @PostMapping("/new")
+    public String create(@RequestBody CreateCardRequest request){
+        cardService.createCard(request);
+        return "card_view";
+    }
+
 
 //
 //
@@ -84,7 +97,7 @@ public class CardController {
     @PostMapping("/korr")
     public String korr(@RequestBody CreateCardRequest request,@RequestParam int idCards){
     cardService.update(idCards,request);
-    return "redirect:/card_list";
+    return "redirect:/card_edit";
 }
 //////    //Удаляем карту по id
 //    @ResponseStatus(HttpStatus.NO_CONTENT)
