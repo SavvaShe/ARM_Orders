@@ -5,6 +5,7 @@ package v2.Service;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,14 +22,15 @@ import static java.util.Optional.ofNullable;
 @Service
 @RequiredArgsConstructor
 public class CardServiceImpl implements CardService {
-    private static CardRepository cardsRepository;
+
+    private final CardRepository cardsRepository;
 
     //Получаем весь список пользователей
     @NotNull
     @Override
     @Transactional(readOnly = true)
     public List<CardResponse> findAll() {
-        return cardsRepository.findAll()
+      return  cardsRepository.findAll()
                 .stream()
                 .map(this::buildCardResponse)
                 .collect(Collectors.toList());
@@ -73,7 +75,7 @@ public class CardServiceImpl implements CardService {
         cardsRepository.deleteById(IdCard);
     }
 
-    @NotNull
+
     @Transactional
     @Override
     public List<CardV2> search(String keyword) {

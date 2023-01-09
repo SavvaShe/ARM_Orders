@@ -15,39 +15,44 @@ import v2.model.response.CardResponse;
 import java.util.List;
 
 @RestController
-@RequestMapping("cards")
+@RequestMapping("/webapp/templates/cards/")
 @RequiredArgsConstructor
 public class CardController {
-    private CardService cardService;
 
-    @Autowired
-    public CardController(CardService cardService) {
-        this.cardService = cardService;
-    }
+    private final CardService cardService;
+
 
     //Получаем весь список карточек
 //    @GetMapping(produces = APPLICATION_JSON_VALUE)
 //    public List<CardResponse> findAll() {
 //        return cardService.findAll();
 //    }
+
+
     @GetMapping("/card_list")
     public ModelAndView openList() {
-        List<CardResponse> cardsList = cardService.findAll();
-        ModelAndView mav = new ModelAndView("card_list");
-        mav.addObject("listCards", cardsList);
-//        WebContext ctx = new WebContext();
+        ModelAndView mav = new ModelAndView("cards_list");
+        mav.addObject("listCards", findAll());
+ //       WebContext ctx = new WebContext();
 //        ctx.setVariable("cards_list", cardsList);
         return mav;
     }
 
 
-    ///    //Получаем карточку по id
-//    @GetMapping(value = "/{IdCard}", produces = APPLICATION_JSON_VALUE)
-//    public CardResponse findById(@PathVariable Integer IdCard) {
-//        return cardService.findById(IdCard);
+
+    public List<CardResponse> findAll() {
+       return cardService.findAll();
+    }
+
+//@GetMapping("/card_list")
+//  public String openList(Model model) {
+//    model.addAttribute("cardsList", findAll());
+//    return "cards_list";
 //    }
-    @GetMapping("/card_view")
-    public ModelAndView findById(@RequestParam int idCards) {
+
+
+            @GetMapping("/card_view")
+        public ModelAndView findById(@RequestParam int idCards) {
         ModelAndView mav = new ModelAndView("card_view");
         CardResponse cardResponse = cardService.findById(idCards);
         mav.addObject("cards", cardResponse);

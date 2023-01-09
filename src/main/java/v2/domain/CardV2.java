@@ -13,7 +13,7 @@ import java.util.Objects;
 @Setter
 @Accessors(chain = true)
 @Entity
-@Table(name = "CARDS")
+@Table(name = "cardpo")
 public class CardV2 {
 
     @Id
@@ -23,21 +23,21 @@ public class CardV2 {
 //    @Column(name = "login",nullable = false, unique = true)
 //    private String login;// глянуть потом мб зацепиться про проверку прав
 
-    @Column(name = "idOtv")
+    @Column(name = "idotv")
     private int idOtv;//Ответсвенный
-    @Column(name = "numberCard")
+    @Column(name = "numbercard")
     private String numberCard;//Номер карточки
-    @Column(name = "numberLetter")
+    @Column(name = "numberletter")
     private int numberLetter;//номер Письма
     @Column(name = "system")
     private int system;//подсистема
-    @Column(name = "dateCorrect")
+    @Column(name = "datecorrect")
     private Date dateCorrect;//дата корректировки карточки
-    @Column(name = "dateCreate")
+    @Column(name = "datecreate")
     private Date dateCreate;//дата создания
-    @Column(name = "sendLetter")
+    @Column(name = "sendletter")
     private Date sendLetter;//дата отправки письма
-    @Column(name = "Links")
+    @Column(name = "links")
     private String links;//ссылка на письмо
 
 
