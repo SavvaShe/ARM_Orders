@@ -1,12 +1,9 @@
 package v2.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.thymeleaf.context.WebContext;
 import v2.Service.CardService;
 import v2.domain.CardV2;
 import v2.model.request.CreateCardRequest;
@@ -15,13 +12,12 @@ import v2.model.response.CardResponse;
 import java.util.List;
 
 @RestController
-@RequestMapping("/webapp/templates/cards/")
+@RequestMapping("resources/templates")
 @RequiredArgsConstructor
 public class CardController {
 
     private final CardService cardService;
-
-
+     ModelAndView cl = new ModelAndView("cards_list");
     //Получаем весь список карточек
 //    @GetMapping(produces = APPLICATION_JSON_VALUE)
 //    public List<CardResponse> findAll() {
@@ -35,6 +31,7 @@ public class CardController {
         mav.addObject("listCards", findAll());
  //       WebContext ctx = new WebContext();
 //        ctx.setVariable("cards_list", cardsList);
+        System.out.println(findAll());
         return mav;
     }
 
@@ -51,9 +48,9 @@ public class CardController {
 //    }
 
 
-            @GetMapping("/card_view")
+    @GetMapping("/card_view")
         public ModelAndView findById(@RequestParam int idCards) {
-        ModelAndView mav = new ModelAndView("card_view");
+        ModelAndView mav = new ModelAndView("cards_view");
         CardResponse cardResponse = cardService.findById(idCards);
         mav.addObject("cards", cardResponse);
         return mav;
@@ -65,10 +62,13 @@ public class CardController {
 //    public CardResponse create(@RequestBody CreateCardRequest request) {
 //        return cardService.createCard(request);
 //    }
-    @GetMapping("/edit")
-    public String openEditCards() {
-        return "cards_edit";
-    }
+    @GetMapping("/card_edit")
+    public ModelAndView openEditCards() {
+            ModelAndView mav = new ModelAndView("card_edit");
+            return mav;
+        }
+
+
 
     @GetMapping("/edit_id")
     public ModelAndView openEditWithId(@RequestParam int idCards) {
@@ -86,9 +86,9 @@ public class CardController {
 //    }
 
     @PostMapping("/new")
-    public String create(@RequestBody CreateCardRequest request){
+    public ModelAndView create(@RequestBody CreateCardRequest request){
         cardService.createCard(request);
-        return "card_view";
+        return cl;
     }
 
 

@@ -40,6 +40,8 @@ public class CardV2 {
     @Column(name = "links")
     private String links;//ссылка на письмо
 
+    @Column(name = "status")
+    private String status;//ссылка на письмо
 
 //    @Override
 //    public boolean equals(Object o) {

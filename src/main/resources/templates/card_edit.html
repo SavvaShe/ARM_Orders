@@ -7,9 +7,9 @@
 
 </head>
 <body>
-<header th:insert="header :: menu">
+<!--<div th:insert="fragments/menu.html">-->
+<!--</div>-->
 
-</header>
 <div class="cardEdit">
     <table class="tCardEdit">
         <tbody>
@@ -123,7 +123,7 @@
                 </form>
             </td>
             <td class="tm1">
-                <form th:action="/c_undo_change">
+                <form th:action="@{'/card_list'}">
                     <input type="submit" value="Отменить изменения" id="C_UNDO_CHANGE"/>
                 </form>
             </td>

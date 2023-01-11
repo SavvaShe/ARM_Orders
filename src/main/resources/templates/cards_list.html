@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Карты</title>
-    <link rel="stylesheet" type="text/css" media="all" href="../../../css/card_list.css"/>
-
-
+    <link rel="stylesheet" type="text/css" media="all" href="../css/card_list.css"/>
 </head>
 <body>
 <!--<div th:insert="fragments/menu.html">-->
@@ -115,7 +113,7 @@
         </tr>
         </thead>
         <tbody class="mdata">
-        <tr th:each="lst : ${cardsList}" th:action="@{'/open_card'}">
+        <tr th:each="lst : ${listCards}">
             <td th:text="${lst.idCards}">1</td>
             <td th:text="${lst.idOtv}">1</td>
             <td th:text="${lst.numberCard}">12</td>

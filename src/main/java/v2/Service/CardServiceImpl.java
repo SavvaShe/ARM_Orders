@@ -24,6 +24,7 @@ import static java.util.Optional.ofNullable;
 public class CardServiceImpl implements CardService {
 
     private final CardRepository cardsRepository;
+    private final CardRepository cardRepository;
 
     //Получаем весь список пользователей
     @NotNull
@@ -93,7 +94,9 @@ public class CardServiceImpl implements CardService {
                 .setNumberCard(cards.getNumberCard())
                 .setDateCorrect(cards.getDateCorrect())
                 .setDateCreate(cards.getDateCreate())
-                .setNumberLetter(cards.getNumberLetter());
+                .setNumberLetter(cards.getNumberLetter())
+                .setStatus(cards.getStatus());
+
 
     }
 
@@ -108,7 +111,8 @@ public class CardServiceImpl implements CardService {
                 .setNumberCard(request.getNumberCard())
                 .setDateCorrect(request.getDateCorrect())
                 .setDateCreate(request.getDateCreate())
-                .setNumberLetter(request.getNumberLetter());
+                .setNumberLetter(request.getNumberLetter())
+                .setStatus(request.getStatus());
     }
 
     private void cardUpdate(@NotNull CardV2 cardV2, @NotNull CreateCardRequest request) {
@@ -120,6 +124,7 @@ public class CardServiceImpl implements CardService {
         ofNullable(request.getDateCorrect()).map(cardV2::setDateCorrect);
         ofNullable(request.getDateCreate()).map(cardV2::setDateCreate);
         ofNullable(request.getNumberLetter()).map(cardV2::setNumberLetter);
+        ofNullable(request.getStatus()).map(cardV2::setStatus);
 
     }
 

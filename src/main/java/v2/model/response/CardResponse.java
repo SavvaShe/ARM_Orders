@@ -17,6 +17,6 @@ public class CardResponse {
     private Date dateCreate;//дата создания
     private Date sendLetter;//дата отправки письма
     private String links;//ссылка на письмо
-
+    private String status;
 
 }
