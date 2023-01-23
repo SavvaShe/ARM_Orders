@@ -1,11 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  >title<Наряды</title>
-  <link rel="stylesheet" type="text/css" media="all" href="../../../css/OrderList.css"/>
+  <title>Наряды</title>
+  <link rel="stylesheet" type="text/css" media="all" th:href="@{/static/css/order_list.css}"/>
+  <link rel="stylesheet" type="text/css" media="all" th:href="@{/static/css/main.css}"/>
 </head>
 <body>
+<header class="Menu">
+  <table class="tMenu">
+    <tbody>
+    <tr class="tr1">
+      <td class="r1">
+        <form>
+          <button type="button" id="ORDERS_LIST">
+            Наряды
+          </button>
+        </form>
+      </td>
+      <td class="r1">
+        <form>
+          <button type="button" id="CARD_LIST">
+            Карты передачи
+          </button>
+        </form>
+      </td>
+      <td class="r1">
+        <form>
+          <button type="button" id="DASHBOARD">
+            Доска
+          </button>
+        </form>
+      </td>
+      <td class="r1">
+        <form>
+          <button type="button" id="SETTINGS">
+            Настройки
+          </button>
+        </form>
+      </td>
+      <td class="r1">
+        <form>
+          <button type="button" id="SERVICES">
+            Сервисы
+          </button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</header>
 <div class="filtOrder">
   <table class="tFiltOrder">
     <thead>
@@ -66,10 +110,11 @@
     </tr>
     <tr>
       <td class="tNewOrder">
-        <input type="submit" value="Создать" onclick="window.open('../ORDERs/OrderEdit.html')">
-      </td>
-      <td class="tExportExcel">
-        <input type="submit" value="Экспорт в Excel" onclick="window.open('')">
+        <button type="button" id="" class="button newOrder">
+          <a th:href="@{order_edit}">
+            Создать
+          </a>
+        </button>
       </td>
       <td class="none"></td>
       <td class="none"></td>
@@ -88,7 +133,7 @@
 
 <div class="orderList">
   <table class="tOrderList">
-    <tbody>
+    <thead>
     <tr class="tOrderListFilt">
       <td class="fil1">
         id наряда
@@ -97,10 +142,7 @@
         № Наряда
       </td>
       <td class="fil1">
-        Подсистема
-      </td>
-      <td class="fil1">
-        Статус
+        Система
       </td>
       <td class="fil1">
         Технолог
@@ -109,12 +151,19 @@
         Программист
       </td>
       <td class="fil1">
-        Дата корректировки
-      </td>
-      <td class="fil1">
         Дата создания
       </td>
+    </tr>
+    </thead>
+    <tbody class="mdata">
 
+    <tr th:each="ol : ${listOrders}">
+      <td th:text="${ol.idOrder}">1</td>
+      <td th:text="${ol.number}">1</td>
+      <td th:text="${ol.systems}">12</td>
+      <td th:text="${ol.idTech}">32</td>
+      <td th:text="${ol.idProg}">2</td>
+      <td th:text="${ol.dateCreate}">12.12.2022</td>
     </tr>
     </tbody>
   </table>

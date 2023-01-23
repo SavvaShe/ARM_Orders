@@ -1,14 +1,19 @@
 package v2.model.response;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import java.sql.Date;
 
 @Data
-@Accessors(chain = true)
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class CardResponse {
-    private int idCards;//id
+    private Integer idCards;//id
     private int idOtv;//Ответсвенный
     private String numberCard;//Номер карточки
     private int numberLetter;//номер Письма

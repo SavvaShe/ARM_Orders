@@ -27,6 +27,9 @@ public interface CardService {
     void delete(@NotNull Integer idCard);
 
     List<CardV2> search(String keyword);
+
+    CardResponse findByUser(Integer idUser);
+
 }
 
 

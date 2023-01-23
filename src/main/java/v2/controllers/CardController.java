@@ -2,6 +2,7 @@ package v2.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import v2.Service.CardService;
@@ -11,13 +12,13 @@ import v2.model.response.CardResponse;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("resources/templates")
 @RequiredArgsConstructor
 public class CardController {
 
     private final CardService cardService;
-     ModelAndView cl = new ModelAndView("cards_list");
+
     //Получаем весь список карточек
 //    @GetMapping(produces = APPLICATION_JSON_VALUE)
 //    public List<CardResponse> findAll() {
@@ -31,11 +32,36 @@ public class CardController {
         mav.addObject("listCards", findAll());
  //       WebContext ctx = new WebContext();
 //        ctx.setVariable("cards_list", cardsList);
-        System.out.println(findAll());
+   //     System.out.println(findAll())
         return mav;
     }
 
 
+    @GetMapping("/page_not_found")
+    public ModelAndView openPage404() {
+        ModelAndView mav = new ModelAndView("page_not_found");
+        return mav;
+    }
+
+//    @GetMapping("/card_view")
+//    public ModelAndView openCardView() {
+//        ModelAndView mav = new ModelAndView("card_view");
+//        mav.addObject("listCards", findById());
+//        //       WebContext ctx = new WebContext();
+////        ctx.setVariable("cards_list", cardsList);
+//        System.out.println(findById());
+//        return mav;
+//    }
+
+
+
+   // @RequestMapping( value ="card_view", method = {RequestMethod.GET, RequestMethod.PUT}, consumes = MediaType.ALL_VALUE)
+    @GetMapping("/card_view/{idCards}")
+    public ModelAndView openCardView(/*@RequestParam*/@PathVariable Integer idCards) {
+        ModelAndView mav = new ModelAndView("card_view");
+        mav.addObject("cardView",cardService.findById(idCards));
+        return mav;
+    }
 
     public List<CardResponse> findAll() {
        return cardService.findAll();
@@ -48,13 +74,6 @@ public class CardController {
 //    }
 
 
-    @GetMapping("/card_view")
-        public ModelAndView findById(@RequestParam int idCards) {
-        ModelAndView mav = new ModelAndView("cards_view");
-        CardResponse cardResponse = cardService.findById(idCards);
-        mav.addObject("cards", cardResponse);
-        return mav;
-    }
 
 
     ////    //Создаем карту
@@ -64,11 +83,11 @@ public class CardController {
 //    }
     @GetMapping("/card_edit")
     public ModelAndView openEditCards() {
-            ModelAndView mav = new ModelAndView("card_edit");
-            return mav;
+        ModelAndView mav = new ModelAndView("card_edit");
+        CreateCardRequest cr = new CreateCardRequest();
+        mav.addObject("card_edit", cr);
+        return mav;
         }
-
-
 
     @GetMapping("/edit_id")
     public ModelAndView openEditWithId(@RequestParam int idCards) {
@@ -85,12 +104,20 @@ public class CardController {
 //        return"card_view";
 //    }
 
-    @PostMapping("/new")
-    public ModelAndView create(@RequestBody CreateCardRequest request){
-        cardService.createCard(request);
-        return cl;
+    @RequestMapping( value ="/new_card", method =  RequestMethod.POST/*, consumes = MediaType.ALL_VALUE*/)
+    public String create(/*@ModelAttribute*/ CreateCardRequest request){
+        ModelAndView mav = new ModelAndView("card_edit");
+       CardResponse cardResponse =  cardService.createCard(request);
+
+        return "redirect:card_list";
     }
 
+//    @RequestMapping(value = "/new_card", method = RequestMethod.POST)
+//    public String createUser(Model model, @ModelAttribute CreateCardRequest card_edit) {
+//        System.out.println("Я работаю");
+//        @NotNull CreateCardRequest cr = cardService.createCard(card_edit);
+//        return "redirect:/card_list";
+//    }
 
 //
 //
@@ -99,10 +126,10 @@ public class CardController {
 //   public CardResponse update(@PathVariable Integer IdCard, @RequestBody CreateCardRequest request) {
 //        return cardService.update(IdCard, request);
 //    }
-    @PostMapping("/korr")
+    @PostMapping("/korr_card")
     public String korr(@RequestBody CreateCardRequest request,@RequestParam int idCards){
     cardService.update(idCards,request);
-    return "redirect:/card_edit";
+    return "redirect:/cards_list";
 }
 //////    //Удаляем карту по id
 //    @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -131,4 +158,10 @@ public class CardController {
 //    public String openEditCards(){
 //        return "cards_edit";
 //    }
+
+      @GetMapping("/open_order_list")
+    public ModelAndView openOrderList() {
+          ModelAndView ol = new ModelAndView("orders_list");
+          return ol;
+    }
 }

@@ -3,12 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <title>Карты</title>
-    <link rel="stylesheet" type="text/css" media="all" href="../css/card_list.css"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/static/css/card_list.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/static/css/main.css}"/>
 </head>
 <body>
-<!--<div th:insert="fragments/menu.html">-->
-<!--</div>-->
-
+<!--<div th:insert="fragments/menu.html">
+</div>
+-->
+<header class="Menu">
+    <table class="tMenu">
+        <tbody>
+        <tr class="tr1">
+            <td class="r1">
+                <form>
+                    <button type="button" id="" >
+                        <a th:href="@{open_order_list}">
+                            Наряды
+                        </a>
+                    </button>
+                </form>
+            </td>
+            <td class="r1">
+                <form>
+                    <button type="button" id="" >
+                        <a th:href="@{card_list}">
+                            Карты передачи
+                        </a>
+                    </button>
+                </form>
+            </td>
+            <td class="r1">
+                <form>
+                    <button type="button" id="" >
+                        <a th:href="@{dashboard}">
+                            Доска
+                        </a>
+                    </button>
+                </form>
+            </td>
+            <td class="r1">
+                <form>
+                    <button type="button" id="" >
+                        <a th:href="@{page_not_found}">
+                            Настройки
+                        </a>
+                    </button>
+                </form>
+            </td>
+            <td class="r1">
+                <form>
+                    <button type="button" id="" >
+                        <a th:href="@{page_not_found}">
+                            Сервисы
+                        </a>
+                    </button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</header>
 <div class="filtCard">
     <table class="tFiltCard">
         <tbody>
@@ -69,11 +123,15 @@
         </tr>
         <tr>
             <td class="tNewCard">
-                <input th:action="@{'/card_edit'}" type="submit" value="Создать">
+                <button type="button" id="" class="button newCard">
+                    <a th:href="@{card_edit}">
+                        Создать
+                    </a>
+                </button>
             </td>
-            <td class="tExportExcel">
-                <input th:action="@{'/export_to_excel'}" type="submit" value="Экспорт в Excel">
-            </td>
+<!--            <td class="tExportExcel">-->
+<!--                <input th:action="@{'/export_to_excel'}" type="submit" value="Экспорт в Excel">-->
+<!--            </td><xv>`  ``  `W2`    ~`  W2</xv>-->
             <td class="none"></td>
             <td class="none"></td>
             <td class="none"></td>
@@ -110,22 +168,24 @@
             <th class="fil8">
                 Дата отправления письма
             </th>
-        </tr>
+       </tr>
         </thead>
-        <tbody class="mdata">
-        <tr th:each="lst : ${listCards}">
-            <td th:text="${lst.idCards}">1</td>
-            <td th:text="${lst.idOtv}">1</td>
-            <td th:text="${lst.numberCard}">12</td>
-            <td th:text="${lst.numberLetter}">32</td>
-            <td th:text="${lst.system}">2</td>
-            <td th:text="${lst.dateCorrect}">12.12.2022</td>
-            <td th:text="${lst.dateCreate}">03.08.2002</td>
-            <td th:text="${lst.sendLetter}">22.12.2001</td>
+      <tbody class="mdata">
+       <tr th:each="lst : ${listCards}">
+           <td th:text="${lst.idCards}">1</td>
+           <td th:text="${lst.idOtv}">1</td>
+           <td th:text="${lst.numberCard}">12</td>
+           <td th:text="${lst.numberLetter}">32</td>
+           <td th:text="${lst.system}">2</td>
+           <td th:text="${lst.dateCorrect}">12.12.2022</td>
+           <td th:text="${lst.dateCreate}">03.08.2002</td>
+           <td th:text="${lst.sendLetter}">22.12.2001</td>
+<!--           <td><a th:href="@{card_view(idCards=${lst.idCards})}">Открыть</a></td>-->
+           <td><!--/*@thymesVar id="idCards" type=""*/-->
+           <a th:href="@{card_view/{idCards}(idCards=${lst.idCards})}">Открыть</a></td>
+       </tr>
+       </tbody>
 
-
-        </tr>
-        </tbody>
     </table>
 </div>
 </body>

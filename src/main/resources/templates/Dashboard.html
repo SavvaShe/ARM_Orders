@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Доска</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/static/css/dashboard.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/static/css/main.css}"/>
+</head>
+<body>
+<header class="Menu">
+  <table class="tMenu">
+    <tbody>
+    <tr class="tr1">
+      <td class="r1">
+        <form>
+          <button type="button" id="" >
+            <a th:href="@{page_not_found}">
+              Наряды
+            </a>
+          </button>
+        </form>
+      </td>
+      <td class="r1">
+        <form>
+          <button type="button" id="" >
+            <a th:href="@{card_list}">
+              Карты передачи
+            </a>
+          </button>
+        </form>
+      </td>
+      <td class="r1">
+        <form>
+          <button type="button" id="" >
+            <a th:href="@{dashboard}">
+              Доска
+            </a>
+          </button>
+        </form>
+      </td>
+      <td class="r1">
+        <form>
+          <button type="button" id="" >
+            <a th:href="@{page_not_found}">
+              Настройки
+            </a>
+          </button>
+        </form>
+      </td>
+      <td class="r1">
+        <form>
+          <button type="button" id="" >
+            <a th:href="@{page_not_found}">
+              Сервисы
+            </a>
+          </button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</header>
+<div class="dashMenu">
+  <table class="tDashMenu">
+    <tbody>
+    <tr>
+      <td class="tm1">
+        <input type="submit" value="Назначенные карточки" id="D_APPOINTED" th:action="my_card_list"/>
+      </td>
+      <td class="tm1">
+        <input type="submit" value="Назначенные наряды" id="D_SIGNATURES" th:action="my_order_list"/>
+      </td>
+      <td class="tm1">
+        <input type="submit" value="Моя подписи" id="D_HISTORY" th:action=""/>
+      </td>
+      <td class="tm1">
+        <input type="submit" value="Мои группы" id="D_GROUP" th:action=""/>
+      </td>
+      <td class="tm1">
+        <input type="submit" value="Моя история" id="D_APPLICATIONS" th:action=""/>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div>
+
+</div>
+</body>
+</html>

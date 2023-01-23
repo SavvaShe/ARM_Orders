@@ -3,20 +3,73 @@
 <head>
   <meta charset="UTF-8">
   <title>Карточка передачи ПО</title>
-  <link rel="stylesheet" type="text/css" media="all" href="../../../css/card_view.css"/>
+  <link rel="stylesheet" type="text/css" media="all" th:href="@{/static/css/card_view.css}"/>
+  <link rel="stylesheet" type="text/css" media="all" th:href="@{/static/css/main.css}"/>
 
 </head>
 <body>
-
+<table class="tMenu">
+  <tbody>
+  <tr class="tr1">
+    <td class="r1">
+      <form>
+        <button type="button" id="" >
+          <a th:href="@{page_not_found}">
+            Наряды
+          </a>
+        </button>
+      </form>
+    </td>
+    <td class="r1">
+      <form>
+        <button type="button" id="" >
+          <a th:href="@{card_list}">
+            Карты передачи
+          </a>
+        </button>
+      </form>
+    </td>
+    <td class="r1">
+      <form>
+        <button type="button" id="" >
+          <a th:href="@{dashboard}">
+            Доска
+          </a>
+        </button>
+      </form>
+    </td>
+    <td class="r1">
+      <form>
+        <button type="button" id="" >
+          <a th:href="@{page_not_found}">
+            Настройки
+          </a>
+        </button>
+      </form>
+    </td>
+    <td class="r1">
+      <form>
+        <button type="button" id="" >
+          <a th:href="@{page_not_found}">
+            Сервисы
+          </a>
+        </button>
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</header>
 <div class="cardView">
+  <form th:action="@{/}" th:object="${cardView}" method="post">
   <table  class="tСardView">
     <thead>
 
     </thead>
-    <tbody>
+    <tbody >
 
     <tr>
-      <td class="c2" colspan="2">
+      <td class="c2" colspan="2" >
         <label>
           Карта передачи ПО №
         </label>
@@ -27,60 +80,56 @@
         Письмо
       </td>
       <td class="c3">
-                <span id="C_LETTER">
-
-                </span>
-      </td>
+        <!--/*@thymesVar id="listCards" type=""*/-->
+        <span th:text="${cardView.numberLetter}">
+          1
+        </span>
     </tr>
     <tr>
       <td class="c1">
-        Подсистема
+        Система
       </td>
-      <td class="c2">
-                <span id="C_SYSTEM">
-
-                </span>
-      </td>
+      <td class="c3" >
+        <span th:text="${cardView.system}">
+          1
+        </span>
     </tr>
-    <tr>
+    <tr >
       <td class="c1">
         Ответственный за передачу
       </td>
-      <td class="c3">
-                <span id="C_OTV">
-
-                </span>
+      <td class="c3" >
+        <span th:text="${cardView.idOtv}">
+          1
+        </span>
       </td>
     </tr>
     <tr>
       <td class="c1">
         Дата создания
       </td>
-      <td class="c3">
-                <span id="C_DATE_CREATE">
-
-                </span>
-      </td>
+      <td class="c3" >
+        <span th:text="${cardView.dateCreate}">
+          1
+        </span>
     </tr>
     <tr>
       <td class="c1">
         Дата корректировки
       </td>
-      <td class="c3">
-                <span id="C_DATE_KORR">
-
-                </span>
-      </td>
+      <td class="c3" >
+        <span th:text="${cardView.dateCorrect}">
+          1
+        </span>
     </tr>
     <tr>
       <td class="c1">
         Статус передачи
       </td>
-      <td class="c3">
-                <span ID="C_STATUS">
-
-                </span>
-      </td>
+      <td class="c3" >
+        <span th:text="${cardView.status}">
+          1
+        </span>
     </tr>
     <tr>
       <td class="c2" colspan="2">
@@ -88,16 +137,24 @@
       </td>
     </tr>
     <tr>
-      <td class="c2" colspan="2">
-                <span id="C_ORDER_LIST">
-
-                </span>
-      </td>
+      <td class="c2" colspan="2"></td>
     </tr>
+<!--    <tr th:each="lst1 : ${cardView}">-->
+<!--      <td th:text="${lst1.idCards}">1</td>-->
+<!--&lt;!&ndash;      <td th:text="${lst.idOtv}">1</td>&ndash;&gt;-->
+<!--&lt;!&ndash;      <td th:text="${lst.numberCard}">12</td>&ndash;&gt;-->
+<!--&lt;!&ndash;      <td th:text="${lst.numberLetter}">32</td>&ndash;&gt;-->
+<!--&lt;!&ndash;      <td th:text="${lst.system}">2</td>&ndash;&gt;-->
+<!--&lt;!&ndash;      <td th:text="${lst.dateCorrect}">12.12.2022</td>&ndash;&gt;-->
+<!--&lt;!&ndash;      <td th:text="${lst.dateCreate}">03.08.2002</td>&ndash;&gt;-->
+<!--&lt;!&ndash;      <td th:text="${lst.sendLetter}">22.12.2001</td>&ndash;&gt;-->
+<!--&lt;!&ndash;      <td><a th:href="@{card_view}">Открыть</a></td>&ndash;&gt;-->
+
+<!--    </tr>-->
 
     </tbody>
   </table>
-
+  </form>
   <table class="tCardMenu">
     <tr>
       <td class="tm1">

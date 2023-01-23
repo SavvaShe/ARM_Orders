@@ -1,23 +1,24 @@
 package v2.domain;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.Accessors;
 
 
 import java.sql.Date;
 import java.util.Objects;
 
-@Getter
-@Setter
-@Accessors(chain = true)
+@Data
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "cardpo")
 public class CardV2 {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idcard",nullable = false)
     private Integer idCards;//id
 //
 //    @Column(name = "login",nullable = false, unique = true)

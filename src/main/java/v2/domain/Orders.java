@@ -1,33 +1,34 @@
 package v2.domain;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.Accessors;
 
 import java.sql.Date;
 import java.util.Objects;
 
-@Getter
-@Setter
-@Accessors(chain = true)
+@Data
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "AO_ORDERS")
 public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_orders",nullable = false)
     private Integer idOrders;
-    @Column(name = "idOtv")
+    @Column(name = "id_otv")
     private int idOtv;//Ответсвенный
     @Column(name = "systems")
     private int systems;//система
     @Column(name = "number")
     private String number;//номер
-    @Column(name = "dateCreate")
+    @Column(name = "date_create")
     private Date dateCreate;//дата создания
-    @Column(name = "changeObject")
+    @Column(name = "change_object")
     private String changeObject;//изменяемый объект
-    @Column (name = "fcAgreement")
+    @Column (name = "fc_agreement")
     private int fcAgreement;//требуется согласование с ФЗ
     @Column(name = "version")
     private String version;//Номер версии изменений
@@ -36,43 +37,43 @@ public class Orders {
     @Column (name = "conditions")
     private String conditions;//Условия выполнения наряда
     //private changeList;
-    @Column(name = "docChange")
+    @Column(name = "doc_change")
     private String docChange;//Изменения в документации
-    @Column(name = "dSrcProd")
+    @Column(name = "d_src_prod")
     private String dSrcProd;// источник данных Промышленный полигон
-    @Column(name = "dSrcTest")
+    @Column(name = "d_src_test")
     private String dSrcTest;// источник данных Test полигон
-    @Column(name = "installTest")
+    @Column(name = "install_test")
     private String installTest;//установка на Тест
-    @Column(name = "installProd")
+    @Column(name = "install_prod")
     private String installProd;//установка на пром
-    @Column(name = "methodTest")
+    @Column(name = "method_test")
     private String methodTest;//метод проверки Тест
-    @Column(name = "methodProd")
+    @Column(name = "method_prod")
     private String methodProd;//метод проверки Пром
-    @Column(name = "menhodProdF")
+    @Column(name = "menhod_prodf")
     private String methodProdF;//Методика проверки функций Пром
-    @Column(name = "methodTestF")
+    @Column(name = "method_testf")
     private String methodTestF;//Методика проверки функций Тест
     @Column(name = "rollback")
     private String rollback;//технология отката
-    @Column (name = "responsibleContact")
+    @Column (name = "responsible_contact")
     private String responsibleContact;//ответсвенный контакт
-    @Column (name = "stopSystem")
+    @Column (name = "stop_system")
     private int stopSystem;//остановка системы 0-нет.1-да.
-    @Column (name = "downTime")
+    @Column (name = "down_time")
     private String downTime;//Время простоя системы
-    @Column(name = "idProg")
+    @Column(name = "id_prog")
     private int idProg;//id программиста
-    @Column (name = "idTech")
+    @Column (name = "id_tech")
     private int idTech;//id технолога
-    @Column(name = "phoneTech")
+    @Column(name = "phone_tech")
     private String phoneTech;//телефон технолога
-    @Column (name = "phoneProg")
+    @Column (name = "phone_prog")
     private String phoneProg;//телефон программиста
-    @Column(name = "idAdm")
+    @Column(name = "id_adm")
     private int idAdm;//id администратора
-    @Column(name = "phoneAdm")
+    @Column(name = "phone_adm")
     private String phoneAdm;// телефон администратора
     @Column(name = "fzFTest")
     private String fzFTest;// ответсвенный от функц. заказчика

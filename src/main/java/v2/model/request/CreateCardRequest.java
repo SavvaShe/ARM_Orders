@@ -1,22 +1,27 @@
 package v2.model.request;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import java.sql.Date;
 
 @Data
-@Accessors(chain = true)
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class CreateCardRequest {
-    private int idCards;//id
-    private int idOtv;//Ответсвенный
-    private String numberCard;//Номер карточки
-    private int numberLetter;//номер Письма
-    private int system;//подсистема
-    private Date dateCorrect;//дата корректировки карточки
-    private Date dateCreate;//дата создания
-    private Date sendLetter;//дата отправки письма
-    private String links;//ссылка на письмо
+    private Integer idCards; //id
+    private int idOtv; //Ответсвенный
+    private String numberCard; //Номер карточки
+    private int numberLetter; //номер Письма
+    private int system; //подсистема
+    private Date dateCorrect; //Дата корректировки карточки
+    private Date dateCreate; //Дата создания
+    private Date sendLetter; //Дата отправки письма
+    private String links; //Ссылка на письмо
     private String status;
 
 }

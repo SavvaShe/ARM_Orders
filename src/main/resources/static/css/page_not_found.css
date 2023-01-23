@@ -1,0 +1,28 @@
+body, html {
+    background: white;
+}
+
+button[type='button']{
+    background: #326690;
+    border: none;
+    color: white;
+    font-weight:bold;
+    text-align: center;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+input[type="submit"] {
+    background: white;
+    border: none;
+    color: black;
+    text-align: center;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+h1{
+    font-size: 13px;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+}

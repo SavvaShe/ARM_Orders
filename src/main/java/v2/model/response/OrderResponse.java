@@ -1,15 +1,20 @@
 package v2.model.response;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import java.sql.Date;
 
 @Data
-@Accessors(chain = true)
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class OrderResponse {
 
-    private int idOrder;//id Наряда
+    private Integer idOrder;//id Наряда
     private int idOtv;//Ответсвенный
     private int systems;//система
     private String number;//номер

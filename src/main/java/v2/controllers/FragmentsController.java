@@ -15,27 +15,27 @@ public class FragmentsController {
 
     @PostMapping("/orders")
     public String openOrders(){
-        return " ";
+        return "card_list";
     }
 
     @PostMapping("/cards")
     public String openCards(){
-        return " ";
+        return "card_list";
     }
 
     @PostMapping("/dashboard")
     public String openDashboard(){
-        return " ";
+        return "card_list";
     }
 
     @PostMapping("/settings")
     public String openSettings(){
-        return " ";
+        return "card_list";
     }
 
     @PostMapping("/services")
     public String openServices(){
-        return " ";
+        return "card_list";
     }
 
 }

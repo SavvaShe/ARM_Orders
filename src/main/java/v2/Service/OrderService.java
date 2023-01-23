@@ -36,6 +36,8 @@ public interface OrderService {
     void delete(@NotNull Integer idOrder);
 
     List<Orders> search(String keyword);
+
+    OrderResponse    findByUser(@NotNull Integer idOtv);
 }
 
 

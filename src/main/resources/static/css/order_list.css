@@ -1,4 +1,3 @@
-
 button[type='button']{
     background: #326690;
     border: none;
@@ -24,10 +23,8 @@ input[type="text"] {
     color: black;
     text-align: left;
     padding-left: 5px;
-    font-size: 14px;
     cursor: pointer;
     margin-bottom: 2px;
-
 }
 
 input[type="date"] {
@@ -35,13 +32,9 @@ input[type="date"] {
     border: 0.5px solid lightgrey;
     color: black;
     text-align: center;
-    font-size: 14px;
     cursor: pointer;
     padding-left: 5px;
 }
-
-
-
 
 .c1, .c2, .c3 {
     height: 40px;
@@ -55,7 +48,7 @@ input[type="date"] {
     width: 25%;
 }
 
-.tCardMenu {
+.tOrderMenu {
     background: white;
     border: 1px solid lightgrey;
     margin: 1px auto;
@@ -89,9 +82,9 @@ input[type='datetime-local']{
     text-align: left;
 }
 
-.tNewCard{
+.tNewOrder{
     font-size:20px;
-    padding-top:25px;
+    padding-top:20px;
     border: 0.5px solid white;
 }
 
@@ -105,22 +98,10 @@ input[type='datetime-local']{
     border: 0.5px solid white;
 }
 
-.filtCard {
+.filtOrder{
 
 }
-.tCardList{
-    background: white;
-    border: 0.5px solid lightgrey;
-    margin: 30px auto;
-    width:70%;
-    height: 100%;
-    align-content: center;
-    text-align: center;
-    padding: 20px 0 20px 0;
-    border-collapse: collapse;
-}
-
-.tFiltCard{
+.tFiltOrder{
     background: white;
     border: 0.5px solid lightgrey;
     margin: 30px auto;
@@ -137,13 +118,41 @@ input[type='datetime-local']{
     text-align: center;
     padding: 5px 0 5px 0;
 }
-.fil1 {
+
+.orderList{
+
+}
+
+.tOrderList{
+    background: white;
+    border: 0.5px solid lightgrey;
+    margin: 30px auto;
+    width:70%;
+    height: 100%;
+    align-content: center;
+    text-align: center;
+    padding: 20px 0 20px 0;
+    border-collapse: collapse;
+}
+
+.tOrderListFilt{
+
+}
+
+.fil1{
     border-collapse: collapse;
     border: 0.5px solid #326690;
     text-align: center;
     padding: 5px 0 5px 0;
     width: 10%;
     font-size: 12px;
-    background: #326690;
-    color: white;
+    background:#326690;
+    color:white;
+}
+
+.fil2{
+    border-collapse: collapse;
+    border: 0.5px solid lightgrey;
+    text-align: center;
+    padding: 5px 0 5px 0;
 }

@@ -46,14 +46,26 @@ public class CardServiceImpl implements CardService {
                 .map(this::buildCardResponse)
                 .orElseThrow(() -> new EntityNotFoundException("Card " + idCards + " is not found"));
     }
+    @NotNull
+    @Override
+    @Transactional(readOnly = true)
+    public CardResponse findByUser(@NotNull Integer idCards) {
+        return cardsRepository.findById(idCards)
+                .map(this::buildCardResponse)
+                .orElseThrow(() -> new EntityNotFoundException("Card " + idCards + " is not found"));
+    }
 
     //Создаем пользователя
     @NotNull
     @Override
     @Transactional
-    public CardResponse createCard(@NotNull CreateCardRequest request) {
+    public CardResponse createCard(CreateCardRequest request) {
         CardV2 cardV2 = buildCardRequest(request);
-        CardResponse cardResponse = buildCardResponse(cardsRepository.save(cardV2));
+        System.out.println(cardV2);
+        //     System.out.println("fghjk");
+       /// System.out.println(request);
+        CardV2 cardV21 = cardsRepository.save(cardV2);
+        CardResponse cardResponse = buildCardResponse(cardV21);
         return cardResponse;
     }
 
@@ -64,7 +76,7 @@ public class CardServiceImpl implements CardService {
     public CardResponse update(@NotNull Integer IdCard, @NotNull CreateCardRequest request) {
        CardV2 cards =  cardsRepository.findById(IdCard)
                 .orElseThrow(() -> new EntityNotFoundException("Card " + IdCard + " is not found"));
-        cardUpdate(cards, request);
+        CardV2 cv = buildCardRequest(request);
         return buildCardResponse(cardsRepository.save(cards));
     }
 
@@ -85,47 +97,40 @@ public class CardServiceImpl implements CardService {
 
     @NotNull
     private CardResponse buildCardResponse(@NotNull CardV2 cards) {
-        return new CardResponse()
-                .setIdCards(cards.getIdCards())
-                .setLinks(cards.getLinks())
-                .setIdOtv(cards.getIdOtv())
-                .setSendLetter(cards.getSendLetter())
-                .setSystem(cards.getSystem())
-                .setNumberCard(cards.getNumberCard())
-                .setDateCorrect(cards.getDateCorrect())
-                .setDateCreate(cards.getDateCreate())
-                .setNumberLetter(cards.getNumberLetter())
-                .setStatus(cards.getStatus());
+      //  System.out.println(cards.getStatus());
+        return CardResponse.builder()
+                .idCards(cards.getIdCards())
+                .links(cards.getLinks())
+                .idOtv(cards.getIdOtv())
+                .sendLetter(cards.getSendLetter())
+                .system(cards.getSystem())
+                .numberCard(cards.getNumberCard())
+                .dateCorrect(cards.getDateCorrect())
+                .dateCreate(cards.getDateCreate())
+                .numberLetter(cards.getNumberLetter())
+                .status(cards.getStatus())
+                .build();
 
 
     }
 
     @NotNull
     private CardV2 buildCardRequest(@NotNull CreateCardRequest request) {
-        return new CardV2()
-                .setIdCards(request.getIdCards())
-                .setLinks(request.getLinks())
-                .setIdOtv(request.getIdOtv())
-                .setSendLetter(request.getSendLetter())
-                .setSystem(request.getSystem())
-                .setNumberCard(request.getNumberCard())
-                .setDateCorrect(request.getDateCorrect())
-                .setDateCreate(request.getDateCreate())
-                .setNumberLetter(request.getNumberLetter())
-                .setStatus(request.getStatus());
-    }
-
-    private void cardUpdate(@NotNull CardV2 cardV2, @NotNull CreateCardRequest request) {
-        ofNullable(request.getNumberCard()).map(cardV2::setNumberCard);
-        ofNullable(request.getLinks()).map(cardV2::setLinks);
-        ofNullable(request.getIdOtv()).map(cardV2::setIdOtv);
-        ofNullable(request.getSendLetter()).map(cardV2::setSendLetter);
-        ofNullable(request.getSystem()).map(cardV2::setSystem);
-        ofNullable(request.getDateCorrect()).map(cardV2::setDateCorrect);
-        ofNullable(request.getDateCreate()).map(cardV2::setDateCreate);
-        ofNullable(request.getNumberLetter()).map(cardV2::setNumberLetter);
-        ofNullable(request.getStatus()).map(cardV2::setStatus);
+        return CardV2.builder()
+                .idCards(request.getIdCards())
+                .links(request.getLinks())
+                .idOtv(request.getIdOtv())
+                .sendLetter(request.getSendLetter())
+                .system(request.getSystem())
+                .numberCard(request.getNumberCard())
+                .dateCorrect(request.getDateCorrect())
+                .dateCreate(request.getDateCreate())
+                .numberLetter(request.getNumberLetter())
+                .status(request.getStatus())
+                .build();
 
     }
+
+
 
 }
