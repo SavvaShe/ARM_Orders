@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import v2.Service.CardService;
 import v2.Service.OrderService;
+import v2.model.response.CardResponse;
 import v2.model.response.OrderResponse;
 
 import java.util.List;
@@ -20,36 +21,25 @@ public class DashboardController {
     private final OrderService orderService;
     private final CardService cardService;
 
-//    @GetMapping("/desk_order_list")
-//    public ModelAndView openOrderList() {
-//        List<OrderResponse> List = orderService.findAll();
-//        ModelAndView mav = new ModelAndView("order_list");
-//        mav.addObject("orderCards", List);
-//        return mav;
-//    }
-
     @GetMapping("/my_order_list")
     public ModelAndView openMyOrderList(@PathVariable Integer idUser) {
-        ModelAndView mav = new ModelAndView("order_list");
+        ModelAndView mav = new ModelAndView("orders_list");
         mav.addObject("orderCards", orderService.findByUser(idUser));
         return mav;
     }
 
     @GetMapping("/my_card_list")
     public ModelAndView openMyCardList(@PathVariable Integer idUser) {
-        ModelAndView mav = new ModelAndView("cards_list");
-        mav.addObject("listCards", cardService.findByUser(idUser));
-        //       WebContext ctx = new WebContext();
-//        ctx.setVariable("cards_list", cardsList);
+        ModelAndView mav = new ModelAndView("dashboard");
+        mav.addObject("dashCardsList", cardService.findAll());
         return mav;
     }
 
-//    @GetMapping("/desk_card_list")
-//    public ModelAndView openCardList() {
-//        ModelAndView mav = new ModelAndView("cards_list");
-//        mav.addObject("listCards", cardService.findAll());
-//        //       WebContext ctx = new WebContext();
-////        ctx.setVariable("cards_list", cardsList);
-//        return mav;
-//    }
+    @GetMapping("/my_orders_list")
+    public ModelAndView openMyOredersList(@PathVariable Integer idUser) {
+        ModelAndView mav = new ModelAndView("dashboard");
+        mav.addObject("dashOrdersList", cardService.findAll());
+        return mav;
+    }
+
 }

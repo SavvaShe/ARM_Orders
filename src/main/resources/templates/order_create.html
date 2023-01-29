@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Наряд</title>
@@ -62,6 +62,7 @@
   </table>
 </header>
 <div class="orderView">
+  <form th:action="@{new_order}" th:object="${order_create}" method="post">
   <table class="tOrderView">
     <tbody>
     <tr>
@@ -116,7 +117,7 @@
       </td>
       <td class="td3" colspan="2">
         <label>
-          <input type="text" size="90" maxlength="64" id="H_VERSION">
+          <input type="text" th:field="*{version}" size="90" maxlength="64">
         </label>
       </td>
     </tr>
@@ -126,7 +127,7 @@
       </td>
       <td class="td3" colspan="2">
         <label>
-          <input type="text" size="90" maxlength="256" autocomplete="off" id="H_REASON">
+          <input type="text" th:field="*{reasons}" size="90" maxlength="256" autocomplete="off" id="H_REASON">
         </label>
       </td>
     </tr>
@@ -136,7 +137,7 @@
       </td>
       <td class="td3" colspan="2">
         <label>
-          <input type="text" size="90" maxlength="256" id="H_CONDITIONS">
+          <input type="text" th:field="*{conditions}" size="90" maxlength="256" id="H_CONDITIONS">
         </label>
       </td>
     </tr>
@@ -151,7 +152,7 @@
       </td>
       <td class="td3" colspan="2">
         <label>
-          <textarea cols="83" rows="17" id="H_CHANGES"></textarea>
+          <textarea cols="83" th:field="*{version}" rows="17" id="H_CHANGES"></textarea>
         </label>
       </td>
     </tr>
@@ -607,14 +608,9 @@
       <td class="tm1">
         <input type="submit" value="Сохранить" />
       </td>
-      <!--<td class="tm1">
-          <input type="submit" value="Создать по образу" />
-      </td>
-      <td class="tm1">
-          <input type="submit" value="Распечатать" />
-      </td>-->
     </tr>
   </table>
+  </form>
 </div>
 </body>
 </html>

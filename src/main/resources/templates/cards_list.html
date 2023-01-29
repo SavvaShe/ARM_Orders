@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Карты</title>
@@ -124,7 +124,7 @@
         <tr>
             <td class="tNewCard">
                 <button type="button" id="" class="button newCard">
-                    <a th:href="@{card_edit}">
+                    <a th:href="@{card_create}">
                         Создать
                     </a>
                 </button>
@@ -171,6 +171,7 @@
        </tr>
         </thead>
       <tbody class="mdata">
+<!--      <a th:href="@{card_view/{idCards}(idCards=${lst.idCards})}">Открыть-->
        <tr th:each="lst : ${listCards}">
            <td th:text="${lst.idCards}">1</td>
            <td th:text="${lst.idOtv}">1</td>
@@ -180,10 +181,13 @@
            <td th:text="${lst.dateCorrect}">12.12.2022</td>
            <td th:text="${lst.dateCreate}">03.08.2002</td>
            <td th:text="${lst.sendLetter}">22.12.2001</td>
+           <td>
+               <a th:class="openCard" th:href="@{card_view/{idCards}(idCards=${lst.idCards})}">
+                   Открыть</a>
+           </td>
 <!--           <td><a th:href="@{card_view(idCards=${lst.idCards})}">Открыть</a></td>-->
-           <td><!--/*@thymesVar id="idCards" type=""*/-->
-           <a th:href="@{card_view/{idCards}(idCards=${lst.idCards})}">Открыть</a></td>
-       </tr>
+           <!--/*@thymesVar id="idCards" type=""*/-->
+         </tr>
        </tbody>
 
     </table>

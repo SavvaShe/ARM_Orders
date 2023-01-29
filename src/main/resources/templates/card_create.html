@@ -1,0 +1,166 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Карточка №</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/static/css/card_edit.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/static/css/main.css}"/>
+</head>
+<body>
+<!--<div th:insert="fragments/menu.html">
+</div>
+-->
+<header class="Menu">
+<table class="tMenu">
+    <tbody>
+    <tr class="tr1">
+        <td class="r1">
+            <form>
+                <button type="button">
+                    <a th:href="@{open_order_list}">
+                        Наряды
+                    </a>
+                </button>
+            </form>
+        </td>
+        <td class="r1">
+            <form>
+                <button type="button">
+                    <a th:href="@{card_list}">
+                        Карты передачи
+                    </a>
+                </button>
+            </form>
+        </td>
+        <td class="r1">
+            <form>
+                <button type="button">
+                    <a th:href="@{dashboard}">
+                        Доска
+                    </a>
+                </button>
+            </form>
+        </td>
+        <td class="r1">
+            <form>
+                <button type="button">
+                    <a th:href="@{page_not_found}">
+                        Настройки
+                    </a>
+                </button>
+            </form>
+        </td>
+        <td class="r1">
+            <form>
+                <button type="button">
+                    <a th:href="@{page_not_found}">
+                        Сервисы
+                    </a>
+                </button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</header>
+
+<div class="cardEdit">
+    <form th:action="@{new_card}" th:object="${card_create}" method="post">
+        <table class="tCardEdit">
+        <tbody>
+        <tr>
+            <td class="c2" colspan="2">
+                Карта передачи ПО №
+            </td>
+<!--            <td>-->
+<!--                <label>-->
+<!--                    <input id="C_NUM_CARD" th:field="*{numberCard}">-->
+<!--                  </label>-->
+<!--            </td>-->
+        </tr>
+        <tr>
+            <td class="c1">
+                Ответственный за передачу
+            </td>
+            <td class="c3">
+                <label>
+                    <input id="C_OTV" th:field="*{idOtv}" type="text">
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td class="c1">
+                Система
+            </td>
+            <td>
+                <label>
+                    <input id="C_SYSTEM" th:field="*{system}">
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td class="c1">
+                Дата создания
+            </td>
+            <td class="c3">
+                <label for="C_DATE_CREATE">
+                    <input type="date" th:field="*{dateCreate}" id="C_DATE_CREATE">
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td class="c1">
+                Дата корректировки
+            </td>
+            <td class="c3">
+                <label for="C_DATE_KORR">
+                    <input type="date" th:field="*{dateCorrect}" id="C_DATE_KORR">
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td class="c1">
+                Статус передачи
+            </td>
+            <td class="c3">
+                <label>
+                    <input type="text" th:field="*{status}" id="C_STATUS">
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td class="c2" colspan="2">
+                <label id="C_LETTER" >
+                    <input type="text" th:field="*{numberLetter}">
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td class="c2" colspan="2">
+                Передаваемые наряды:
+            </td>
+        </tr>
+        <tr>
+            <td class="c2" colspan="2">
+                <a th:href="@{select_orders_list}"></a>
+            </td>
+        </tr>
+
+        </tbody>
+
+    </table>
+    <table class="tCardMenu">
+        <tr>
+            <td class="tm1">
+                    <input  type="submit" value="Сохранить" id="C_SAVE_CARD"/>
+            </td>
+<!--            <td class="tm1">-->
+<!--                    <input type="submit" value="Отменить изменения" id="C_UNDO_CHANGE"/>-->
+<!--            </td>-->
+
+        </tr>
+    </table>
+</form>
+</div>
+</body>
+</html>

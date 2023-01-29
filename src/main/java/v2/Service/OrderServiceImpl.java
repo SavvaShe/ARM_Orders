@@ -6,10 +6,13 @@ import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import v2.domain.CardV2;
 import v2.domain.Orders;
+import v2.model.request.CreateCardRequest;
 import v2.model.request.CreateOrderRequest;
 import v2.model.response.CardResponse;
 import v2.model.response.OrderResponse;
+import v2.repository.CardRepository;
 import v2.repository.OrderRepository;
 
 import java.util.List;
@@ -21,7 +24,9 @@ import static java.util.Optional.ofNullable;
 @Service
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
-    private static OrderRepository orderRepository;
+//    private static OrderRepository orderRepository;
+    private final OrderRepository orderRepository;
+    private final OrderRepository ordersRepository;
 
     //Получаем весь список пользователей
     @NotNull
@@ -57,15 +62,27 @@ public class OrderServiceImpl implements OrderService {
 
 
     //Создаем пользователя
+//    @Override
+//    @Transactional
+//    @NotNull
+//    public OrderResponse create(@NotNull CreateOrderRequest request) {
+//       Orders orders = buildOrderRequest(request);
+//        OrderResponse orderResponse = buildOrderResponse(orderRepository.save(orders));
+//        return orderResponse;
+//    }
+
+    @NotNull
     @Override
     @Transactional
-    @NotNull
-    public OrderResponse create(@NotNull CreateOrderRequest request) {
-       Orders orders = buildOrderRequest(request);
-        OrderResponse orderResponse = buildOrderResponse(orderRepository.save(orders));
+    public OrderResponse create(CreateOrderRequest request) {
+        Orders orders = buildOrderRequest(request);
+        System.out.println(orders);
+        //     System.out.println("fghjk");
+        /// System.out.println(request);
+        Orders orders1 = orderRepository.save(orders);
+        OrderResponse orderResponse = buildOrderResponse(orders1);
         return orderResponse;
     }
-
     //Обновляем пользователя по id
     @NotNull
 
@@ -75,6 +92,7 @@ public class OrderServiceImpl implements OrderService {
                 .orElseThrow(() -> new EntityNotFoundException("Order " + IdOrder + " is not found"));
         buildOrderRequest(request);
         OrderResponse orderResponse = buildOrderResponse(orderRepository.save(orders));
+        System.out.println(orderResponse);
         return orderResponse;
     }
 

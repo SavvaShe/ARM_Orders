@@ -148,3 +148,7 @@ input[type='datetime-local']{
     background: #326690;
     color: white;
 }
+
+.openCard{
+    color: black;
+}

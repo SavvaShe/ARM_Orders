@@ -12,14 +12,14 @@ import java.util.Objects;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "AO_ORDERS")
+@Table(name = "ao_orders")
 public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_orders",nullable = false)
     private Integer idOrders;
     @Column(name = "id_otv")
-    private int idOtv;//Ответсвенный
+    private int idOtv;//Ответственный
     @Column(name = "systems")
     private int systems;//система
     @Column(name = "number")
@@ -36,7 +36,6 @@ public class Orders {
     private String reasons;//Основание
     @Column (name = "conditions")
     private String conditions;//Условия выполнения наряда
-    //private changeList;
     @Column(name = "doc_change")
     private String docChange;//Изменения в документации
     @Column(name = "d_src_prod")

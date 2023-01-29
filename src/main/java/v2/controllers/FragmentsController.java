@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import v2.model.request.CreateCardRequest;
 
 @Controller
@@ -38,4 +39,8 @@ public class FragmentsController {
         return "card_list";
     }
 
+    @RequestMapping("/my_cards_list")
+    public String showDashCardsList(){
+        return "dashdoard_cards :: #dashCardsList";
+    }
 }

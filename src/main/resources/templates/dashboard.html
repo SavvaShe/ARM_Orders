@@ -14,7 +14,7 @@
       <td class="r1">
         <form>
           <button type="button" id="" >
-            <a th:href="@{page_not_found}">
+            <a th:href="@{open_order_list}">
               Наряды
             </a>
           </button>
@@ -24,7 +24,7 @@
         <form>
           <button type="button" id="" >
             <a th:href="@{card_list}">
-              Карты передачи
+              Карты
             </a>
           </button>
         </form>
@@ -65,26 +65,37 @@
     <tbody>
     <tr>
       <td class="tm1">
-        <input type="submit" value="Назначенные карточки" id="D_APPOINTED" th:action="my_card_list"/>
+        <input type="submit" value="Назначенные карточки" id="D_APPOINTED" th:action="my_cards_list"/>
       </td>
       <td class="tm1">
         <input type="submit" value="Назначенные наряды" id="D_SIGNATURES" th:action="my_order_list"/>
       </td>
       <td class="tm1">
-        <input type="submit" value="Моя подписи" id="D_HISTORY" th:action=""/>
+        <input type="submit" value="Мои подписи" id="D_HISTORY" th:action="my_signatues"/>
       </td>
       <td class="tm1">
-        <input type="submit" value="Мои группы" id="D_GROUP" th:action=""/>
+        <input type="submit" value="Мои группы" id="D_GROUP" th:action="my_groups"/>
       </td>
       <td class="tm1">
-        <input type="submit" value="Моя история" id="D_APPLICATIONS" th:action=""/>
+        <input type="submit" value="Моя история" id="D_APPLICATIONS" th:action="my_histoy"/>
       </td>
     </tr>
     </tbody>
   </table>
 </div>
 <div>
+  <div th:fragment="dashCardsList" id="dashCardsList">
+    <table>
+      <thead>
 
+      </thead>
+      <tbody>
+        <tr>
+          <p>Данная функция будет добавлена после доработки прав доступа</p>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 </body>
 </html>

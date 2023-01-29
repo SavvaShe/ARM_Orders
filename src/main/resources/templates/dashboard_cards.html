@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div th:fragment="dashCardsList" id="dashCardsList">
+      <table>
+        <thead>
+        <tr class="tCardListFilt">
+          <th class="fil1">
+            id карты
+          </th>
+          <th class="fil2">
+            Ответственный
+          </th>
+          <th class="fil3">
+            Номер карты
+          </th>
+          <th class="fil4">
+            Номер письма
+          </th>
+          <th class="fil5">
+            Система
+          </th>
+          <th class="fil6">
+            Дата корректировки
+          </th>
+          <th class="fil7">
+            Дата создания
+          </th>
+          <th class="fil8">
+            Дата отправления письма
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="dashList : ${listCards}">
+          <td th:text="${dashList.idCards}">1</td>
+          <td th:text="${dashList.idOtv}">1</td>
+          <td th:text="${dashList.numberCard}">12</td>
+          <td th:text="${dashList.numberLetter}">32</td>
+          <td th:text="${dashList.system}">2</td>
+          <td th:text="${dashList.dateCorrect}">12.12.2022</td>
+          <td th:text="${dashList.dateCreate}">03.08.2002</td>
+          <td th:text="${dashList.sendLetter}">22.12.2001</td>
+          <td>
+            <a th:class="openCard" th:href="@{card_view/{idCards}(idCards=${lst.idCards})}">
+              Открыть</a>
+          </td>
+          <!--           <td><a th:href="@{card_view(idCards=${lst.idCards})}">Открыть</a></td>-->
+          <!--/*@thymesVar id="idCards" type=""*/-->
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

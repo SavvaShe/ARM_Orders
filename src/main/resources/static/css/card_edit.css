@@ -35,6 +35,11 @@ input[type="submit"] {
 
 }
 
+.undo_change{
+    background: white;
+    color: black;
+}
+
 .c1, .c2, .c3 {
     height: 40px;
     width: 50%;

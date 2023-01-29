@@ -17,7 +17,6 @@ import v2.repository.CardRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static java.util.Optional.ofNullable;
 
 @Service
 @RequiredArgsConstructor

@@ -8,60 +8,61 @@
 
 </head>
 <body>
-<table class="tMenu">
-  <tbody>
-  <tr class="tr1">
-    <td class="r1">
-      <form>
-        <button type="button" id="" >
-          <a th:href="@{page_not_found}">
-            Наряды
-          </a>
-        </button>
-      </form>
-    </td>
-    <td class="r1">
-      <form>
-        <button type="button" id="" >
-          <a th:href="@{card_list}">
-            Карты передачи
-          </a>
-        </button>
-      </form>
-    </td>
-    <td class="r1">
-      <form>
-        <button type="button" id="" >
-          <a th:href="@{dashboard}">
-            Доска
-          </a>
-        </button>
-      </form>
-    </td>
-    <td class="r1">
-      <form>
-        <button type="button" id="" >
-          <a th:href="@{page_not_found}">
-            Настройки
-          </a>
-        </button>
-      </form>
-    </td>
-    <td class="r1">
-      <form>
-        <button type="button" id="" >
-          <a th:href="@{page_not_found}">
-            Сервисы
-          </a>
-        </button>
-      </form>
-    </td>
-  </tr>
-  </tbody>
-</table>
+<header class="Menu">
+  <table class="tMenu">
+    <tbody>
+    <tr class="tr1">
+      <td class="r1">
+        <form>
+          <button type="button">
+            <a th:href="@{open_order_list}">
+              Наряды
+            </a>
+          </button>
+        </form>
+      </td>
+      <td class="r1">
+        <form>
+          <button type="button">
+            <a th:href="@{card_list}">
+              Карты передачи
+            </a>
+          </button>
+        </form>
+      </td>
+      <td class="r1">
+        <form>
+          <button type="button">
+            <a th:href="@{dashboard}">
+              Доска
+            </a>
+          </button>
+        </form>
+      </td>
+      <td class="r1">
+        <form>
+          <button type="button">
+            <a th:href="@{page_not_found}">
+              Настройки
+            </a>
+          </button>
+        </form>
+      </td>
+      <td class="r1">
+        <form>
+          <button type="button">
+            <a th:href="@{page_not_found}">
+              Сервисы
+            </a>
+          </button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 </header>
 <div class="cardView">
-  <form th:action="@{/}" th:object="${cardView}" method="post">
+  <form th:object="${cardView}" method="post">
   <table  class="tСardView">
     <thead>
 
@@ -90,8 +91,11 @@
         Система
       </td>
       <td class="c3" >
-        <span th:text="${cardView.system}">
-          1
+        <span th:switch="true">
+          <p th:case="${cardView.system}=='1'">
+          ЕМД-ПП</p>
+          <p th:case="${cardView.system}=='2'">
+          РРД-ГП</p>
         </span>
     </tr>
     <tr >
@@ -99,8 +103,13 @@
         Ответственный за передачу
       </td>
       <td class="c3" >
-        <span th:text="${cardView.idOtv}">
-          1
+        <span th:switch="true">
+          <p th:case="${cardView.idOtv}=='1'">
+          Злакоманова</p>
+          <p th:case="${cardView.idOtv}=='2'">
+          Шебарин</p>
+          <p th:case="${cardView.idOtv}=='3'">
+          Феоктистов</p>
         </span>
       </td>
     </tr>
@@ -110,7 +119,7 @@
       </td>
       <td class="c3" >
         <span th:text="${cardView.dateCreate}">
-          1
+
         </span>
     </tr>
     <tr>
@@ -119,7 +128,7 @@
       </td>
       <td class="c3" >
         <span th:text="${cardView.dateCorrect}">
-          1
+
         </span>
     </tr>
     <tr>
@@ -158,24 +167,10 @@
   <table class="tCardMenu">
     <tr>
       <td class="tm1">
-        <input type="submit" value="Корректировать" th:action="@{'/korr'}">
-<!--        <a th:href="@{'/korr'}">Корректировать</a>-->
+        <button>
+        <a th:class="korrCard" th:href="@{/resources/templates/card_edit/{idCards}(idCards=${cardView.idCards})}">Корректировать</a>
+        </button>
       </td>
-      <!--      <td class="tm1">-->
-      <!--        <form>-->
-      <!--        <input type="submit" value="В эталон" id="C_STAT"/>-->
-      <!--  &lt;!&ndash;          Выпадающий список с соответствующими пунктами &ndash;&gt;-->
-      <!--        </form>-->
-      <!--      </td>-->
-      <td class="tm1">
-        <input type="submit" th:action="@{'/card_list'}" value="Карты">
-          <!--        <input type="submit" value="Закрыть" id="C_CLOSE"/>-->
-      </td>
-      <!--      <td class="tm1">-->
-      <!--        <form th:action="/story">-->
-      <!--        <input type="submit" value="История" id="C_HISTORY"/>-->
-      <!--        </form>-->
-      <!--      </td>-->
     </tr>
   </table>
 </div>

@@ -8,6 +8,11 @@ button[type='button']{
     cursor: pointer;
 }
 
+.korrCard{
+    color: black;
+}
+
+
 input[type="submit"] {
     background: white;
     border: none;

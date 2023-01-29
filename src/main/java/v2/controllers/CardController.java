@@ -19,29 +19,61 @@ public class CardController {
 
     private final CardService cardService;
 
-    //Получаем весь список карточек
-//    @GetMapping(produces = APPLICATION_JSON_VALUE)
-//    public List<CardResponse> findAll() {
-//        return cardService.findAll();
-//    }
-
-
     @GetMapping("/card_list")
     public ModelAndView openList() {
         ModelAndView mav = new ModelAndView("cards_list");
         mav.addObject("listCards", findAll());
- //       WebContext ctx = new WebContext();
-//        ctx.setVariable("cards_list", cardsList);
-   //     System.out.println(findAll())
+        //WebContext ctx = new WebContext();
+        //ctx.setVariable("cards_list", cardsList);
+        //System.out.println(findAll())
         return mav;
     }
 
+    @GetMapping("/card_create")
+    public ModelAndView openEditCards() {
+        ModelAndView mav = new ModelAndView("card_create");
+        CreateCardRequest cr = new CreateCardRequest();
+        mav.addObject("card_create", cr);
+        return mav;
+    }
+
+    @RequestMapping( value ="/new_card", method =  RequestMethod.POST/*, consumes = MediaType.ALL_VALUE*/)
+    public String createCard(/*@ModelAttribute*/ CreateCardRequest request){
+        ModelAndView mav = new ModelAndView("card_create");
+        CardResponse cardResponse =  cardService.createCard(request);
+        return "redirect:card_list";
+    }
 
     @GetMapping("/page_not_found")
     public ModelAndView openPage404() {
         ModelAndView mav = new ModelAndView("page_not_found");
         return mav;
     }
+
+    @GetMapping("/card_view/{idCards}")
+    public ModelAndView openCardView(/*@RequestParam*/@PathVariable Integer idCards) {
+        ModelAndView mav = new ModelAndView("card_view");
+        mav.addObject("cardView",cardService.findById(idCards));
+        return mav;
+    }
+
+    @GetMapping("card_edit/{idCards}")
+    public ModelAndView openEditWithId(/*@RequestParam*/@PathVariable Integer idCards) {
+        ModelAndView mav = new ModelAndView("card_edit");
+        //CardResponse cardResponse = cardService.findById(idCards);
+        mav.addObject("cardsKorr", cardService.findById(idCards));
+        return mav;
+    }
+
+    public List<CardResponse> findAll() {
+        return cardService.findAll();
+    }
+
+    //Получаем весь список карточек
+//    @GetMapping(produces = APPLICATION_JSON_VALUE)
+//    public List<CardResponse> findAll() {
+//        return cardService.findAll();
+//    }
 
 //    @GetMapping("/card_view")
 //    public ModelAndView openCardView() {
@@ -56,16 +88,7 @@ public class CardController {
 
 
    // @RequestMapping( value ="card_view", method = {RequestMethod.GET, RequestMethod.PUT}, consumes = MediaType.ALL_VALUE)
-    @GetMapping("/card_view/{idCards}")
-    public ModelAndView openCardView(/*@RequestParam*/@PathVariable Integer idCards) {
-        ModelAndView mav = new ModelAndView("card_view");
-        mav.addObject("cardView",cardService.findById(idCards));
-        return mav;
-    }
 
-    public List<CardResponse> findAll() {
-       return cardService.findAll();
-    }
 
 //@GetMapping("/card_list")
 //  public String openList(Model model) {
@@ -73,7 +96,13 @@ public class CardController {
 //    return "cards_list";
 //    }
 
-
+ //   @GetMapping("/card_edit")
+ //   public ModelAndView openEditCards() {
+  //      ModelAndView mav = new ModelAndView("card_create");
+  //      CreateCardRequest cr = new CreateCardRequest();
+  //      mav.addObject("card_create", cr);
+  //      return mav;
+  // }
 
 
     ////    //Создаем карту
@@ -81,21 +110,6 @@ public class CardController {
 //    public CardResponse create(@RequestBody CreateCardRequest request) {
 //        return cardService.createCard(request);
 //    }
-    @GetMapping("/card_edit")
-    public ModelAndView openEditCards() {
-        ModelAndView mav = new ModelAndView("card_edit");
-        CreateCardRequest cr = new CreateCardRequest();
-        mav.addObject("card_edit", cr);
-        return mav;
-        }
-
-    @GetMapping("/edit_id")
-    public ModelAndView openEditWithId(@RequestParam int idCards) {
-        ModelAndView mav = new ModelAndView("card_edit");
-        CardResponse cardResponse = cardService.findById(idCards);
-        mav.addObject("cardskorr", cardResponse);
-        return mav;
-    }
 
     //Обработка открытия карточки из card_list
 //    @GetMapping("/open_card")
@@ -104,13 +118,8 @@ public class CardController {
 //        return"card_view";
 //    }
 
-    @RequestMapping( value ="/new_card", method =  RequestMethod.POST/*, consumes = MediaType.ALL_VALUE*/)
-    public String create(/*@ModelAttribute*/ CreateCardRequest request){
-        ModelAndView mav = new ModelAndView("card_edit");
-       CardResponse cardResponse =  cardService.createCard(request);
 
-        return "redirect:card_list";
-    }
+
 
 //    @RequestMapping(value = "/new_card", method = RequestMethod.POST)
 //    public String createUser(Model model, @ModelAttribute CreateCardRequest card_edit) {
@@ -126,23 +135,29 @@ public class CardController {
 //   public CardResponse update(@PathVariable Integer IdCard, @RequestBody CreateCardRequest request) {
 //        return cardService.update(IdCard, request);
 //    }
-    @PostMapping("/korr_card")
-    public String korr(@RequestBody CreateCardRequest request,@RequestParam int idCards){
+
+    @RequestMapping( value ="korr_view", method =  RequestMethod.POST/*, consumes = MediaType.ALL_VALUE*/)
+    public String korr(/*@RequestBody*/ CreateCardRequest request,/*@RequestParam*/@PathVariable  Integer idCards){
+        System.out.println(request);
     cardService.update(idCards,request);
-    return "redirect:/cards_list";
+    return "redirect:card_view/{idCards}";
 }
+
+
+
+
 //////    //Удаляем карту по id
 //    @ResponseStatus(HttpStatus.NO_CONTENT)
 //    @DeleteMapping(value = "/{IdCard}", produces = APPLICATION_JSON_VALUE)
 //    public void delete(@PathVariable Integer IdCard) {
 //        cardService.delete(IdCard);
 //    }
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping(value = "/{idCard}")
-    public String delete(@RequestParam int idCards) {
-        cardService.delete(idCards);
-        return "redirect:/card_list";
-    }
+//    @ResponseStatus(HttpStatus.NO_CONTENT)
+//    @DeleteMapping(value = "/{idCard}")
+//    public String delete(@RequestParam int idCards) {
+//        cardService.delete(idCards);
+//        return "redirect:/card_list";
+//    }
     public ModelAndView search(@RequestParam String keyword) {
         List<CardV2> result = cardService.search(keyword);
         ModelAndView mav = new ModelAndView("search");
@@ -164,4 +179,11 @@ public class CardController {
           ModelAndView ol = new ModelAndView("orders_list");
           return ol;
     }
+
+    @GetMapping("/dashboard")
+    public ModelAndView openDashboard() {
+        ModelAndView dash = new ModelAndView("dashboard");
+        return dash;
+    }
+
 }

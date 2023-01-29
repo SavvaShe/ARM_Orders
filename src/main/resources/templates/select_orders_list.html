@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Выберите наряды для передачи</title>
+</head>
+<body>
+<header>
+  <span>
+    Выберите наряды, которы передаются в рамках данной карточки:
+  </span>
+  <input id="filter" type="text"  class=""/>
+  <button class="">
+    <i>&#xe8b6;</i>
+  </button>
+</header>
+<div>
+  <table>
+    <thead>
+    <tr>
+      <td>
+        ID наряда
+      </td>
+      <td>
+        Ответственный
+      </td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="ordList : ${selectOrdersList}">
+      <td>
+        <input type="checkbox">
+      </td>
+      <td th:text="${ordList.idOrder}"></td>
+      <td th:text="${ordList.idOtv}">
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

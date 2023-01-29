@@ -1,13 +1,12 @@
 package v2.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import v2.Service.OrderService;
-import v2.domain.CardV2;
 import v2.domain.Orders;
 import v2.model.request.CreateCardRequest;
 import v2.model.request.CreateOrderRequest;
@@ -29,15 +28,24 @@ public class OrderController {
 //    public List<CardResponse> findAll() {
 //        return cardService.findAll();
 //    }
-    @GetMapping("/orders_list")
+
+    @GetMapping("/order_list")
     public ModelAndView openList() {
-        List<OrderResponse> List = orderService.findAll();
         ModelAndView mav = new ModelAndView("orders_list");
-        mav.addObject("listOrders", List);
+        mav.addObject("listOrders", findAll());
         return mav;
     }
+//    @GetMapping("/orders_list")
+//    public ModelAndView openList() {
+//        List<OrderResponse> List = orderService.findAll();
+//        ModelAndView mav = new ModelAndView("orders_list");
+//        mav.addObject("listOrders", List);
+//        return mav;
+//    }
 
-
+    public List<OrderResponse> findAll() {
+        return orderService.findAll();
+    }
     //    //Получаем карточку по id
 //    @GetMapping(value = "/{IdCard}", produces = APPLICATION_JSON_VALUE)
 //    public CardResponse findById(@PathVariable Integer IdCard) {
@@ -51,35 +59,53 @@ public class OrderController {
         return mav;
     }
 
+    @GetMapping("/order_create")
+    public ModelAndView openCreateOrder() {
+        ModelAndView mav = new ModelAndView("order_create");
+        CreateOrderRequest cr = new CreateOrderRequest();
+//        System.out.println(cr);
+        mav.addObject("order_create", cr);
+        return mav;
+    }
+    @RequestMapping( value ="/new_order", method =  RequestMethod.POST/*, consumes = MediaType.ALL_VALUE*/)
+    public String createOrder(/*@ModelAttribute*/ CreateOrderRequest request){
+        ModelAndView mav = new ModelAndView("order_create");
+        OrderResponse orderResponse =  orderService.create(request);
+        return "redirect:order_list";
+    }
     //
 //    //Создаем карту
 //    @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 //    public CardResponse create(@RequestBody CreateCardRequest request) {
 //        return cardService.createCard(request);
 //    }
-    @GetMapping("/order_edit")
-    public ModelAndView openEditCards() {
-        ModelAndView mav = new ModelAndView("order_edit");
-        CreateOrderRequest cr = new CreateOrderRequest();
-//        System.out.println(cr);
-        mav.addObject("order_edit", cr);
+
+
+    @GetMapping("/select_orders_list")
+    public ModelAndView openSelectOrdersList() {
+        ModelAndView mav = new ModelAndView("select_orders_list");
+        List<OrderResponse> List = orderService.findAll();
+        System.out.println(List);
+        mav.addObject("selectOrdersList",List);
+        System.out.println(mav);
         return mav;
     }
 
-        @GetMapping("/edit_id_order")
-    public ModelAndView openEditWithId(@RequestParam int idOrder){
+
+    @GetMapping("/korr_id_order")
+    public ModelAndView openEditWithId(@RequestParam Integer idOrder){
         ModelAndView mav = new ModelAndView("order_edit");
         OrderResponse orderResponse = orderService.findById(idOrder);
         mav.addObject("orderkorr",orderResponse);
         return mav;
     }
-    @RequestMapping( value ="/new_order", method =  RequestMethod.POST/*, consumes = MediaType.ALL_VALUE*/)
-    public String create(/*@ModelAttribute*/ CreateOrderRequest request){
-        ModelAndView mav = new ModelAndView("order_edit");
-        OrderResponse orderResponse =  orderService.create(request);
-        System.out.println(orderResponse);
-        return "redirect:order_list";
-    }
+//    @RequestMapping( value ="/new_order", method =  RequestMethod.POST/*, consumes = MediaType.ALL_VALUE*/)
+//    public String create(/*@ModelAttribute*/ CreateOrderRequest request){
+//        ModelAndView mav = new ModelAndView("order_create");
+//        OrderResponse orderResponse =  orderService.create(request);
+//        System.out.println(orderResponse);
+//        return "redirect:order_list";
+//    }
 
 
     //    //Обновляем карту по id
@@ -88,7 +114,7 @@ public class OrderController {
 //        return cardService.update(IdCard, request);
 //    }
     @PostMapping("/korr_order")
-    public String korr(@RequestBody CreateOrderRequest request,@RequestParam int idOrder){
+    public String korr(@RequestBody CreateOrderRequest request,@RequestParam Integer idOrder){
         orderService.update(idOrder,request);
         return "redirect:/order_list";
     }

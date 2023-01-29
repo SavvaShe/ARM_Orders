@@ -1,0 +1,36 @@
+button[type='button']{
+    background: #326690;
+    border: none;
+    color: white;
+    font-weight:bold;
+    text-align: center;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+input[type='submit']{
+    background: white;
+    border: none;
+    color: black;
+    text-align: center;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.tm1{
+    height: 40px;
+    border: 0.5px solid lightgrey;
+    width: 25%;
+}
+
+.tDashMenu {
+    background: white;
+    border: none;
+    margin: 20px auto;
+    width:70%;
+    height: 100%;
+    align-content: center;
+    text-align: center;
+    padding: 20px 0 20px 0;
+    border-collapse: collapse;
+}

@@ -13,36 +13,46 @@
     <tr class="tr1">
       <td class="r1">
         <form>
-          <button type="button" id="ORDERS_LIST">
-            Наряды
+          <button type="button">
+            <a th:href="@{orders_list}">
+              Наряды
+            </a>
           </button>
         </form>
       </td>
       <td class="r1">
         <form>
-          <button type="button" id="CARD_LIST">
-            Карты передачи
+          <button type="button">
+            <a th:href="@{card_list}">
+              Карты передачи
+            </a>
           </button>
         </form>
       </td>
       <td class="r1">
         <form>
-          <button type="button" id="DASHBOARD">
-            Доска
+          <button type="button">
+            <a th:href="@{dashboard}">
+              Доска
+            </a>
           </button>
         </form>
       </td>
       <td class="r1">
         <form>
-          <button type="button" id="SETTINGS">
-            Настройки
+          <button type="button">
+            <a th:href="@{page_not_found}">
+              Настройки
+            </a>
           </button>
         </form>
       </td>
       <td class="r1">
         <form>
-          <button type="button" id="SERVICES">
-            Сервисы
+          <button type="button">
+            <a th:href="@{page_not_found}">
+              Сервисы
+            </a>
           </button>
         </form>
       </td>
@@ -111,7 +121,7 @@
     <tr>
       <td class="tNewOrder">
         <button type="button" id="" class="button newOrder">
-          <a th:href="@{order_edit}">
+          <a th:href="@{order_create}">
             Создать
           </a>
         </button>
