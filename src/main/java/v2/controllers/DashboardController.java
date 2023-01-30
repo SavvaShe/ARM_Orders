@@ -35,11 +35,11 @@ public class DashboardController {
         return mav;
     }
 
-    @GetMapping("/my_orders_list")
-    public ModelAndView openMyOredersList(@PathVariable Integer idUser) {
-        ModelAndView mav = new ModelAndView("dashboard");
-        mav.addObject("dashOrdersList", cardService.findAll());
-        return mav;
-    }
+//    @GetMapping("/my_orders_list")
+//    public ModelAndView openMyOredersList(@PathVariable Integer idUser) {
+//        ModelAndView mav = new ModelAndView("dashboard");
+//        mav.addObject("dashOrdersList", cardService.findAll());
+//        return mav;
+//    }
 
 }

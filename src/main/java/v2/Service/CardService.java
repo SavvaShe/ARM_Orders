@@ -28,7 +28,7 @@ public interface CardService {
 
     List<CardV2> search(String keyword);
 
-    CardResponse findByUser(Integer idUser);
+    CardResponse findByUser(Integer idOtv);
 
 }
 

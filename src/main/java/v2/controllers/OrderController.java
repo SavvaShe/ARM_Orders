@@ -35,6 +35,14 @@ public class OrderController {
         mav.addObject("listOrders", findAll());
         return mav;
     }
+
+    @GetMapping("/order_view/{idOrders}")
+    public ModelAndView openOrderView(/*@RequestParam*/@PathVariable Integer idOrders) {
+        ModelAndView mav = new ModelAndView("order_view");
+        mav.addObject("orderView",orderService.findById(idOrders));
+        return mav;
+    }
+
 //    @GetMapping("/orders_list")
 //    public ModelAndView openList() {
 //        List<OrderResponse> List = orderService.findAll();
@@ -63,23 +71,22 @@ public class OrderController {
     public ModelAndView openCreateOrder() {
         ModelAndView mav = new ModelAndView("order_create");
         CreateOrderRequest cr = new CreateOrderRequest();
-//        System.out.println(cr);
         mav.addObject("order_create", cr);
         return mav;
     }
+//    @RequestMapping( value ="new_order", method =  RequestMethod.POST/*, consumes = MediaType.ALL_VALUE*/)
+//    public String createOrder(/*@ModelAttribute*/ CreateOrderRequest request){
+//        ModelAndView mav = new ModelAndView("order_create");
+//        OrderResponse orderResponse =  orderService.create(request);
+//        return "orders_list.html";
+//    }
+
     @RequestMapping( value ="/new_order", method =  RequestMethod.POST/*, consumes = MediaType.ALL_VALUE*/)
     public String createOrder(/*@ModelAttribute*/ CreateOrderRequest request){
         ModelAndView mav = new ModelAndView("order_create");
         OrderResponse orderResponse =  orderService.create(request);
         return "redirect:order_list";
     }
-    //
-//    //Создаем карту
-//    @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-//    public CardResponse create(@RequestBody CreateCardRequest request) {
-//        return cardService.createCard(request);
-//    }
-
 
     @GetMapping("/select_orders_list")
     public ModelAndView openSelectOrdersList() {
@@ -99,6 +106,32 @@ public class OrderController {
         mav.addObject("orderkorr",orderResponse);
         return mav;
     }
+    @PostMapping("/korr_order")
+    public String korr(@RequestBody CreateOrderRequest request,@RequestParam Integer idOrder){
+        orderService.update(idOrder,request);
+        return "redirect:/order_list";
+    }
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping(value = "/{idOrder}")
+    public String delete(@RequestParam int idOrder) {
+        orderService.delete(idOrder);
+        return "redirect:/order_list";
+    }
+    public ModelAndView search(@RequestParam String keyword) {
+        List<Orders> result = orderService.search(keyword);
+        ModelAndView mav = new ModelAndView("search");
+        mav.addObject("result", result);
+        return mav;
+    }
+    //
+//    //Создаем карту
+//    @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+//    public CardResponse create(@RequestBody CreateCardRequest request) {
+//        return cardService.createCard(request);
+//    }
+
+
+
 //    @RequestMapping( value ="/new_order", method =  RequestMethod.POST/*, consumes = MediaType.ALL_VALUE*/)
 //    public String create(/*@ModelAttribute*/ CreateOrderRequest request){
 //        ModelAndView mav = new ModelAndView("order_create");
@@ -113,27 +146,12 @@ public class OrderController {
 //    public CardResponse update(@PathVariable Integer IdCard, @RequestBody CreateCardRequest request) {
 //        return cardService.update(IdCard, request);
 //    }
-    @PostMapping("/korr_order")
-    public String korr(@RequestBody CreateOrderRequest request,@RequestParam Integer idOrder){
-        orderService.update(idOrder,request);
-        return "redirect:/order_list";
-    }
+
     //    //Удаляем карту по id
 //    @ResponseStatus(HttpStatus.NO_CONTENT)
 //    @DeleteMapping(value = "/{IdCard}", produces = APPLICATION_JSON_VALUE)
 //    public void delete(@PathVariable Integer IdCard) {
 //        cardService.delete(IdCard);
 //    }
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping(value = "/{idOrder}")
-    public String delete(@RequestParam int idOrder) {
-        orderService.delete(idOrder);
-        return "redirect:/order_list";
-    }
-    public ModelAndView search(@RequestParam String keyword) {
-        List<Orders> result = orderService.search(keyword);
-        ModelAndView mav = new ModelAndView("search");
-        mav.addObject("result", result);
-        return mav;
-    }
+
 }

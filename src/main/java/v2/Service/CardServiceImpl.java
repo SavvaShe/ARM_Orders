@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 public class CardServiceImpl implements CardService {
 
     private final CardRepository cardsRepository;
-    private final CardRepository cardRepository;
+
 
     //Получаем весь список пользователей
     @NotNull
@@ -76,7 +76,7 @@ public class CardServiceImpl implements CardService {
        CardV2 cards =  cardsRepository.findById(IdCard)
                 .orElseThrow(() -> new EntityNotFoundException("Card " + IdCard + " is not found"));
         CardV2 cv = buildCardRequest(request);
-        return buildCardResponse(cardsRepository.save(cards));
+        return buildCardResponse(cardsRepository.save(cv));
     }
 
 
@@ -114,7 +114,7 @@ public class CardServiceImpl implements CardService {
     }
 
     @NotNull
-    private CardV2 buildCardRequest(@NotNull CreateCardRequest request) {
+    public CardV2 buildCardRequest(@NotNull CreateCardRequest request) {
         return CardV2.builder()
                 .idCards(request.getIdCards())
                 .links(request.getLinks())

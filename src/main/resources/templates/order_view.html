@@ -1,72 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Наряд</title>
-  <link rel="stylesheet" type="text/css" media="all" href="../../../css/OrderView.css"/>
-  <link rel="stylesheet" type="text/css" media="all" href="../../../css/Main.css"/>
+  <link rel="stylesheet" type="text/css" media="all" th:href="@{/static/css/order_view.css}"/>
+  <link rel="stylesheet" type="text/css" media="all" th:href="@{/static/css/main.css}"/>
 
 </head>
 <body>
-<!--<div class="Menu">
-  <table c lass="tMenu">
+<header class="Menu">
+  <table class="tMenu">
     <tbody>
     <tr class="tr1">
       <td class="r1">
-        <button type="button" onclick="window.open('../ORDERs/OrderList.html')" id="ORDERS_LIST">
-          Наряды
-        </button>
-        <!--<input type="submit" value="Наряды" id="ORDERS_LIST" onclick="window.open('../ORDERs/OrderList.html')"/>-->
+        <form>
+          <button type="button">
+            <a th:href="@{/resources/templates/order_list}">
+              Наряды
+            </a>
+          </button>
+        </form>
       </td>
       <td class="r1">
-        <button type="button" id="CARD_LIST" onclick="window.open('../CARDs/CardList.html')">
-          Карты передачи
-        </button>
-        <!--<input type="submit" value="Карты передачи" id="CARD_LIST" onclick="window.open('../CARDs/CardList.html')"/>-->
+        <form>
+          <button type="button">
+            <a th:href="@{/resources/templates/card_list}">
+              Карты передачи
+            </a>
+          </button>
+        </form>
       </td>
       <td class="r1">
-        <button type="button" id="DASHBOARD" onclick="window.open('../SERVICEs/Dashboard.html')">
-          Доска
-        </button>
-        <!--<input type="submit" value="Доска" id="DASHBOARD" onclick="window.open('../SERVICEs/dashboard.html')"/>-->
+        <form>
+          <button type="button">
+            <a th:href="@{dashboard}">
+              Доска
+            </a>
+          </button>
+        </form>
       </td>
       <td class="r1">
-        <button type="button" id="SETTINGS" onclick="window.open('../SETTINGs/Settings.html')">
-          Настройки
-        </button>
-        <!--<input type="submit" value="Настройки" id="SETTINGS" onclick="window.open('../SETTINGs/Settings.html')"/>-->
+        <form>
+          <button type="button">
+            <a th:href="@{page_not_found}">
+              Настройки
+            </a>
+          </button>
+        </form>
       </td>
       <td class="r1">
-        <button type="button" id="SERVICES" onclick="window.open('../SERVICEs/Services.html')">
-          Сервисы
-        </button>
-        <!--<input type="submit" value="Сервисы" id="SERVICES" onclick="window.open('../SERVISEs/Services.html')"/>-->
+        <form>
+          <button type="button">
+            <a th:href="@{page_not_found}">
+              Сервисы
+            </a>
+          </button>
+        </form>
       </td>
     </tr>
     </tbody>
   </table>
-</div>-->
+</header>
+
 <div class="orderView">
+  <form th:object="${orderView}" method="post">
   <table class="tOrderView">
     <tbody>
     <tr>
       <td class="h2" colspan="4">
-        Наряд №
+        Номер будет присвоен автоматически после сохранения наряда
       </td>
     </tr>
     <tr>
       <td class="h1" colspan="4">
-        Подсистема
+        <label>
+          <select>
+            <option disabled>
+              Подсистема
+            </option>
+            <option>
+              ЕМД-ПП
+            </option>
+            <option>
+              РРД-ГП
+            </option>
+          </select>
+        </label>
       </td>
     </tr>
     <tr>
       <td class="h1" colspan="4">
-        База данных и серверная часть
+        <label>
+          <input type="text" ID="H_GHANGE_OBJECT" title="Объект внесения изменений (БД, серверная часть, форма и др.)">
+        </label>
       </td>
     </tr>
     <tr>
       <td class="h1" colspan="4">
-        Согласование
+        <label>
+          <select id="H_FC_ADREEMENT">
+            <option>
+              Согласование не требуется
+            </option>
+            <option>
+              Требуется согласование с ФЗ
+            </option>
+          </select>
+        </label>
       </td>
     </tr>
     <tr>
@@ -76,123 +116,159 @@
       <td class="td2">
         Номер версии изменений
       </td>
-      <td class="td3">
+      <td class="td3" colspan="2">
+        <span th:text="${orderView.version}">
 
+        </span>
       </td>
     </tr>
     <tr>
       <td class="td2">
         Основание
       </td>
-      <td class="td3">
+      <td class="td3" colspan="2">
+        <span th:text="${orderView.reasons}">
 
+        </span>
       </td>
     </tr>
     <tr>
-      <td class="td2">
+      <td class="td2" >
         Условия для выполнения наряда
       </td>
-      <td class="td3">
+      <td class="td3" colspan="2">
+                <span th:text="${orderView.conditions}">
 
+        </span>
       </td>
     </tr>
-    <tr>
-      <td class="td2">
+    <!--        <tr>-->
+    <!--            <td class="td2">-->
 
-      </td>
-    </tr>
+    <!--            </td>-->
+    <!--        </tr>-->
     <tr>
       <td class="td2">
         Содержание изменений
       </td>
-      <td class="td3">
-
+      <td class="td3" colspan="2">
+        <label>
+          <textarea cols="83" rows="17" id="H_CHANGES"></textarea>
+        </label>
       </td>
     </tr>
     <tr>
       <td class="td2">
         Изменение в документации
       </td>
-      <td class="td3">
+      <td class="td3" colspan="2">
+        <span th:text="${orderView.docChange}">
 
+        </span>
       </td>
     </tr>
     <tr>
       <td rowspan="2" class="td2">
         Источник данных для обновления ПО
       </td>
-      <td colspan="3" class="td3">
+      <td class="td3" colspan="2">
         Тестовый полигон:
         <br>
-
+        <label>
+          <textarea cols="83" rows="5" id="H_D_SRC_TEST"></textarea>
+        </label>
       </td>
     </tr>
     <tr>
-      <td class="td3">
+      <td class="td3" colspan="2">
         Промышленный полигон:
         <br>
-
+        <label>
+          <textarea cols="83"  rows="5" id="H_D_SRC_PROD"></textarea>
+        </label>
       </td>
     </tr>
     <tr>
       <td rowspan="2" class="td2">
         Процедура установки
       </td>
-      <td colspan="3" class="td3">
+      <td class="td3" colspan="2">
         Тестовый полигон:
         <br>
+        <span th:text="${orderView.installTest}">
 
+        </span>
       </td>
     </tr>
     <tr>
-      <td class="td3">
+      <td class="td3" colspan="2">
         Промышленный полигон:
         <br>
+        <span th:text="${orderView.installProd}">
 
+        </span>
       </td>
     </tr>
     <tr>
       <td rowspan="2" class="td2">
         Методика проверки работоспособности системы
       </td>
-      <td colspan="3" class="td3">
+      <td class="td3" colspan="2">
         Тестовый полигон:
         <br>
-        Функциональное (по содержанию изменений) и нагрузочное тестирование
+        <span th:text="${orderView.methodTest}">
+
+        </span>
       </td>
     </tr>
     <tr>
-      <td class="td3">
+      <td class="td3" colspan="2">
         Промышленный полигон:
         <br>
+        <span th:text="${orderView.methodProd}">
 
+        </span>
       </td>
     </tr>
     <tr>
       <td rowspan="2" class="td2">
         Методика проверки внесенных изменений (функционала)
       </td>
-      <td colspan="3" class="td3">
+      <td class="td3" colspan="2">
         Тестовый полигон:
         <br>
+        <span th:text="${orderView.methodTestF}">
 
+        </span>
       </td>
     </tr>
     <tr>
-      <td class="td3">
+      <td class="td3" colspan="2">
         Промышленный полигон:
         <br>
+        <span th:text="${orderView.methodProdF}">
 
+        </span>
       </td>
     </tr>
     <tr>
       <td class="td2">
         Технология отката
       </td>
+      <td class="td2" colspan="2">
+        <span th:text="${orderView.rollback}">
+
+        </span>
+      </td>
     </tr>
     <tr>
       <td class="td2">
         Контактные данные ответственного разработчика
+      </td>
+      <td class="td2" colspan="2">
+        <span th:text="${orderView.responsibleContact}">
+
+        </span>
       </td>
     </tr>
     <tr>
@@ -208,10 +284,14 @@
     </tr>
     <tr>
       <td class="td4">
+        <span th:text="${orderView.stopSystem}">
 
+        </span>
       </td>
       <td colspan="2" class="td5">
+        <span th:text="${orderView.downTime}">
 
+        </span>
       </td>
     </tr>
     <tr>
@@ -227,9 +307,13 @@
 
       </td>
       <td colspan="2" class="td5">
+        <span th:text="${orderView.idProg}">
 
+        </span>
         <br>
+        <span th:text="${orderView.phoneProg}">
 
+        </span>
       </td>
     </tr>
     <tr>
@@ -240,9 +324,13 @@
 
       </td>
       <td colspan="2" class="td5">
+        <span th:text="${orderView.idTech}">
 
+        </span>
         <br>
+        <span th:text="${orderView.phoneTech}">
 
+        </span>
       </td>
     </tr>
     <tr>
@@ -253,9 +341,13 @@
 
       </td>
       <td class="td5">
+        <span th:text="${orderView.idAdm}">
 
+        </span>
         <br>
+        <span th:text="${orderView.phoneAdm}">
 
+        </span>
       </td>
 
     </tr>
@@ -268,13 +360,21 @@
     </tr>
     <tr>
       <td colspan="2" class="td5">
-
+        <label>
+          <input type="text" size="40"  maxlength="64" id="H_FZ_FTEST_POST">
+        </label>
       </td>
       <td class="td5">
 
       </td>
       <td colspan="2">
+        <span th:text="${orderView.fzFTest}">
 
+        </span>
+        <br>
+        <span th:text="${orderView.phoneFZFTest}">
+
+        </span>
       </td>
     </tr>
     <tr>
@@ -287,10 +387,18 @@
         Контактное лицо заказчика для проведения тестирования
       </td>
       <td class="td5">
-
+        <label>
+          <input type="text" size="40" maxlength="64" id="H_ZAK_TEST">
+        </label>
+        <br>
+        <label>
+          <input type="text" size="40" maxlength="64" id="H_ZAK_TEST_POST">
+        </label>
       </td>
       <td colspan="2" class="td5">
-
+        <label>
+          <input type="text" size="40" maxlength="64" id="H_ZAK_TEST_PH">
+        </label>
       </td>
     </tr>
     <tr>
@@ -306,10 +414,14 @@
     </tr>
     <tr>
       <td class="td5">
-
+        <label>
+          <input type="date" id="H_TEST_SEND_DATE">
+        </label>
       </td>
       <td class="td5">
-
+        <label>
+          <input type="time" id="H_TEST_SEND_TIME">
+        </label>
       </td>
     </tr>
     <tr>
@@ -325,39 +437,64 @@
     </tr>
     <tr>
       <td class="td5">
-
+        <label>
+          <input type="date" id="H_TEST_INST_DATE">
+        </label>
       </td>
       <td class="td5">
-
+        <label>
+          <input type="time" id="H_TEST_INST_TIME">
+        </label>
       </td>
     </tr>
     <tr>
       <td colspan="2" class="td5">
-        Контактное лицо заказчика для проведения тестирования
+        Дата окончания тестирования
       </td>
       <td class="td5">
-
+        <label>
+          <input type="date" id="H_TEST_END_DATE">
+        </label>
       </td>
     </tr>
     <tr>
       <td colspan="2" class="td5">
         Источник данных для тестового полигона
       </td>
-      <td class="td5">
-
+      <td class="td5" colspan="2">
+        <label>
+          <input type="text" size="90" maxlength="256" id="H_TEST_DATASOURCE">
+        </label>
       </td>
     </tr>
     <tr>
       <td colspan="2" class="td5">
         Период тестирования
       </td>
-      <td class="td5">
-
+      <td class="td5" colspan="2">
+        <label>
+          <input type="text" size="90" maxlength="256" id="H_TEST_STOP_DATE">
+        </label>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="td5">
+        Причины нарушения периода тестирования
+      </td>
+      <td class="td5" colspan="2">
+        <label>
+          <input type="text" size="90" maxlength="256" id="H_TEST_STOP_VIOLATION">
+        </label>
       </td>
     </tr>
     <tr>
       <td colspan="2" class="td5">
         Результаты тестирования. Принятое решение
+      </td>
+      <td class="td5" colspan="2">
+        <label>
+          <textarea cols="83" rows="10" id="H_TEST_RESULT"></textarea>
+        </label>
       </td>
     </tr>
     <tr>
@@ -365,12 +502,41 @@
         Ответственный за проведение функционального тестирования
       </td>
       <td class="td5">
-
+        № Проекта
+        <br>
+        <label>
+          <input type="text" size="40" maxlength="14" id="H_PRJ_NUMBER">
+        </label>
+      </td>
+      <td class="td5">
+        <label>
+          <select id="H_TESTERS_AC">
+            <option disabled>
+              Ответственный за тестирование
+            </option>
+          </select>
+        </label>
+        <br>
+        <label>
+          <textarea cols="38" rows="6" id="H_TESTERS"></textarea>
+        </label>
       </td>
     </tr>
     <tr>
       <td colspan="2" class="td5">
         Ответственный от ЦТС за проведение тестирования
+      </td>
+      <td class="td5">
+
+      </td>
+      <td class="td5">
+        <label>
+          <input type="text" size="40" maxlength="64" id="H_OTV_CTS_TEST">
+        </label>
+        <br>
+        <label>
+          <input type="text" size="40" maxlength="64" id="H_OTV_CTS_TEST_PH">
+        </label>
       </td>
     </tr>
     <tr>
@@ -382,8 +548,10 @@
       <td colspan="2" class="td5">
         Источник данных для производственного полигона
       </td>
-      <td class="td5">
-
+      <td class="td5" colspan="2">
+        <label>
+          <input type="text" size="40" maxlength="256" id="H_PROD_DATASOURCE">
+        </label>
       </td>
     </tr>
     <tr>
@@ -399,10 +567,14 @@
     </tr>
     <tr>
       <td class="td5">
-
+        <label>
+          <input type="date" id="H_PROD_INST_DATE">
+        </label>
       </td>
       <td class="td5">
-
+        <label>
+          <input type="time" id="H_PROD_INST_TIME">
+        </label>
       </td>
     </tr>
     <tr>
@@ -413,34 +585,35 @@
 
       </td>
       <td class="td5">
-
+        <label>
+          <input type="text" size="40" maxlength="64" id="H_F_CUSTOMER">
+        </label>
+        <br>
+        <label>
+          <input type="text" size="40" maxlength="64" id="H_F_CUSTOMER_PH">
+        </label>
       </td>
     </tr>
     </tbody>
   </table>
+  </form>
 
   <table class="torderMenu">
     <tr>
       <td class="tm1">
         <input type="submit" value="Корректировать" />
       </td>
-      <td class="tm1">
-        <input type="submit" value="Создать по образу" />
-      </td>
-      <td class="tm1">
-        <input type="submit" value="Распечатать" />
-      </td>
     </tr>
   </table>
   <table class="exOrderMenu">
     <tr>
-      <td rowspan="3" class="tm1">
-        <label>
-          Карта передачи ПО
-          <br>
-          <input id="H_CARD_PO">
-        </label>
-      </td>
+<!--      <td rowspan="3" class="tm1">-->
+<!--        <label>-->
+<!--          Карта передачи ПО-->
+<!--          <br>-->
+<!--          <input id="H_CARD_PO">-->
+<!--        </label>-->
+<!--      </td>-->
       <td class="tm1">
         Статус
       </td>

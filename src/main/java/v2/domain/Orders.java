@@ -18,6 +18,7 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_orders",nullable = false)
     private Integer idOrders;
+
     @Column(name = "id_otv")
     private int idOtv;//Ответственный
     @Column(name = "systems")

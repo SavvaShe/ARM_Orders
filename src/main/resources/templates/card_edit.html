@@ -17,7 +17,7 @@
             <td class="r1">
                 <form>
                     <button type="button">
-                        <a th:href="@{open_order_list}">
+                        <a th:href="@{/resources/templates/order_list}">
                             Наряды
                         </a>
                     </button>
@@ -26,7 +26,7 @@
             <td class="r1">
                 <form>
                     <button type="button">
-                        <a th:href="@{card_list}">
+                        <a th:href="@{/resources/templates/card_list}">
                             Карты передачи
                         </a>
                     </button>
@@ -52,7 +52,7 @@
             </td>
             <td class="r1">
                 <form>
-                    <button type="button" id="">
+                    <button type="button">
                         <a th:href="@{page_not_found}">
                             Сервисы
                         </a>
@@ -64,7 +64,7 @@
     </table>
 </header>
 <div class="cardEdit">
-    <form th:action="@{korr_view}" th:object="${cardsKorr}" method="post" >
+    <form th:action="@{save_card_change/{idCards}(idCards=${cardsKorr.idCards})}" th:object="${cardsKorr}" method="post" >
         <table class="tCardEdit">
             <tbody>
             <tr>
@@ -152,14 +152,19 @@
         <table class="tCardMenu">
             <tr>
                 <td class="tm1">
-                    <a th:class="save_change" th:href="@{/resources/templates/card_view/{idCards}(idCards=${cardsKorr.idCards})}">
-                        Сохранить
-                    </a>
-                    <!--<button>
-                        <a id="C_SAVE_CARD">Сохранить</a>
-                    </button>-->
+<!--                    <a th:class="save_change" th:href="@{/resources/templates/card_view/{idCards}(idCards=${cardsKorr.idCards})}">-->
+<!--                        Сохранить-->
+<!--                    </a>-->
+<!--                    <form method="post" th:action="@{/saveCardChange/{idCards}(idCards=${cardsKorr.idCards})}">-->
+<!--                        <input type="submit" value="Сохранить">-->
+                        <button type="submit" value="Сохранить">
+<!--                            <a id="C_SAVE_CARD">Сохранить</a>-->
+                       </button>
+<!--                    </form>-->
+
                 </td>
                 <td class="tm1">
+
                         <a th:class="undo_change" th:href="@{/resources/templates/card_view/{idCards}(idCards=${cardsKorr.idCards})}">
                             Отменить
                         </a>

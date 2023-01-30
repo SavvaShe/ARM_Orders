@@ -14,8 +14,8 @@
     <tr class="tr1">
       <td class="r1">
         <form>
-          <button type="button" id="" >
-            <a th:href="@{orders_list}">
+          <button type="button">
+            <a th:href="@{/resources/templates/order_list}">
               Наряды
             </a>
           </button>
@@ -23,8 +23,8 @@
       </td>
       <td class="r1">
         <form>
-          <button type="button" id="" >
-            <a th:href="@{card_list}">
+          <button type="button">
+            <a th:href="@{/resources/templates/card_list}">
               Карты передачи
             </a>
           </button>
@@ -32,7 +32,7 @@
       </td>
       <td class="r1">
         <form>
-          <button type="button" id="" >
+          <button type="button">
             <a th:href="@{dashboard}">
               Доска
             </a>
@@ -41,7 +41,7 @@
       </td>
       <td class="r1">
         <form>
-          <button type="button" id="" >
+          <button type="button">
             <a th:href="@{page_not_found}">
               Настройки
             </a>
@@ -50,7 +50,7 @@
       </td>
       <td class="r1">
         <form>
-          <button type="button" id="" >
+          <button type="button">
             <a th:href="@{page_not_found}">
               Сервисы
             </a>
@@ -61,6 +61,7 @@
     </tbody>
   </table>
 </header>
+
 <div class="orderView">
   <form th:action="@{new_order}" th:object="${order_create}" method="post">
   <table class="tOrderView">
@@ -152,7 +153,7 @@
       </td>
       <td class="td3" colspan="2">
         <label>
-          <textarea cols="83" th:field="*{version}" rows="17" id="H_CHANGES"></textarea>
+          <textarea cols="83" rows="17" id="H_CHANGES"></textarea>
         </label>
       </td>
     </tr>
@@ -162,7 +163,7 @@
       </td>
       <td class="td3" colspan="2">
         <label>
-          <input type="text" size="90" maxlength="256" id="H_DOC_CHENGE">
+          <input th:field="*{docChange}" type="text" size="90" maxlength="256" id="H_DOC_CHENGE">
         </label>
       </td>
     </tr>
@@ -183,7 +184,7 @@
         Промышленный полигон:
         <br>
         <label>
-          <textarea cols="83" rows="5" id="H_D_SRC_PROD"></textarea>
+          <textarea cols="83"  rows="5" id="H_D_SRC_PROD"></textarea>
         </label>
       </td>
     </tr>
@@ -195,7 +196,7 @@
         Тестовый полигон:
         <br>
         <label>
-          <textarea cols="83" rows="5" id="H_INSTALL_TEST"></textarea>
+          <textarea cols="83" th:field="*{installTest}" rows="5" id="H_INSTALL_TEST"></textarea>
         </label>
       </td>
     </tr>
@@ -204,7 +205,7 @@
         Промышленный полигон:
         <br>
         <label>
-          <textarea cols="83" rows="5" id="H_INSTALL_PROD"></textarea>
+          <textarea cols="83" th:field="*{installProd}" rows="5" id="H_INSTALL_PROD"></textarea>
         </label>
       </td>
     </tr>
@@ -216,7 +217,7 @@
         Тестовый полигон:
         <br>
         <label>
-          <textarea cols="83" rows="5" id="H_METHOD_TEST"></textarea>
+          <textarea cols="83" th:field="*{methodTest}" rows="5" id="H_METHOD_TEST"></textarea>
         </label>
       </td>
     </tr>
@@ -225,7 +226,7 @@
         Промышленный полигон:
         <br>
         <label>
-          <textarea cols="83" rows="5" id="H_METHOD_PROD"></textarea>
+          <textarea cols="83" th:field="*{methodProd}" rows="5" id="H_METHOD_PROD"></textarea>
         </label>
       </td>
     </tr>
@@ -237,7 +238,7 @@
         Тестовый полигон:
         <br>
         <label>
-          <textarea cols="83" rows="5" id="H_METHOD_TEST_F"></textarea>
+          <textarea cols="83" th:field="*{methodTestF}" rows="5" id="H_METHOD_TEST_F"></textarea>
         </label>
       </td>
     </tr>
@@ -246,7 +247,7 @@
         Промышленный полигон:
         <br>
         <label>
-          <textarea cols="83" rows="5" id="H_METHOD_PROD_F"></textarea>
+          <textarea cols="83" th:field="*{methodProdF}" rows="5" id="H_METHOD_PROD_F"></textarea>
         </label>
       </td>
     </tr>
@@ -256,7 +257,7 @@
       </td>
       <td class="td2" colspan="2">
         <label>
-          <input type="text" size="90" maxlength="256" id="H_ROLLBACK">
+          <input type="text" th:field="*{rollback}" size="90" maxlength="256" id="H_ROLLBACK">
         </label>
       </td>
     </tr>
@@ -266,7 +267,7 @@
       </td>
       <td class="td2" colspan="2">
         <label>
-          <textarea cols="83" rows="4" id="H_CONTACT"></textarea>
+          <textarea cols="83" th:field="*{responsibleContact}" rows="4" id="H_CONTACT"></textarea>
         </label>
       </td>
     </tr>
@@ -284,7 +285,7 @@
     <tr>
       <td class="td4">
         <label>
-          <select id="H_STOP_SYSTEM">
+          <select id="H_STOP_SYSTEM" th:field="*{stopSystem}">
             <option value="1">
               Да
             </option>
@@ -296,7 +297,7 @@
       </td>
       <td colspan="2" class="td5">
         <label>
-          <input type="text" size="40" maxlength="64" id="H_DOWN_TIME">
+          <input type="text" th:field="*{downTime}" size="40" maxlength="64" id="H_DOWN_TIME">
         </label>
       </td>
     </tr>
@@ -314,11 +315,11 @@
       </td>
       <td colspan="2" class="td5">
         <label>
-          <input type="text" size="40" maxlength="64" id="H_PROGRAMMER">
+          <input type="text" th:field="*{idProg}" size="40" maxlength="64" id="H_PROGRAMMER">
         </label>
         <br>
         <label>
-          <input type="text" size="40" maxlength="64" id="H_PROGRAMMER_PH">
+          <input type="text" size="40" th:field="*{phoneProg}" maxlength="64" id="H_PROGRAMMER_PH">
         </label>
       </td>
     </tr>
@@ -331,11 +332,11 @@
       </td>
       <td colspan="2" class="td5">
         <label>
-          <input type="text" size="40" maxlength="64" id="H_TECHNOLOG">
+          <input type="text" size="40" th:field="*{idTech}" maxlength="64" id="H_TECHNOLOG">
         </label>
         <br>
         <label>
-          <input type="text" size="40" maxlength="64" id="H_TECHNOLOG_PH">
+          <input type="text" size="40" th:field="*{phoneTech}" maxlength="64" id="H_TECHNOLOG_PH">
         </label>
       </td>
     </tr>
@@ -348,11 +349,11 @@
       </td>
       <td class="td5">
         <label>
-          <input type="text" size="40" maxlength="64" id="H_ADMIN">
+          <input type="text" size="40" th:field="*{idAdm}" maxlength="64" id="H_ADMIN">
         </label>
         <br>
         <label>
-          <input type="text" size="40" maxlength="64" id="H_ADMIN_PH">
+          <input type="text" size="40" th:field="*{phoneAdm}" maxlength="64" id="H_ADMIN_PH">
         </label>
       </td>
 
@@ -367,7 +368,7 @@
     <tr>
       <td colspan="2" class="td5">
         <label>
-          <input type="text" size="40" maxlength="64" id="H_FZ_FTEST_POST">
+          <input type="text" size="40"  maxlength="64" id="H_FZ_FTEST_POST">
         </label>
       </td>
       <td class="td5">
@@ -375,11 +376,11 @@
       </td>
       <td colspan="2">
         <label>
-          <input type="text" size="40" maxlength="64" id="H_FZ_FTEST">
+          <input type="text" size="40" th:field="*{fzFTest}" maxlength="64" id="H_FZ_FTEST">
         </label>
         <br>
         <label>
-          <input type="text" size="40" maxlength="64" id="H_FZ_FTEST_PH">
+          <input type="text" size="40" th:field="*{phoneFZFTest}" maxlength="64" id="H_FZ_FTEST_PH">
         </label>
       </td>
     </tr>
@@ -485,7 +486,7 @@
     </tr>
     <tr>
       <td colspan="2" class="td5">
-        Причины нарушения перриода тестирования
+        Причины нарушения периода тестирования
       </td>
       <td class="td5" colspan="2">
         <label>

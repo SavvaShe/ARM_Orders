@@ -90,8 +90,8 @@ public class OrderServiceImpl implements OrderService {
     public OrderResponse update(@NotNull Integer IdOrder, @NotNull CreateOrderRequest request) {
        Orders orders = (Orders) orderRepository.findById(IdOrder)
                 .orElseThrow(() -> new EntityNotFoundException("Order " + IdOrder + " is not found"));
-        buildOrderRequest(request);
-        OrderResponse orderResponse = buildOrderResponse(orderRepository.save(orders));
+      Orders ders = buildOrderRequest(request);
+        OrderResponse orderResponse = buildOrderResponse(orderRepository.save(ders));
         System.out.println(orderResponse);
         return orderResponse;
     }

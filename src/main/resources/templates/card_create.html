@@ -11,57 +11,57 @@
 </div>
 -->
 <header class="Menu">
-<table class="tMenu">
-    <tbody>
-    <tr class="tr1">
-        <td class="r1">
-            <form>
-                <button type="button">
-                    <a th:href="@{open_order_list}">
-                        Наряды
-                    </a>
-                </button>
-            </form>
-        </td>
-        <td class="r1">
-            <form>
-                <button type="button">
-                    <a th:href="@{card_list}">
-                        Карты передачи
-                    </a>
-                </button>
-            </form>
-        </td>
-        <td class="r1">
-            <form>
-                <button type="button">
-                    <a th:href="@{dashboard}">
-                        Доска
-                    </a>
-                </button>
-            </form>
-        </td>
-        <td class="r1">
-            <form>
-                <button type="button">
-                    <a th:href="@{page_not_found}">
-                        Настройки
-                    </a>
-                </button>
-            </form>
-        </td>
-        <td class="r1">
-            <form>
-                <button type="button">
-                    <a th:href="@{page_not_found}">
-                        Сервисы
-                    </a>
-                </button>
-            </form>
-        </td>
-    </tr>
-    </tbody>
-</table>
+    <table class="tMenu">
+        <tbody>
+        <tr class="tr1">
+            <td class="r1">
+                <form>
+                    <button type="button">
+                        <a th:href="@{/resources/templates/order_list}">
+                            Наряды
+                        </a>
+                    </button>
+                </form>
+            </td>
+            <td class="r1">
+                <form>
+                    <button type="button">
+                        <a th:href="@{/resources/templates/card_list}">
+                            Карты передачи
+                        </a>
+                    </button>
+                </form>
+            </td>
+            <td class="r1">
+                <form>
+                    <button type="button">
+                        <a th:href="@{dashboard}">
+                            Доска
+                        </a>
+                    </button>
+                </form>
+            </td>
+            <td class="r1">
+                <form>
+                    <button type="button">
+                        <a th:href="@{page_not_found}">
+                            Настройки
+                        </a>
+                    </button>
+                </form>
+            </td>
+            <td class="r1">
+                <form>
+                    <button type="button">
+                        <a th:href="@{page_not_found}">
+                            Сервисы
+                        </a>
+                    </button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </header>
 
 <div class="cardEdit">
@@ -154,10 +154,6 @@
             <td class="tm1">
                     <input  type="submit" value="Сохранить" id="C_SAVE_CARD"/>
             </td>
-<!--            <td class="tm1">-->
-<!--                    <input type="submit" value="Отменить изменения" id="C_UNDO_CHANGE"/>-->
-<!--            </td>-->
-
         </tr>
     </table>
 </form>

@@ -14,7 +14,7 @@
       <td class="r1">
         <form>
           <button type="button">
-            <a th:href="@{orders_list}">
+            <a th:href="@{/resources/templates/open_order_list}">
               Наряды
             </a>
           </button>
@@ -23,7 +23,7 @@
       <td class="r1">
         <form>
           <button type="button">
-            <a th:href="@{card_list}">
+            <a th:href="@{/resources/templates/card_list}">
               Карты передачи
             </a>
           </button>
@@ -60,6 +60,7 @@
     </tbody>
   </table>
 </header>
+
 <div class="filtOrder">
   <table class="tFiltOrder">
     <thead>
@@ -174,6 +175,10 @@
       <td th:text="${ol.idTech}">32</td>
       <td th:text="${ol.idProg}">2</td>
       <td th:text="${ol.dateCreate}">12.12.2022</td>
+      <td>
+        <a th:class="openOrder" th:href="@{order_view/{idOrders}(idOrders=${ol.idOrder})}">
+          Открыть</a>
+      </td>
     </tr>
     </tbody>
   </table>

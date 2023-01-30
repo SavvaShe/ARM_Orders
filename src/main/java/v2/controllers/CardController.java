@@ -1,14 +1,15 @@
 package v2.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import v2.Service.CardService;
+import v2.Service.CardServiceImpl;
 import v2.domain.CardV2;
 import v2.model.request.CreateCardRequest;
 import v2.model.response.CardResponse;
+import v2.repository.CardRepository;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ import java.util.List;
 public class CardController {
 
     private final CardService cardService;
+    private final CardRepository cardRepository;
 
     @GetMapping("/card_list")
     public ModelAndView openList() {
@@ -37,11 +39,32 @@ public class CardController {
         return mav;
     }
 
+    @GetMapping("card_edit/{idCards}")
+    public ModelAndView openEditWithId(/*@RequestParam*/@PathVariable Integer idCards) {
+        ModelAndView mav = new ModelAndView("card_edit");
+        CreateCardRequest cr = new CreateCardRequest();
+        //CardResponse cardResponse = cardService.findById(idCards);
+        mav.addObject("cardsKorr", cardService.findById(idCards));
+        return mav;
+    }
+
     @RequestMapping( value ="/new_card", method =  RequestMethod.POST/*, consumes = MediaType.ALL_VALUE*/)
     public String createCard(/*@ModelAttribute*/ CreateCardRequest request){
         ModelAndView mav = new ModelAndView("card_create");
         CardResponse cardResponse =  cardService.createCard(request);
         return "redirect:card_list";
+    }
+
+    @PostMapping( "/card_edit/save_card_change/{idCards}")
+    public String updateCard(/*@ModelAttribute*/ CreateCardRequest request, @PathVariable Integer idCards) {
+        ModelAndView mav = new ModelAndView("card_edit");
+        System.out.println(request);
+        //CardResponse cardResponse = cardService.findById(idCards);
+//        mav.addObject("cardsKorr", request);
+//        CardServiceImpl imp = new CardServiceImpl();
+//        cardRepository.save(imp.buildCardRequest(request));
+       CardResponse cardResponse = cardService.update(idCards,request);
+        return "redirect:card_view/"+idCards;
     }
 
     @GetMapping("/page_not_found")
@@ -57,13 +80,18 @@ public class CardController {
         return mav;
     }
 
-    @GetMapping("card_edit/{idCards}")
-    public ModelAndView openEditWithId(/*@RequestParam*/@PathVariable Integer idCards) {
-        ModelAndView mav = new ModelAndView("card_edit");
-        //CardResponse cardResponse = cardService.findById(idCards);
-        mav.addObject("cardsKorr", cardService.findById(idCards));
-        return mav;
-    }
+
+//    @PostMapping( value ="save_card_change")
+//    public String updateCard(/*@ModelAttribute*/ CreateCardRequest request, Integer idCards) {
+//        ModelAndView mav = new ModelAndView("card_edit");
+//        //CardResponse cardResponse = cardService.findById(idCards);
+////        mav.addObject("cardsKorr", request);
+//        System.out.println(request);
+//        CardResponse cardResponse = cardService.update(idCards,request);
+//        System.out.println(request);
+//        return "redirect:card_list";
+//    }
+
 
     public List<CardResponse> findAll() {
         return cardService.findAll();
@@ -136,12 +164,12 @@ public class CardController {
 //        return cardService.update(IdCard, request);
 //    }
 
-    @RequestMapping( value ="korr_view", method =  RequestMethod.POST/*, consumes = MediaType.ALL_VALUE*/)
-    public String korr(/*@RequestBody*/ CreateCardRequest request,/*@RequestParam*/@PathVariable  Integer idCards){
-        System.out.println(request);
-    cardService.update(idCards,request);
-    return "redirect:card_view/{idCards}";
-}
+//    @RequestMapping( value ="korr_view", method =  RequestMethod.POST/*, consumes = MediaType.ALL_VALUE*/)
+//    public String korr(/*@RequestBody*/ CreateCardRequest request,/*@RequestParam*/@PathVariable  Integer idCards){
+//        System.out.println(request);
+//    cardService.update(idCards,request);
+//    return "redirect:card_view/{idCards}";
+//}
 
 
 
@@ -174,13 +202,13 @@ public class CardController {
 //        return "cards_edit";
 //    }
 
-      @GetMapping("/open_order_list")
-    public ModelAndView openOrderList() {
-          ModelAndView ol = new ModelAndView("orders_list");
-          return ol;
-    }
+//      @GetMapping("open_order_list")
+//    public ModelAndView openOrderList() {
+//          ModelAndView ol = new ModelAndView("orders_list");
+//          return ol;
+//    }
 
-    @GetMapping("/dashboard")
+    @GetMapping("dashboard")
     public ModelAndView openDashboard() {
         ModelAndView dash = new ModelAndView("dashboard");
         return dash;

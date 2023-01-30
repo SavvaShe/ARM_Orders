@@ -156,3 +156,8 @@ input[type='datetime-local']{
     text-align: center;
     padding: 5px 0 5px 0;
 }
+
+.openOrder{
+    width: 10%;
+    color: black;
+}

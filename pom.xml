@@ -48,7 +48,6 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>42.5.1</version>
-			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -79,6 +78,9 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>3.0.0</version>
+				<configuration>
+					<finalName>ARM_Orders</finalName>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
