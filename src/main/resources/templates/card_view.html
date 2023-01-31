@@ -65,51 +65,42 @@
   <form th:object="${cardView}" method="post">
   <table  class="tСardView">
     <thead>
-
     </thead>
     <tbody >
-
     <tr>
       <td class="c2" colspan="2" >
         <label>
-          Карта передачи ПО №
+          Карта передачи ПО № <th:block th:text="${cardView.numberCard}"></th:block>
         </label>
       </td>
     </tr>
-    <tr>
-      <td class="с1">
-        Письмо
-      </td>
-      <td class="c3">
-        <!--/*@thymesVar id="listCards" type=""*/-->
-        <span th:text="${cardView.numberLetter}">
-          1
-        </span>
-    </tr>
-    <tr>
+    <tr >
       <td class="c1">
         Система
       </td>
       <td class="c3" >
-        <span th:switch="true">
-          <p th:case="${cardView.system}=='1'">
-          ЕМД-ПП</p>
-          <p th:case="${cardView.system}=='2'">
-          РРД-ГП</p>
-        </span>
+      <span th:text="${cardView.system}">
+
+      </span>
+      </td>
     </tr>
-    <tr >
+    <tr>
+      <td class="c1">
+        Статус передачи
+      </td>
+      <td class="c3" >
+      <span th:text="${cardView.status}">
+
+        </span>
+      </td>
+    </tr>
+    <tr>
       <td class="c1">
         Ответственный за передачу
       </td>
       <td class="c3" >
-        <span th:switch="true">
-          <p th:case="${cardView.idOtv}=='1'">
-          Злакоманова</p>
-          <p th:case="${cardView.idOtv}=='2'">
-          Шебарин</p>
-          <p th:case="${cardView.idOtv}=='3'">
-          Феоктистов</p>
+        <span th:text="${cardView.idOtv}">
+
         </span>
       </td>
     </tr>
@@ -132,15 +123,6 @@
         </span>
     </tr>
     <tr>
-      <td class="c1">
-        Статус передачи
-      </td>
-      <td class="c3" >
-        <span th:text="${cardView.status}">
-          1
-        </span>
-    </tr>
-    <tr>
       <td class="c2" colspan="2">
         Передаваемые наряды:
       </td>
@@ -148,18 +130,6 @@
     <tr>
       <td class="c2" colspan="2"></td>
     </tr>
-<!--    <tr th:each="lst1 : ${cardView}">-->
-<!--      <td th:text="${lst1.idCards}">1</td>-->
-<!--&lt;!&ndash;      <td th:text="${lst.idOtv}">1</td>&ndash;&gt;-->
-<!--&lt;!&ndash;      <td th:text="${lst.numberCard}">12</td>&ndash;&gt;-->
-<!--&lt;!&ndash;      <td th:text="${lst.numberLetter}">32</td>&ndash;&gt;-->
-<!--&lt;!&ndash;      <td th:text="${lst.system}">2</td>&ndash;&gt;-->
-<!--&lt;!&ndash;      <td th:text="${lst.dateCorrect}">12.12.2022</td>&ndash;&gt;-->
-<!--&lt;!&ndash;      <td th:text="${lst.dateCreate}">03.08.2002</td>&ndash;&gt;-->
-<!--&lt;!&ndash;      <td th:text="${lst.sendLetter}">22.12.2001</td>&ndash;&gt;-->
-<!--&lt;!&ndash;      <td><a th:href="@{card_view}">Открыть</a></td>&ndash;&gt;-->
-
-<!--    </tr>-->
 
     </tbody>
   </table>
@@ -167,7 +137,12 @@
   <table class="tCardMenu">
     <tr>
       <td class="tm1">
-        <button>
+        <button th:class="cardMenuButton">
+          <a th:class="korrCard" th:href="@{/resources/templates/order_create/{idCards}(idCards=${cardView.idCards})}">Добавить наряд</a>
+        </button>
+      </td>
+      <td class="tm1">
+        <button th:class="cardMenuButton">
         <a th:class="korrCard" th:href="@{/resources/templates/card_edit/{idCards}(idCards=${cardView.idCards})}">Корректировать</a>
         </button>
       </td>

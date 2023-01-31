@@ -70,13 +70,10 @@
         <tbody>
         <tr>
             <td class="c2" colspan="2">
-                Карта передачи ПО №
+                <label>
+                Карта передачи ПО № <input th:field="*{numberCard}" type="text">
+                </label>
             </td>
-<!--            <td>-->
-<!--                <label>-->
-<!--                    <input id="C_NUM_CARD" th:field="*{numberCard}">-->
-<!--                  </label>-->
-<!--            </td>-->
         </tr>
         <tr>
             <td class="c1">
@@ -94,6 +91,10 @@
             </td>
             <td>
                 <label>
+                    <select>
+                        <option value="ЕМД-ПП"></option>
+                        <option value="РРД-ГП"></option>
+                    </select>
                     <input id="C_SYSTEM" th:field="*{system}">
                 </label>
             </td>
@@ -130,19 +131,12 @@
         </tr>
         <tr>
             <td class="c2" colspan="2">
-                <label id="C_LETTER" >
-                    <input type="text" th:field="*{numberLetter}">
-                </label>
-            </td>
-        </tr>
-        <tr>
-            <td class="c2" colspan="2">
                 Передаваемые наряды:
             </td>
         </tr>
         <tr>
             <td class="c2" colspan="2">
-                <a th:href="@{select_orders_list}"></a>
+
             </td>
         </tr>
 

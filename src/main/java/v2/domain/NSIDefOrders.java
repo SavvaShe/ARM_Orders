@@ -23,9 +23,9 @@ public class NSIDefOrders {
     @Column(name = "type_orders",nullable = false)
     private Integer typeOrders;
     @Column(name = "id_otv")
-    private int idOtv;//Ответственный
+    private String idOtv;//Ответственный
     @Column(name = "systems")
-    private int systems;//система
+    private String systems;//система
     @Column(name = "number")
     private String number;//номер
     @Column(name = "date_create")
@@ -42,10 +42,10 @@ public class NSIDefOrders {
     private String conditions;//Условия выполнения наряда
     @Column(name = "doc_change")
     private String docChange;//Изменения в документации
-    @Column(name = "d_src_prod")
-    private String dSrcProd;// источник данных Промышленный полигон
-    @Column(name = "d_src_test")
-    private String dSrcTest;// источник данных Test полигон
+    @Column(name = "src_prod")
+    private String srcProd;// источник данных Промышленный полигон
+    @Column(name = "src_test")
+    private String srcTest;// источник данных Test полигон
     @Column(name = "install_test")
     private String installTest;//установка на Тест
     @Column(name = "install_prod")
@@ -67,15 +67,15 @@ public class NSIDefOrders {
     @Column (name = "down_time")
     private String downTime;//Время простоя системы
     @Column(name = "id_prog")
-    private int idProg;//id программиста
+    private String idProg;//id программиста
     @Column (name = "id_tech")
-    private int idTech;//id технолога
+    private String idTech;//id технолога
     @Column(name = "phone_tech")
     private String phoneTech;//телефон технолога
     @Column (name = "phone_prog")
     private String phoneProg;//телефон программиста
     @Column(name = "id_adm")
-    private int idAdm;//id администратора
+    private String idAdm;//id администратора
     @Column(name = "phone_adm")
     private String phoneAdm;// телефон администратора
     @Column(name = "fzFTest")
@@ -110,8 +110,8 @@ public class NSIDefOrders {
                 ", reasons='" + reasons + '\'' +
                 ", conditions='" + conditions + '\'' +
                 ", docChange='" + docChange + '\'' +
-                ", dSrcProd='" + dSrcProd + '\'' +
-                ", dSrcTest='" + dSrcTest + '\'' +
+                ", srcProd='" + srcProd + '\'' +
+                ", srcTest='" + srcTest + '\'' +
                 ", installTest='" + installTest + '\'' +
                 ", installProd='" + installProd + '\'' +
                 ", methodTest='" + methodTest + '\'' +
@@ -132,4 +132,5 @@ public class NSIDefOrders {
                 ", phoneFZFTest='" + phoneFZFTest + '\'' +
                 '}';
     }
+
 }

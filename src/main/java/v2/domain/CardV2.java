@@ -25,13 +25,13 @@ public class CardV2 {
 //    private String login;// глянуть потом мб зацепиться про проверку прав
 
     @Column(name = "idotv")
-    private int idOtv;//Ответсвенный
+    private String idOtv;//Ответсвенный
     @Column(name = "numbercard")
     private String numberCard;//Номер карточки
     @Column(name = "numberletter")
-    private int numberLetter;//номер Письма
+    private String numberLetter;//номер Письма
     @Column(name = "system")
-    private int system;//подсистема
+    private String system;//подсистема
     @Column(name = "datecorrect")
     private Date dateCorrect;//дата корректировки карточки
     @Column(name = "datecreate")

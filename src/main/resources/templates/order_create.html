@@ -68,33 +68,22 @@
     <tbody>
     <tr>
       <td class="h2" colspan="4" th:text="${order_create.number}">
-
       </td>
     </tr>
     <tr>
       <td class="h1" colspan="4">
         <label>
-          <select>
-            <option disabled>
-              Система
-            </option>
-            <option>
-              ЕМД-ПП
-            </option>
-            <option>
-              РРД-ГП
-            </option>
-          </select>
+            <
         </label>
       </td>
     </tr>
-    <tr>
+ <!--   <tr>
       <td class="h1" colspan="4">
         <label>
           <input type="text" ID="H_GHANGE_OBJECT" title="Объект внесения изменений (БД, серверная часть, форма и др.)">
         </label>
       </td>
-    </tr>
+    </tr>-->
     <tr>
       <td class="h1" colspan="4">
         <label>
@@ -138,7 +127,7 @@
       </td>
       <td class="td3" colspan="2">
         <label>
-          <textarea cols="83" rows="17" id="H_CHANGES"></textarea>
+          <textarea cols="83" rows="17" th:field="*{changeObject}" id="H_CHANGES"></textarea>
         </label>
       </td>
     </tr>
@@ -160,7 +149,7 @@
         Тестовый полигон:
         <br>
         <label>
-          <textarea cols="83" rows="5" id="H_D_SRC_TEST"></textarea>
+          <textarea cols="83" th:field="*{srcTest}" rows="5" id="H_D_SRC_TEST"></textarea>
         </label>
       </td>
     </tr>
@@ -169,7 +158,7 @@
         Промышленный полигон:
         <br>
         <label>
-          <textarea cols="83"  rows="5" id="H_D_SRC_PROD"></textarea>
+          <textarea cols="83" th:field="*{srcProd}" rows="5" id="H_D_SRC_PROD"></textarea>
         </label>
       </td>
     </tr>
@@ -189,7 +178,7 @@
       </td>
       <td class="td3" colspan="2">
         <label>
-          <input type="text"  size="90" maxlength="256" id="SINX">
+          <input type="text" th:field="*{synchronization}"  size="90" maxlength="256" id="SINX">
         </label>
       </td>
     </tr>
@@ -369,7 +358,7 @@
     <tr>
       <td colspan="2" class="td5">
         <label>
-          <input type="text" size="40"  maxlength="64" id="H_FZ_FTEST_POST">
+          <input type="text" size="40" maxlength="64" id="H_FZ_FTEST_POST">
         </label>
       </td>
       <td class="td5">
@@ -404,12 +393,12 @@
     <tr>
       <td class="td5">
         <label>
-          <input type="date" id="H_TEST_INST_DATE">
+          <input type="date" th:field="*{dateInstallTest}" id="H_TEST_INST_DATE">
         </label>
       </td>
       <td class="td5">
         <label>
-          <input type="time" id="H_TEST_INST_TIME">
+          <input type="time" th:field="*{timeInstallTest}" id="H_TEST_INST_TIME">
         </label>
       </td>
     </tr>
@@ -419,11 +408,11 @@
       </td>
       <td class="td5">
         <label>
-          <input type="text" size="40" maxlength="64" id="H_ZAK_TEST">
+          <input type="text" size="40" th:field="*{idContactTest}" maxlength="64" id="H_ZAK_TEST">
         </label>
         <br>
         <label>
-          <input type="text" size="40" maxlength="64" id="H_ZAK_TEST_POST">
+          <input type="text" size="40" th:field="*{phoneContactTest}" maxlength="64" id="H_ZAK_TEST_POST">
         </label>
       </td>
       <td colspan="2" class="td5">
@@ -438,7 +427,7 @@
       </td>
       <td class="td5" colspan="2">
         <label>
-          <input type="text" size="90" maxlength="256" id="H_TEST_DATASOURCE">
+          <input type="text" size="90" th:field="*{dataSourceTest}" maxlength="256" id="H_TEST_DATASOURCE">
         </label>
       </td>
     </tr>
@@ -448,7 +437,7 @@
       </td>
       <td class="td5" colspan="2">
         <label>
-          <input type="text" size="90" maxlength="256" id="H_TEST_STOP_DATE">
+          <input type="text" size="90" th:field="*{periodTest}"  maxlength="256" id="H_TEST_STOP_DATE">
         </label>
       </td>
     </tr>
@@ -458,7 +447,7 @@
       </td>
       <td class="td5" colspan="2">
         <label>
-          <input type="text" size="90" maxlength="256" id="H_RESULT_TEST">
+          <input type="text" size="90" th:field="*{resultsTest}"  maxlength="256" id="H_RESULT_TEST">
         </label>
       </td>
     </tr>
@@ -468,7 +457,7 @@
       </td>
       <td class="td5" colspan="2">
         <label>
-          <textarea cols="83" rows="10" id="H_TEST_RESULT"></textarea>
+          <textarea cols="83" rows="10" th:field="*{resultsTestConclusion}"  id="H_TEST_RESULT"></textarea>
         </label>
       </td>
     </tr>
@@ -480,20 +469,7 @@
         № Проекта
         <br>
         <label>
-          <input type="text" size="40" maxlength="14" id="H_PRJ_NUMBER">
-        </label>
-      </td>
-      <td class="td5">
-        <label>
-          <select id="H_TESTERS_AC">
-            <option disabled>
-              Ответственный за тестирование
-            </option>
-          </select>
-        </label>
-        <br>
-        <label>
-          <textarea cols="38" rows="6" id="H_TESTERS"></textarea>
+          <input type="text" th:field="*{fzProject}"  size="40" maxlength="14" id="H_PRJ_NUMBER">
         </label>
       </td>
     </tr>
@@ -506,11 +482,11 @@
       </td>
       <td class="td5">
         <label>
-          <input type="text" size="40" maxlength="64" id="H_OTV_CTS_TEST">
+          <input type="text" size="40" th:field="*{idCTSOtv}"  maxlength="64" id="H_OTV_CTS_TEST">
         </label>
         <br>
         <label>
-          <input type="text" size="40" maxlength="64" id="H_OTV_CTS_TEST_PH">
+          <input type="text" size="40" th:field="*{phoneCTSOtv}" maxlength="64" id="H_OTV_CTS_TEST_PH">
         </label>
       </td>
     </tr>
@@ -525,7 +501,7 @@
       </td>
       <td class="td5" colspan="2">
         <label>
-          <input type="text" size="40" maxlength="256" id="H_PROD_DATASOURCE">
+          <input type="text" size="40" th:field="*{dataSourceProd}" maxlength="256" id="H_PROD_DATASOURCE">
         </label>
       </td>
     </tr>
@@ -543,12 +519,12 @@
     <tr>
       <td class="td5">
         <label>
-          <input type="date" id="H_PROD_INST_DATE">
+          <input type="date" th:field="*{dateInstallProd}" id="H_PROD_INST_DATE">
         </label>
       </td>
       <td class="td5">
         <label>
-          <input type="time" id="H_PROD_INST_TIME">
+          <input type="time" th:field="*{timeInstallProd}" id="H_PROD_INST_TIME">
         </label>
       </td>
     </tr>
@@ -561,11 +537,11 @@
       </td>
       <td class="td5">
         <label>
-          <input type="text" size="40" maxlength="64" id="H_F_CUSTOMER">
+          <input type="text" th:field="*{idDelegate}" size="40" maxlength="64" id="H_F_CUSTOMER">
         </label>
         <br>
         <label>
-          <input type="text" size="40" maxlength="64" id="H_F_CUSTOMER_PH">
+          <input type="text" size="40" th:field="*{phoneDeligate}" maxlength="64" id="H_F_CUSTOMER_PH">
         </label>
       </td>
     </tr>

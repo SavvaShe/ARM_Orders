@@ -14,10 +14,10 @@ import java.sql.Date;
 @AllArgsConstructor
 public class CardResponse {
     private Integer idCards;//id
-    private int idOtv;//Ответсвенный
+    private String idOtv;//Ответсвенный
     private String numberCard;//Номер карточки
-    private int numberLetter;//номер Письма
-    private int system;//подсистема
+    private String numberLetter;//номер Письма
+    private String system;//подсистема
     private Date dateCorrect;//дата корректировки карточки
     private Date dateCreate;//дата создания
     private Date sendLetter;//дата отправки письма

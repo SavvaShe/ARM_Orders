@@ -12,6 +12,11 @@ button[type='button']{
     color: black;
 }
 
+.cardMenuButton{
+    background: white;
+    color: black;
+    border: none;
+}
 
 input[type="submit"] {
     background: white;

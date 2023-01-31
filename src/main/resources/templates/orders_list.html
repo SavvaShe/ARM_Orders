@@ -14,7 +14,7 @@
       <td class="r1">
         <form>
           <button type="button">
-            <a th:href="@{/resources/templates/open_order_list}">
+            <a th:href="@{/resources/templates/order_list}">
               Наряды
             </a>
           </button>
@@ -119,7 +119,7 @@
         </label>
       </td>
     </tr>
-    <tr>
+ <!--   <tr>
       <td class="tNewOrder">
         <button type="button" id="" class="button newOrder">
           <a th:href="@{order_create}">
@@ -131,7 +131,7 @@
       <td class="none"></td>
       <td class="none"></td>
       <td class="none"></td>
-    </tr>
+    </tr>-->
     </thead>
     <tbody>
 
@@ -164,19 +164,27 @@
       <td class="fil1">
         Дата создания
       </td>
+      <td class="fil1">
+        Ответственный
+      </td>
+      <td class="fil1">
+
+      </td>
     </tr>
     </thead>
     <tbody class="mdata">
 
     <tr th:each="ol : ${listOrders}">
-      <td th:text="${ol.idOrder}">1</td>
-      <td th:text="${ol.number}">1</td>
-      <td th:text="${ol.systems}">12</td>
-      <td th:text="${ol.idTech}">32</td>
-      <td th:text="${ol.idProg}">2</td>
-      <td th:text="${ol.dateCreate}">12.12.2022</td>
+
+      <td th:text="${ol.idOrders}"></td>
+      <td th:text="${ol.number}"></td>
+      <td th:text="${ol.systems}"></td>
+      <td th:text="${ol.idTech}"></td>
+      <td th:text="${ol.idProg}"></td>
+      <td th:text="${ol.dateCreate}"></td>
+      <td th:text="${ol.idOtv}"></td>
       <td>
-        <a th:class="openOrder" th:href="@{order_view/{idOrders}(idOrders=${ol.idOrder})}">
+        <a th:class="openOrder" th:href="@{order_view/{idOrders}(idOrders=${ol.idOrders})}">
           Открыть</a>
       </td>
     </tr>

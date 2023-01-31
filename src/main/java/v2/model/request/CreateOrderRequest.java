@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import java.sql.Date;
+import java.sql.Time;
 
 @Data
 @Builder
@@ -14,8 +15,8 @@ import java.sql.Date;
 @AllArgsConstructor
 public class CreateOrderRequest {
     private Integer idOrder;//id Наряда
-    private int idOtv;//Ответсвенный
-    private int systems;//система
+    private String idOtv;//Ответсвенный
+    private String systems;//система
     private String number;//номер
     private Date dateCreate;//дата создания
     private String changeObject;//изменяемый объект
@@ -25,8 +26,8 @@ public class CreateOrderRequest {
     private String conditions;//Условия выполнения наряда
     //private changeList;
     private String docChange;//Изменения в документации
-    private String dSrcProd;// источник данных Промышленный полигон
-    private String dSrcTest;// источник данных Test полигон
+    private String srcProd;// источник данных Промышленный полигон
+    private String srcTest;// источник данных Test полигон
     private String installTest;//установка на Тест
     private String installProd;//установка на пром
     private String methodTest;//метод проверки Тест
@@ -37,12 +38,30 @@ public class CreateOrderRequest {
     private String responsibleContact;//ответсвенный контакт
     private int stopSystem;//остановка системы 0-нет.1-да.
     private String downTime;//Время простоя системы
-    private int idProg;//id программиста
-    private int idTech;//id технолога
+    private String idProg;//id программиста
+    private String idTech;//id технолога
     private String phoneTech;//телефон технолога
     private String phoneProg;//телефон программиста
-    private int idAdm;//id администратора
+    private String idAdm;//id администратора
     private String phoneAdm;// телефон администратора
     private String fzFTest;// ответсвенный от функц. заказчика
     private String phoneFZFTest;//номер ответсвенного от функц. заказчика
+    private Integer idCard;
+    private String synchronization;//установка на пром
+    private Date dateInstallTest;//метод проверки Тест
+    private String timeInstallTest;//метод проверки Пром
+    private String idContactTest;//Методика проверки функций Пром
+    private String phoneContactTest;//Методика проверки функций Тест
+    private String dataSourceTest;//технология отката
+    private String periodTest;//ответсвенный контакт
+    private String resultsTest;//остановка системы 0-нет.1-да.
+    private String resultsTestConclusion;//Время простоя системы
+    private String fzProject;//id программиста
+    private String idCTSOtv;//id технолога
+    private String dataSourceProd;//телефон технолога
+    private Date dateInstallProd;//телефон программиста
+    private String idDelegate;//id администратора
+    private String phoneCTSOtv;
+    private String timeInstallProd;
+    private String phoneDeligate;
 }

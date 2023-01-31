@@ -53,7 +53,7 @@ public class DefOrderServiceImpl implements DefOrderService {
     @NotNull
     private OrderResponse buildOrderResponse(@NotNull NSIDefOrders orders) {
         return OrderResponse.builder()
-                .idOrder(orders.getIdOrders())//так же со всеми полями
+                .idOrders(orders.getIdOrders())//так же со всеми полями
                 .changeObject(orders.getChangeObject())
                 .idOtv(orders.getIdOtv())
                 .dateCreate(orders.getDateCreate())
@@ -62,9 +62,9 @@ public class DefOrderServiceImpl implements DefOrderService {
                 .number(orders.getNumber())
                 .docChange(orders.getDocChange())
                 .downTime(orders.getDownTime())
-                .dSrcTest(orders.getDSrcTest())
+                .srcTest(orders.getSrcTest())
                 .fcAgreement(orders.getFcAgreement())
-                .dSrcProd(orders.getDSrcProd())
+                .srcProd(orders.getSrcProd())
                 .fzFTest(orders.getFzFTest())
                 .idProg(orders.getIdProg())
                 .idTech(orders.getIdTech())
@@ -104,9 +104,9 @@ public class DefOrderServiceImpl implements DefOrderService {
                 .number(request.getNumber())
                 .docChange(request.getDocChange())
                 .downTime(request.getDownTime())
-                .dSrcTest(request.getDSrcTest())
+                .srcTest(request.getSrcTest())
                 .fcAgreement(request.getFcAgreement())
-                .dSrcProd(request.getDSrcProd())
+                .srcProd(request.getSrcProd())
                 .fzFTest(request.getFzFTest())
                 .idProg(request.getIdProg())
                 .idTech(request.getIdTech())

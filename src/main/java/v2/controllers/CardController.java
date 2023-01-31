@@ -43,7 +43,6 @@ public class CardController {
     public ModelAndView openEditWithId(/*@RequestParam*/@PathVariable Integer idCards) {
         ModelAndView mav = new ModelAndView("card_edit");
         CreateCardRequest cr = new CreateCardRequest();
-        //CardResponse cardResponse = cardService.findById(idCards);
         mav.addObject("cardsKorr", cardService.findById(idCards));
         return mav;
     }
@@ -58,12 +57,8 @@ public class CardController {
     @PostMapping( "/card_edit/save_card_change/{idCards}")
     public String updateCard(/*@ModelAttribute*/ CreateCardRequest request, @PathVariable Integer idCards) {
         ModelAndView mav = new ModelAndView("card_edit");
-        System.out.println(request);
-        //CardResponse cardResponse = cardService.findById(idCards);
-//        mav.addObject("cardsKorr", request);
-//        CardServiceImpl imp = new CardServiceImpl();
-//        cardRepository.save(imp.buildCardRequest(request));
-       CardResponse cardResponse = cardService.update(idCards,request);
+        //System.out.println(request);
+        CardResponse cardResponse = cardService.update(idCards,request);
         return "redirect:../../card_view/"+idCards;
     }
 

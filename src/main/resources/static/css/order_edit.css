@@ -13,10 +13,9 @@ input[type="submit"] {
     border: none;
     color: black;
     text-align: center;
-    font-size: 14px;
+    font-size: 15px;
     cursor: pointer;
 }
-
 input[type="text"] {
     background: white;
     border: 0.5px solid lightgrey;
@@ -167,17 +166,16 @@ tr{
     height: 40px;
 }
 
-.tOrderMenu{
+.tOrderMenu {
     background: white;
     border: 1px solid lightgrey;
-    margin: 1px auto 100px auto;
+    margin: 1px auto;
     width:70%;
     height: 100%;
     align-content: center;
     text-align: center;
     padding: 20px 0 20px 0;
     border-collapse: collapse;
-
 }
 
 .tm1{

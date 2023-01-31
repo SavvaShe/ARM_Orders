@@ -1,3 +1,22 @@
+button[type='button']{
+    background: #326690;
+    border: none;
+    color: white;
+    font-weight:bold;
+    text-align: center;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.korrOrder{
+    color: black;
+}
+
+.orderMenuButton{
+    background: white;
+    color: black;
+    border: none;
+}
 
 input[type="submit"] {
     background: white;
@@ -161,7 +180,7 @@ tr{
 .tOrderMenu{
     background: white;
     border: 1px solid lightgrey;
-    margin: 1px auto 100px auto;
+    margin: 1px auto;
     width:70%;
     height: 100%;
     align-content: center;

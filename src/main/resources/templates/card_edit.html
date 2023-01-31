@@ -69,13 +69,8 @@
             <tbody>
             <tr>
                 <td class="c2" colspan="2">
-                    Карта передачи ПО №
+                    Карта передачи ПО № <th:block th:text="${cardsKorr.numberCard}"></th:block>
                 </td>
-                <!--            <td>-->
-                <!--                <label>-->
-                <!--                    <input id="C_NUM_CARD" th:field="*{numberCard}">-->
-                <!--                  </label>-->
-                <!--            </td>-->
             </tr>
             <tr>
                 <td class="c1">
@@ -123,14 +118,7 @@
                 </td>
                 <td class="c3">
                     <label>
-                        <input type="text" th:field="${cardsKorr.idOtv}" id="C_STATUS">
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <td class="c2" colspan="2">
-                    <label id="C_LETTER" >
-                        <input type="text" th:field="${cardsKorr.numberLetter}">
+                        <input type="text" th:field="${cardsKorr.status}" id="C_STATUS">
                     </label>
                 </td>
             </tr>
@@ -152,19 +140,12 @@
         <table class="tCardMenu">
             <tr>
                 <td class="tm1">
-<!--                    <a th:class="save_change" th:href="@{/resources/templates/card_view/{idCards}(idCards=${cardsKorr.idCards})}">-->
-<!--                        Сохранить-->
-<!--                    </a>-->
-<!--                    <form method="post" th:action="@{/saveCardChange/{idCards}(idCards=${cardsKorr.idCards})}">-->
-<!--                        <input type="submit" value="Сохранить">-->
                         <button type="submit" value="Сохранить">
-<!--                            <a id="C_SAVE_CARD">Сохранить</a>-->
+                            Сохранить изменения
                        </button>
-<!--                    </form>-->
 
                 </td>
                 <td class="tm1">
-
                         <a th:class="undo_change" th:href="@{/resources/templates/card_view/{idCards}(idCards=${cardsKorr.idCards})}">
                             Отменить
                         </a>

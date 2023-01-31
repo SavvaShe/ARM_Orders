@@ -88,13 +88,13 @@
         </label>
       </td>
     </tr>
-    <tr>
+<!--    <tr>
       <td class="h1" colspan="4">
         <label>
           <input type="text" ID="H_GHANGE_OBJECT" title="Объект внесения изменений (БД, серверная часть, форма и др.)">
         </label>
       </td>
-    </tr>
+    </tr>-->
     <tr>
       <td class="h1" colspan="4">
         <label>
@@ -137,9 +137,9 @@
         Содержание изменений
       </td>
       <td class="td3" colspan="2">
-        <label>
-          <textarea cols="83" rows="17" id="H_CHANGES"></textarea>
-        </label>
+        <span th:text="${orderView.changeObject}">
+
+        </span>
       </td>
     </tr>
     <tr>
@@ -159,18 +159,18 @@
       <td class="td3" colspan="2">
         Тестовый полигон:
         <br>
-        <label>
-          <textarea cols="83" rows="5" id="H_D_SRC_TEST"></textarea>
-        </label>
+        <span th:text="${orderView.srcTest}">
+
+        </span>
       </td>
     </tr>
     <tr>
       <td class="td3" colspan="2">
         Промышленный полигон:
         <br>
-        <label>
-          <textarea cols="83"  rows="5" id="H_D_SRC_PROD"></textarea>
-        </label>
+        <span th:text="${orderView.srcProd}">
+
+        </span>
       </td>
     </tr>
     <tr>
@@ -188,9 +188,9 @@
         Синхронизация работ со смежными системами
       </td>
       <td class="td3" colspan="2">
-        <label>
-          <input type="text"  size="90" maxlength="256" id="SINX">
-        </label>
+                <span th:text="${orderView.synchronization}">
+
+        </span>
       </td>
     </tr>
     <tr>
@@ -365,9 +365,9 @@
     </tr>
     <tr>
       <td colspan="2" class="td5">
-        <label>
-          <input type="text" size="40"  maxlength="64" id="H_FZ_FTEST_POST">
-        </label>
+<!--        <label>-->
+<!--          <input type="text" size="40"  maxlength="64" id="H_FZ_FTEST_POST">-->
+<!--        </label>-->
       </td>
       <td class="td5">
 
@@ -400,14 +400,14 @@
     </tr>
     <tr>
       <td class="td5">
-        <label>
-          <input type="date" id="H_TEST_INST_DATE">
-        </label>
+        <span th:text="${orderView.phoneFZFTest}">
+
+        </span>
       </td>
       <td class="td5">
-        <label>
-          <input type="time" id="H_TEST_INST_TIME">
-        </label>
+        <span th:text="${orderView.phoneFZFTest}">
+
+        </span>
       </td>
     </tr>
     <tr>
@@ -415,18 +415,18 @@
         Контактное лицо заказчика для проведения тестирования
       </td>
       <td class="td5">
-        <label>
-          <input type="text" size="40" maxlength="64" id="H_ZAK_TEST">
-        </label>
+        <span th:text="${orderView.phoneFZFTest}">
+
+        </span>
         <br>
-        <label>
-          <input type="text" size="40" maxlength="64" id="H_ZAK_TEST_POST">
-        </label>
+        <span th:text="${orderView.phoneFZFTest}">
+
+        </span>
       </td>
       <td colspan="2" class="td5">
-        <label>
-          <input type="text" size="40" maxlength="64" id="H_ZAK_TEST_PH">
-        </label>
+        <span th:text="${orderView.phoneFZFTest}">
+
+        </span>
       </td>
     </tr>
     <tr>
@@ -434,9 +434,9 @@
         Источник данных для тестового полигона
       </td>
       <td class="td5" colspan="2">
-        <label>
-          <input type="text" size="90" maxlength="256" id="H_TEST_DATASOURCE">
-        </label>
+        <span th:text="${orderView.phoneFZFTest}">
+
+        </span>
       </td>
     </tr>
     <tr>
@@ -444,9 +444,9 @@
         Период тестирования
       </td>
       <td class="td5" colspan="2">
-        <label>
-          <input type="text" size="90" maxlength="256" id="H_TEST_STOP_DATE">
-        </label>
+        <span th:text="${orderView.phoneFZFTest}">
+
+        </span>
       </td>
     </tr>
     <tr>
@@ -454,9 +454,9 @@
         Результаты тестирования
       </td>
       <td class="td5" colspan="2">
-        <label>
-          <input type="text" size="90" maxlength="256" id="H_RESULT_TEST">
-        </label>
+        <span th:text="${orderView.phoneFZFTest}">
+
+        </span>
       </td>
     </tr>
     <tr>
@@ -464,9 +464,9 @@
         Результаты тестирования. Принятое решение
       </td>
       <td class="td5" colspan="2">
-        <label>
-          <textarea cols="83" rows="10" id="H_TEST_RESULT"></textarea>
-        </label>
+        <span th:text="${orderView.phoneFZFTest}">
+
+        </span>
       </td>
     </tr>
     <tr>
@@ -476,22 +476,18 @@
       <td class="td5">
         № Проекта
         <br>
-        <label>
-          <input type="text" size="40" maxlength="14" id="H_PRJ_NUMBER">
-        </label>
+        <span th:text="${orderView.phoneFZFTest}">
+
+        </span>
       </td>
       <td class="td5">
-        <label>
-          <select id="H_TESTERS_AC">
-            <option disabled>
-              Ответственный за тестирование
-            </option>
-          </select>
-        </label>
+        <span th:text="${orderView.phoneFZFTest}">
+
+        </span>
         <br>
-        <label>
-          <textarea cols="38" rows="6" id="H_TESTERS"></textarea>
-        </label>
+        <span th:text="${orderView.phoneFZFTest}">
+
+        </span>
       </td>
     </tr>
     <tr>
@@ -502,13 +498,13 @@
 
       </td>
       <td class="td5">
-        <label>
-          <input type="text" size="40" maxlength="64" id="H_OTV_CTS_TEST">
-        </label>
+        <span th:text="${orderView.phoneFZFTest}">
+
+        </span>
         <br>
-        <label>
-          <input type="text" size="40" maxlength="64" id="H_OTV_CTS_TEST_PH">
-        </label>
+        <span th:text="${orderView.phoneFZFTest}">
+
+        </span>
       </td>
     </tr>
     <tr>
@@ -521,9 +517,9 @@
         Источник данных для производственного полигона
       </td>
       <td class="td5" colspan="2">
-        <label>
-          <input type="text" size="40" maxlength="256" id="H_PROD_DATASOURCE">
-        </label>
+        <span th:text="${orderView.phoneFZFTest}">
+
+        </span>
       </td>
     </tr>
     <tr>
@@ -538,15 +534,15 @@
       </td>
     </tr>
     <tr>
-      <td class="td5">
-        <label>
-          <input type="date" id="H_PROD_INST_DATE">
-        </label>
+      <td>
+        <span th:text="${orderView.phoneFZFTest}">
+
+        </span>
       </td>
       <td class="td5">
-        <label>
-          <input type="time" id="H_PROD_INST_TIME">
-        </label>
+        <span th:text="${orderView.phoneFZFTest}">
+
+        </span>
       </td>
     </tr>
     <tr>
@@ -557,35 +553,37 @@
 
       </td>
       <td class="td5">
-        <label>
-          <input type="text" size="40" maxlength="64" id="H_F_CUSTOMER">
-        </label>
+        <span th:text="${orderView.phoneFZFTest}">
+
+        </span>
         <br>
-        <label>
-          <input type="text" size="40" maxlength="64" id="H_F_CUSTOMER_PH">
-        </label>
+        <span th:text="${orderView.phoneFZFTest}">
+
+        </span>
       </td>
     </tr>
     </tbody>
   </table>
   </form>
 
-  <table class="torderMenu">
+  <table class="tOrderMenu">
     <tr>
       <td class="tm1">
-        <input type="submit" value="Корректировать" />
+        <button th:class="orderMenuButton" value="Корректировать">
+          <a th:class="korrOrder" th:href="@{/resources/templates/order_edit/{idOrders}(idOrders=${orderView.idOrders})}">Корректировать</a>
+        </button>
       </td>
+    </tr>
+    <tr>
+    <td class="tm1">
+      <button th:class="orderMenuButton" value="Создать по образцу">
+        <a th:class="korrOrder" th:href="@{/resources/templates/order_create}">Создать по образцу</a>
+      </button>
+    </td>
     </tr>
   </table>
   <table class="exOrderMenu">
     <tr>
-<!--      <td rowspan="3" class="tm1">-->
-<!--        <label>-->
-<!--          Карта передачи ПО-->
-<!--          <br>-->
-<!--          <input id="H_CARD_PO">-->
-<!--        </label>-->
-<!--      </td>-->
       <td class="tm1">
         Статус
       </td>

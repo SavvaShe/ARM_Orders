@@ -84,18 +84,23 @@ public class OrderServiceImpl implements OrderService {
     }
     //Обновляем пользователя по id
     @NotNull
-
+    @Override
     @Transactional
-    public OrderResponse update(@NotNull Integer IdOrder, @NotNull CreateOrderRequest request) {
-       Orders orders = (Orders) orderRepository.findById(IdOrder)
+ /*   public OrderResponse update(@NotNull Integer IdOrder, @NotNull CreateOrderRequest request) {
+        Orders orders = (Orders) orderRepository.findById(IdOrder)
                 .orElseThrow(() -> new EntityNotFoundException("Order " + IdOrder + " is not found"));
-      Orders ders = buildOrderRequest(request);
-        OrderResponse orderResponse = buildOrderResponse(orderRepository.save(ders));
-        System.out.println(orderResponse);
-        return orderResponse;
+        Orders ders = buildOrderRequest(request);
+        //OrderResponse orderResponse = buildOrderResponse(orderRepository.save(ders));
+        //System.out.println(orderResponse);
+        //return orderResponse;
+        return buildOrderResponse(orderRepository.save(ders));
+    }*/
+    public OrderResponse update(@NotNull Integer IdOrder, @NotNull CreateOrderRequest request) {
+        Orders orders =  orderRepository.findById(IdOrder)
+                .orElseThrow(() -> new EntityNotFoundException("Card " + IdOrder + " is not found"));
+        Orders cv = buildOrderRequest(request);
+        return buildOrderResponse(orderRepository.save(cv));
     }
-
-
 
     //Удаляем пользователя по id
     @Override
@@ -114,7 +119,7 @@ public class OrderServiceImpl implements OrderService {
     @NotNull
     private OrderResponse buildOrderResponse(@NotNull Orders orders) {
         return OrderResponse.builder()
-                .idOrder(orders.getIdOrders())//так же со всеми полями
+                .idOrders(orders.getIdOrders())//так же со всеми полями
                 .changeObject(orders.getChangeObject())
                 .idOtv(orders.getIdOtv())
                 .dateCreate(orders.getDateCreate())
@@ -123,9 +128,9 @@ public class OrderServiceImpl implements OrderService {
                 .number(orders.getNumber())
                 .docChange(orders.getDocChange())
                 .downTime(orders.getDownTime())
-                .dSrcTest(orders.getDSrcTest())
+                .srcTest(orders.getSrcTest())
                 .fcAgreement(orders.getFcAgreement())
-                .dSrcProd(orders.getDSrcProd())
+                .srcProd(orders.getSrcProd())
                 .fzFTest(orders.getFzFTest())
                 .idProg(orders.getIdProg())
                 .idTech(orders.getIdTech())
@@ -144,7 +149,23 @@ public class OrderServiceImpl implements OrderService {
                 .rollback(orders.getRollback())
                 .stopSystem(orders.getStopSystem())
                 .systems(orders.getSystems())
-                .version(orders.getVersion()).build();
+                .version(orders.getVersion())
+                .synchronization(orders.getSynchronization())
+                .dateInstallTest(orders.getDateInstallTest())
+                .timeInstallTest(orders.getTimeInstallTest())
+                .idContactTest(orders.getIdContactTest())
+                .phoneContactTest(orders.getPhoneContactTest())
+                .dataSourceTest(orders.getDataSourceTest())
+                .periodTest(orders.getPeriodTest())
+                .resultsTest(orders.getResultsTest())
+                .resultsTestConclusion(orders.getResultsTestConclusion())
+                .fzProject(orders.getFzProject())
+                .idCTSOtv(orders.getIdCTSOtv())
+                .dataSourceProd(orders.getDataSourceProd())
+                .dateInstallProd(orders.getDateInstallProd())
+                .phoneCTSOtv(orders.getPhoneCTSOtv())
+                .idDelegate(orders.getIdDelegate()).build();
+
 
 
     }
@@ -198,9 +219,9 @@ public class OrderServiceImpl implements OrderService {
                 .number(request.getNumber())
                 .docChange(request.getDocChange())
                 .downTime(request.getDownTime())
-                .dSrcTest(request.getDSrcTest())
+                .srcTest(request.getSrcTest())
                 .fcAgreement(request.getFcAgreement())
-                .dSrcProd(request.getDSrcProd())
+                .srcProd(request.getSrcProd())
                 .fzFTest(request.getFzFTest())
                 .idProg(request.getIdProg())
                 .idTech(request.getIdTech())
@@ -219,7 +240,21 @@ public class OrderServiceImpl implements OrderService {
                 .rollback(request.getRollback())
                 .stopSystem(request.getStopSystem())
                 .systems(request.getSystems())
-                .version(request.getVersion()).build();
+                .version(request.getVersion())
+                .synchronization(request.getSynchronization())
+                .dateInstallTest(request.getDateInstallTest())
+                .timeInstallTest(request.getTimeInstallTest())
+                .idContactTest(request.getIdContactTest())
+                .phoneContactTest(request.getPhoneContactTest())
+                .dataSourceTest(request.getDataSourceTest())
+                .periodTest(request.getPeriodTest())
+                .resultsTest(request.getResultsTest())
+                .resultsTestConclusion(request.getResultsTestConclusion())
+                .fzProject(request.getFzProject())
+                .idCTSOtv(request.getIdCTSOtv())
+                .dataSourceProd(request.getDataSourceProd())
+                .dateInstallProd(request.getDateInstallProd())
+                .idDelegate(request.getIdDelegate()).build();
 
     }
 }
