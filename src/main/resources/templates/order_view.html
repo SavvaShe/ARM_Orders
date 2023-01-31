@@ -133,21 +133,6 @@
       </td>
     </tr>
     <tr>
-      <td class="td2" >
-        Условия для выполнения наряда
-      </td>
-      <td class="td3" colspan="2">
-                <span th:text="${orderView.conditions}">
-
-        </span>
-      </td>
-    </tr>
-    <!--        <tr>-->
-    <!--            <td class="td2">-->
-
-    <!--            </td>-->
-    <!--        </tr>-->
-    <tr>
       <td class="td2">
         Содержание изменений
       </td>
@@ -185,6 +170,26 @@
         <br>
         <label>
           <textarea cols="83"  rows="5" id="H_D_SRC_PROD"></textarea>
+        </label>
+      </td>
+    </tr>
+    <tr>
+      <td class="td2" >
+        Условия для выполнения наряда
+      </td>
+      <td class="td3" colspan="2">
+                <span th:text="${orderView.conditions}">
+
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td class="td2" >
+        Синхронизация работ со смежными системами
+      </td>
+      <td class="td3" colspan="2">
+        <label>
+          <input type="text"  size="90" maxlength="256" id="SINX">
         </label>
       </td>
     </tr>
@@ -383,48 +388,6 @@
       </td>
     </tr>
     <tr>
-      <td colspan="2" class="td5">
-        Контактное лицо заказчика для проведения тестирования
-      </td>
-      <td class="td5">
-        <label>
-          <input type="text" size="40" maxlength="64" id="H_ZAK_TEST">
-        </label>
-        <br>
-        <label>
-          <input type="text" size="40" maxlength="64" id="H_ZAK_TEST_POST">
-        </label>
-      </td>
-      <td colspan="2" class="td5">
-        <label>
-          <input type="text" size="40" maxlength="64" id="H_ZAK_TEST_PH">
-        </label>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2" rowspan="2" class="td5">
-        Дата передачи ПО на тестирование
-      </td>
-      <td class="td5">
-        Дата
-      </td>
-      <td class="td5">
-        Время
-      </td>
-    </tr>
-    <tr>
-      <td class="td5">
-        <label>
-          <input type="date" id="H_TEST_SEND_DATE">
-        </label>
-      </td>
-      <td class="td5">
-        <label>
-          <input type="time" id="H_TEST_SEND_TIME">
-        </label>
-      </td>
-    </tr>
-    <tr>
       <td colspan="2" rowspan="2" class="td5">
         Дата и время установки на тестовый полигон
       </td>
@@ -449,11 +412,20 @@
     </tr>
     <tr>
       <td colspan="2" class="td5">
-        Дата окончания тестирования
+        Контактное лицо заказчика для проведения тестирования
       </td>
       <td class="td5">
         <label>
-          <input type="date" id="H_TEST_END_DATE">
+          <input type="text" size="40" maxlength="64" id="H_ZAK_TEST">
+        </label>
+        <br>
+        <label>
+          <input type="text" size="40" maxlength="64" id="H_ZAK_TEST_POST">
+        </label>
+      </td>
+      <td colspan="2" class="td5">
+        <label>
+          <input type="text" size="40" maxlength="64" id="H_ZAK_TEST_PH">
         </label>
       </td>
     </tr>
@@ -479,11 +451,11 @@
     </tr>
     <tr>
       <td colspan="2" class="td5">
-        Причины нарушения периода тестирования
+        Результаты тестирования
       </td>
       <td class="td5" colspan="2">
         <label>
-          <input type="text" size="90" maxlength="256" id="H_TEST_STOP_VIOLATION">
+          <input type="text" size="90" maxlength="256" id="H_RESULT_TEST">
         </label>
       </td>
     </tr>

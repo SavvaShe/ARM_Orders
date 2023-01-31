@@ -17,8 +17,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 //@SpringBootApplication/*(exclude = {DataSourceAutoConfiguration.class,/SecurityAutoConfiguration.class})
 
 
-
-
 @SpringBootApplication
 public class ArmApplication extends WebMvcConfigurationSupport {
 
