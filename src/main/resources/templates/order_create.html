@@ -67,8 +67,8 @@
   <table class="tOrderView">
     <tbody>
     <tr>
-      <td class="h2" colspan="4">
-        Номер будет присвоен автоматически после сохранения наряда
+      <td class="h2" colspan="4" th:text="${order_create.number}">
+
       </td>
     </tr>
     <tr>
@@ -76,7 +76,7 @@
         <label>
           <select>
             <option disabled>
-              Подсистема
+              Система
             </option>
             <option>
               ЕМД-ПП

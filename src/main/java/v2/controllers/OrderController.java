@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import v2.Service.OrderService;
 import v2.domain.Orders;
+import v2.logic.DefOrders;
+import v2.logic.NextOrderNumber;
 import v2.model.request.CreateCardRequest;
 import v2.model.request.CreateOrderRequest;
 import v2.model.response.CardResponse;
@@ -67,6 +69,18 @@ public class OrderController {
         return mav;
     }
 
+//    @PostMapping( "/card_edit/save_card_change/{idCards}")
+//    public String updateCard(/*@ModelAttribute*/ CreateCardRequest request, @PathVariable Integer idCards) {
+//        ModelAndView mav = new ModelAndView("card_edit");
+//        System.out.println(request);
+//        //CardResponse cardResponse = cardService.findById(idCards);
+////        mav.addObject("cardsKorr", request);
+////        CardServiceImpl imp = new CardServiceImpl();
+////        cardRepository.save(imp.buildCardRequest(request));
+//        CardResponse cardResponse = cardService.update(idCards,request);
+//        return "redirect:../../card_view/"+idCards;
+//    }
+
     @GetMapping("/order_create")
     public ModelAndView openCreateOrder() {
         ModelAndView mav = new ModelAndView("order_create");
@@ -81,9 +95,20 @@ public class OrderController {
 //        return "orders_list.html";
 //    }
 
+
     @RequestMapping( value ="/new_order", method =  RequestMethod.POST/*, consumes = MediaType.ALL_VALUE*/)
     public String createOrder(/*@ModelAttribute*/ CreateOrderRequest request){
         ModelAndView mav = new ModelAndView("order_create");
+        String sysName = "";
+        switch (request.getSystems()){
+            case 1:
+                sysName = "ЕМД";
+            case 2:
+                sysName = "РРД";
+            default:
+                sysName = "ЕМД";
+        }
+        request.setNumber(nextOrderNumber(sysName));
         OrderResponse orderResponse =  orderService.create(request);
         return "redirect:order_list";
     }
@@ -111,6 +136,13 @@ public class OrderController {
         orderService.update(idOrder,request);
         return "redirect:/order_list";
     }
+    @PostMapping("/def")
+    public ModelAndView defOrders(@RequestParam String type){
+        ModelAndView mav = new ModelAndView("order_edit");
+        DefOrders defOrders = new DefOrders();
+        mav.addObject("def",defOrders.findByType(type));
+        return mav;
+    }
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping(value = "/{idOrder}")
     public String delete(@RequestParam int idOrder) {
@@ -122,6 +154,10 @@ public class OrderController {
         ModelAndView mav = new ModelAndView("search");
         mav.addObject("result", result);
         return mav;
+    }
+    public String nextOrderNumber(String sys){
+        NextOrderNumber nextOrderNumber = new NextOrderNumber();
+        return nextOrderNumber.nextOrderNumber(sys);
     }
     //
 //    //Создаем карту

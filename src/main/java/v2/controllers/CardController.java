@@ -64,7 +64,7 @@ public class CardController {
 //        CardServiceImpl imp = new CardServiceImpl();
 //        cardRepository.save(imp.buildCardRequest(request));
        CardResponse cardResponse = cardService.update(idCards,request);
-        return "redirect:card_view/"+idCards;
+        return "redirect:../../card_view/"+idCards;
     }
 
     @GetMapping("/page_not_found")
