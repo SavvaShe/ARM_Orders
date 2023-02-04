@@ -13,7 +13,6 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import javax.sql.DataSource;
 
 @Configuration
-@ComponentScan("v2.config")
 public class WebMvcConfig {
     @Bean(name = "viewResolver")
     public InternalResourceViewResolver getViewResolver() {

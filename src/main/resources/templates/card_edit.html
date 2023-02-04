@@ -87,9 +87,7 @@
                     Система
                 </td>
                 <td>
-                    <label>
-                        <input id="C_SYSTEM" th:field="${cardsKorr.system}">
-                    </label>
+                    <span th:text="*{system}"></span>
                 </td>
             </tr>
             <tr>
@@ -117,10 +115,12 @@
                     Статус передачи
                 </td>
                 <td class="c3">
-                    <label>
-                        <input type="text" th:field="${cardsKorr.status}" id="C_STATUS">
-                    </label>
+<!--                    <label>-->
+<!--                        <input type="text" th:field="${cardsKorr.status}" id="C_STATUS">-->
+<!--                    </label>-->
+                    <span th:text="${cardsKorr.status}"></span>
                 </td>
+
             </tr>
             <tr>
                 <td class="c2" colspan="2">
@@ -130,7 +130,7 @@
             <tr>
                 <td class="c2" colspan="2">
                     <label id="C_ORDER_LIST">
-                        Наряд
+
                     </label>
                 </td>
             </tr>

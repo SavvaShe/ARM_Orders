@@ -19,6 +19,13 @@ public interface OrderService {
     List<OrderResponse> findAll();
 
     @NotNull
+    List<OrderResponse> findByIdCard (Integer idCard);
+    @NotNull
+    List<OrderResponse> findByIdOtv (Integer id);
+    @NotNull
+    List<OrderResponse> findByDateCreate(Date date);
+
+    @NotNull
    OrderResponse findById(@NotNull Integer idOrder);
 
 

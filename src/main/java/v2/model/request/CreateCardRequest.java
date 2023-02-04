@@ -13,6 +13,7 @@ import java.sql.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateCardRequest {
+    //Функция предназначена для обертки занесенных данных пользователем,и последующей транзакции данных в БД
     private Integer idCards; //id
     private String idOtv; //Ответсвенный
     private String numberCard; //Номер карточки

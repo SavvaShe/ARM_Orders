@@ -29,8 +29,6 @@ public class Orders {
     private Date dateCreate;//дата создания
     @Column(name = "change_object")
     private String changeObject;//изменяемый объект
-    @Column (name = "fc_agreement")
-    private int fcAgreement;//требуется согласование с ФЗ
     @Column(name = "version")
     private String version;//Номер версии изменений
     @Column (name = "reasons")
@@ -137,7 +135,6 @@ public class Orders {
                 ", number='" + number + '\'' +
                 ", dateCreate=" + dateCreate +
                 ", changeObject='" + changeObject + '\'' +
-                ", fcAgreement=" + fcAgreement +
                 ", version='" + version + '\'' +
                 ", reasons='" + reasons + '\'' +
                 ", conditions='" + conditions + '\'' +

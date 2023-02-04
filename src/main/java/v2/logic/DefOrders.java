@@ -2,7 +2,7 @@ package v2.logic;
 
 import v2.Service.DefOrderService;
 import v2.model.response.OrderResponse;
-
+//типы нарядов
 public class DefOrders {
     DefOrderService defOrderService;
     public OrderResponse findByType(String type){

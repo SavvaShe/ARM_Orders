@@ -70,7 +70,7 @@
     <tr>
       <td class="c2" colspan="2" >
         <label>
-          Карта передачи ПО № <th:block th:text="${cardView.numberCard}"></th:block>
+          Карта передачи ПО № <span th:text="${cardView.numberCard}"></span>
         </label>
       </td>
     </tr>
@@ -78,7 +78,7 @@
       <td class="c1">
         Система
       </td>
-      <td class="c3" >
+      <td class="c3">
       <span th:text="${cardView.system}">
 
       </span>
@@ -89,7 +89,7 @@
         Статус передачи
       </td>
       <td class="c3" >
-      <span th:text="${cardView.status}">
+        <span th:text="${cardView.status}">
 
         </span>
       </td>

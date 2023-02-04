@@ -13,6 +13,7 @@ import java.sql.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CardResponse {
+    //Функция предназначена для обертки данных из БД и последующему взаимодействию с ними
     private Integer idCards;//id
     private String idOtv;//Ответсвенный
     private String numberCard;//Номер карточки

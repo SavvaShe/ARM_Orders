@@ -15,6 +15,7 @@ import v2.model.response.OrderResponse;
 import v2.repository.CardRepository;
 import v2.repository.OrderRepository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,7 +28,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
 
 
-    //Получаем весь список пользователей
+    //Получаем весь список
     @NotNull
     @Override
     @Transactional(readOnly = true)
@@ -38,6 +39,33 @@ public class OrderServiceImpl implements OrderService {
                 .collect(Collectors.toList());
 
     }
+
+    @Override
+    public @NotNull List<OrderResponse> findByIdCard(Integer idCard) {
+       return orderRepository.findByIdCard(idCard)
+                .stream()
+                .map(this::buildOrderResponse)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public @NotNull List<OrderResponse> findByIdOtv(Integer id) {
+        return orderRepository.findByIdOtv(id)
+                .stream()
+                .map(this::buildOrderResponse)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public @NotNull List<OrderResponse> findByDateCreate(java.sql.Date date) {
+        return orderRepository.findByDateCreate(date)
+                .stream()
+                .map(this::buildOrderResponse)
+                .collect(Collectors.toList());
+    }
+
+
+
 
     //Получаем пользователя по id
     @NotNull
@@ -60,16 +88,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
 
-    //Создаем пользователя
-//    @Override
-//    @Transactional
-//    @NotNull
-//    public OrderResponse create(@NotNull CreateOrderRequest request) {
-//       Orders orders = buildOrderRequest(request);
-//        OrderResponse orderResponse = buildOrderResponse(orderRepository.save(orders));
-//        return orderResponse;
-//    }
-
+    //Создание
     @NotNull
     @Override
     @Transactional
@@ -82,19 +101,11 @@ public class OrderServiceImpl implements OrderService {
         OrderResponse orderResponse = buildOrderResponse(orders1);
         return orderResponse;
     }
-    //Обновляем пользователя по id
+    //Обновляем  по id
     @NotNull
     @Override
     @Transactional
- /*   public OrderResponse update(@NotNull Integer IdOrder, @NotNull CreateOrderRequest request) {
-        Orders orders = (Orders) orderRepository.findById(IdOrder)
-                .orElseThrow(() -> new EntityNotFoundException("Order " + IdOrder + " is not found"));
-        Orders ders = buildOrderRequest(request);
-        //OrderResponse orderResponse = buildOrderResponse(orderRepository.save(ders));
-        //System.out.println(orderResponse);
-        //return orderResponse;
-        return buildOrderResponse(orderRepository.save(ders));
-    }*/
+
     public OrderResponse update(@NotNull Integer IdOrder, @NotNull CreateOrderRequest request) {
         Orders orders =  orderRepository.findById(IdOrder)
                 .orElseThrow(() -> new EntityNotFoundException("Card " + IdOrder + " is not found"));
@@ -116,6 +127,7 @@ public class OrderServiceImpl implements OrderService {
         return null;
     }
 
+    //Для обертки данных из БД в класс
     @NotNull
     private OrderResponse buildOrderResponse(@NotNull Orders orders) {
         return OrderResponse.builder()
@@ -129,7 +141,6 @@ public class OrderServiceImpl implements OrderService {
                 .docChange(orders.getDocChange())
                 .downTime(orders.getDownTime())
                 .srcTest(orders.getSrcTest())
-                .fcAgreement(orders.getFcAgreement())
                 .srcProd(orders.getSrcProd())
                 .fzFTest(orders.getFzFTest())
                 .idProg(orders.getIdProg())
@@ -172,41 +183,7 @@ public class OrderServiceImpl implements OrderService {
 
 
 
-//    private void orderUpdate(@NotNull Orders orders, @NotNull CreateOrderRequest request) {
-//        ofNullable(request.getNumber()).map(orders::setNumber);//так же со всеми полями
-//        ofNullable(request.getIdAdm()).map(orders::setIdAdm);
-//        ofNullable(request.getIdOrder()).map(orders::setIdOrders);
-//        ofNullable(request.getChangeObject()).map(orders::setChangeObject);
-//        ofNullable(request.getIdOtv()).map(orders::setIdOtv);
-//        ofNullable(request.getDateCreate()).map(orders::setDateCreate);
-//        ofNullable(request.getConditions()).map(orders::setConditions);
-//        ofNullable(request.getDocChange()).map(orders::setDocChange);
-//        ofNullable(request.getDownTime()).map(orders::setDownTime);
-//        ofNullable(request.getDSrcTest()).map(orders::setDSrcTest);
-//        ofNullable(request.getFcAgreement()).map(orders::setFcAgreement);
-//        ofNullable(request.getDSrcProd()).map(orders::setDSrcProd);
-//        ofNullable(request.getFzFTest()).map(orders::setFzFTest);
-//        ofNullable(request.getIdProg()).map(orders::setIdProg);
-//        ofNullable(request.getIdTech()).map(orders::setIdTech);
-//        ofNullable(request.getInstallProd()).map(orders::setInstallProd);
-//        ofNullable(request.getInstallTest()).map(orders::setInstallTest);
-//        ofNullable(request.getMethodProd()).map(orders::setMethodProd);
-//        ofNullable(request.getMethodProdF()).map(orders::setMethodProdF);
-//        ofNullable(request.getMethodTest()).map(orders::setMethodTest);
-//        ofNullable(request.getMethodTestF()).map(orders::setMethodTestF);
-//        ofNullable(request.getPhoneAdm()).map(orders::setPhoneAdm);
-//        ofNullable(request.getPhoneFZFTest()).map(orders::setPhoneFZFTest);
-//        ofNullable(request.getPhoneProg()).map(orders::setPhoneProg);
-//        ofNullable(request.getPhoneTech()).map(orders::setPhoneTech);
-//        ofNullable(request.getReasons()).map(orders::setReasons);
-//        ofNullable(request.getResponsibleContact()).map(orders::setResponsibleContact);
-//        ofNullable(request.getRollback()).map(orders::setRollback);
-//        ofNullable(request.getStopSystem()).map(orders::setStopSystem);
-//        ofNullable(request.getSystems()).map(orders::setSystems);
-//        ofNullable(request.getVersion()).map(orders::setVersion);
-//
-//    }
-
+    //Нужно для развертывания данных пользователя и переделки в данные реплекации таблицы
     @NotNull
     private Orders buildOrderRequest(@NotNull CreateOrderRequest request) {
         return Orders.builder()
@@ -220,7 +197,6 @@ public class OrderServiceImpl implements OrderService {
                 .docChange(request.getDocChange())
                 .downTime(request.getDownTime())
                 .srcTest(request.getSrcTest())
-                .fcAgreement(request.getFcAgreement())
                 .srcProd(request.getSrcProd())
                 .fzFTest(request.getFzFTest())
                 .idProg(request.getIdProg())

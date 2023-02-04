@@ -14,14 +14,13 @@ import java.sql.Time;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderResponse {
-
+    //Функция предназначена для обертки данных из БД и последующему взаимодействию с ними
     private Integer idOrders;//id Наряда
     private String idOtv;//Ответсвенный
     private String systems;//система
     private String number;//номер
     private Date dateCreate;//дата создания
     private String changeObject;//изменяемый объект
-    private int fcAgreement;//требуется согласование с ФЗ
     private String version;//Номер версии изменений
     private String reasons;//Основание
     private String conditions;//Условия выполнения наряда

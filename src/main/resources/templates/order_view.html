@@ -68,24 +68,16 @@
     <tbody>
     <tr>
       <td class="h2" colspan="4">
-        Номер будет присвоен автоматически после сохранения наряда
+        <span th:text="${orderView.number}">
+
+        </span>
       </td>
     </tr>
     <tr>
       <td class="h1" colspan="4">
-        <label>
-          <select>
-            <option disabled>
-              Подсистема
-            </option>
-            <option>
-              ЕМД-ПП
-            </option>
-            <option>
-              РРД-ГП
-            </option>
-          </select>
-        </label>
+        <span th:text="${orderView.systems}">
+
+        </span>
       </td>
     </tr>
 <!--    <tr>
@@ -95,20 +87,6 @@
         </label>
       </td>
     </tr>-->
-    <tr>
-      <td class="h1" colspan="4">
-        <label>
-          <select id="H_FC_ADREEMENT">
-            <option>
-              Согласование не требуется
-            </option>
-            <option>
-              Требуется согласование с ФЗ
-            </option>
-          </select>
-        </label>
-      </td>
-    </tr>
     <tr>
       <td rowspan="18" class="td1 wr">
         Заполняется разработчиком

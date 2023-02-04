@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import v2.domain.CardV2;
 import v2.model.request.CreateCardRequest;
 import v2.model.response.CardResponse;
+import v2.model.response.OrderResponse;
 import v2.repository.CardRepository;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class CardServiceImpl implements CardService {
     private final CardRepository cardsRepository;
 
 
-    //Получаем весь список пользователей
+    //Получаем весь список
     @NotNull
     @Override
     @Transactional(readOnly = true)
@@ -36,7 +37,7 @@ public class CardServiceImpl implements CardService {
                 .collect(Collectors.toList());
     }
 
-    //Получаем пользователя по id
+    //Получаем  по id
     @NotNull
     @Override
     @Transactional(readOnly = true)
@@ -68,7 +69,7 @@ public class CardServiceImpl implements CardService {
         return cardResponse;
     }
 
-    //Обновляем пользователя по id
+    //Обновляем  по id
     @NotNull
     @Override
     @Transactional
@@ -78,9 +79,24 @@ public class CardServiceImpl implements CardService {
         CardV2 cv = buildCardRequest(request);
         return buildCardResponse(cardsRepository.save(cv));
     }
+    @Override
+    public @NotNull List<CardResponse> findByIdOtv(Integer id) {
+        return cardsRepository.findByIdOtv(id)
+                .stream()
+                .map(this::buildCardResponse)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public @NotNull List<CardResponse> findByDateCreate(java.sql.Date date) {
+        return cardsRepository.findByDateCreate(date)
+                .stream()
+                .map(this::buildCardResponse)
+                .collect(Collectors.toList());
+    }
 
 
-    //Удаляем пользователя по id
+    //Удаляем по id
     @Override
     @Transactional
     public void delete(@NotNull Integer IdCard) {
@@ -94,6 +110,7 @@ public class CardServiceImpl implements CardService {
         return null;
     }
 
+    //Для обертки данных из БД в класс
     @NotNull
     private CardResponse buildCardResponse(@NotNull CardV2 cards) {
       //  System.out.println(cards.getStatus());
@@ -112,7 +129,7 @@ public class CardServiceImpl implements CardService {
 
 
     }
-
+    //Нужно для развертывания данных пользователя и переделки в данные реплекации таблицы
     @NotNull
     public CardV2 buildCardRequest(@NotNull CreateCardRequest request) {
         return CardV2.builder()

@@ -124,9 +124,17 @@
                 Статус передачи
             </td>
             <td class="c3">
-                <label>
-                    <input type="text" th:field="*{status}" id="C_STATUS">
-                </label>
+<!--                <label>-->
+<!--                    <input type="text" th:field="*{status}" id="C_STATUS">-->
+<!--                </label>-->
+                <select>
+                    <option value="Назначена"></option>
+                    <option value="Согласована"></option>
+                    <option value="На тестировании"></option>
+                    <option value="Согласована"></option>
+                    <option value="Реализована"></option>
+                    <option value="Закрыта"></option>
+                </select>
             </td>
         </tr>
         <tr>

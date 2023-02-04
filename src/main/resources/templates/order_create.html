@@ -67,32 +67,19 @@
   <table class="tOrderView">
     <tbody>
     <tr>
-      <td class="h2" colspan="4" th:text="${order_create.number}">
+      <td class="h2" colspan="4" >
+        <input type="text" th:field="*{number}" placeholder="Номер наряда">
       </td>
     </tr>
     <tr>
-      <td class="h1" colspan="4">
+      <td class="h1" colspan="4" th:text="*{systems}">
         <label>
-            <
-        </label>
-      </td>
-    </tr>
- <!--   <tr>
-      <td class="h1" colspan="4">
-        <label>
-          <input type="text" ID="H_GHANGE_OBJECT" title="Объект внесения изменений (БД, серверная часть, форма и др.)">
-        </label>
-      </td>
-    </tr>-->
-    <tr>
-      <td class="h1" colspan="4">
-        <label>
-          <select id="H_FC_ADREEMENT">
+          <select>
             <option>
-              Согласование не требуется
+              ЕМД-ПП
             </option>
             <option>
-              Требуется согласование с ФЗ
+              РРД-ГП
             </option>
           </select>
         </label>

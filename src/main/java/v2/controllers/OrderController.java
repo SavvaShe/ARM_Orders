@@ -75,31 +75,12 @@ public class OrderController {
     @RequestMapping( value ="/new_order", method =  RequestMethod.POST/*, consumes = MediaType.ALL_VALUE*/)
     public String createOrder(/*@ModelAttribute*/ CreateOrderRequest request){
         ModelAndView mav = new ModelAndView("order_create");
+        request.setNumber(nextOrderNumber(request.getSystems()));
         OrderResponse orderResponse =  orderService.create(request);
         return "redirect:../order_list";
     }
-/*    @GetMapping("/select_orders_list")
-    public ModelAndView openSelectOrdersList() {
-        ModelAndView mav = new ModelAndView("select_orders_list");
-        List<OrderResponse> List = orderService.findAll();
-       // System.out.println(List);
-        mav.addObject("selectOrdersList",List);
-     //   System.out.println(mav);
-        return mav;
-    }
-*/
-//    @GetMapping("/korr_id_order")
-//    public ModelAndView openEditWithId(@RequestParam Integer idOrder){
-//        ModelAndView mav = new ModelAndView("order_edit");
-//        OrderResponse orderResponse = orderService.findById(idOrder);
-//        mav.addObject("orderkorr",orderResponse);
-//        return mav;
-//    }
-    @PostMapping("/korr_order")
-    public String korr(@RequestBody CreateOrderRequest request,@RequestParam Integer idOrder){
-        orderService.update(idOrder,request);
-        return "redirect:/order_list";
-    }
+
+ //Для подтягивания шаблонных нарядов на вход строковое значение типа наряда
     @PostMapping("/def")
     public ModelAndView defOrders(@RequestParam String type){
         ModelAndView mav = new ModelAndView("order_edit");
@@ -119,11 +100,12 @@ public class OrderController {
         mav.addObject("result", result);
         return mav;
     }
+    //Для получения следующего номера Наряда на вход нужно передать Систему в строковом формате
     public String nextOrderNumber(String sys) {
         NextOrderNumber nextOrderNumber = new NextOrderNumber();
         return nextOrderNumber.nextOrderNumber(sys);
     }
-
+//Для подтягивания данных из карточки на вход нужно передать наполнения пользователем инфы про наряд,и данные карточки данные из которой нужно передать в наряд
     public CreateOrderRequest  order(CreateOrderRequest createOrderRequest,CardResponse cardResponse){
         createOrderRequest.setSystems(cardResponse.getSystem());
         createOrderRequest.setIdCard(cardResponse.getIdCards());
@@ -137,17 +119,6 @@ public class OrderController {
         mav.addObject("orderKorr", orderService.findById(idOrders));
         return mav;
     }
- /*   @PostMapping( "/order_edit/save_order_change/{idOrders}")
-    public String updateOrder(/*@ModelAttribute*/ /*CreateOrderRequest request, @PathVariable Integer idOrders) {
- /*       ModelAndView mav = new ModelAndView("order_edit");
-        System.out.println(request);
-        CardResponse cardResponse = cardService.findById(idCards);
-        mav.addObject("cardsKorr", request);
-        CardServiceImpl imp = new CardServiceImpl();
-        cardRepository.save(imp.buildCardRequest(request));
-        OrderResponse orderResponse = orderService.update(idOrders,request);
-        return "/order_view/"+idOrders;
-    } */
 
     @PostMapping("/order_edit/save_order_change/{idOrders}")
     public String updateOrder(CreateOrderRequest request, @PathVariable Integer idOrders){
@@ -156,56 +127,5 @@ public class OrderController {
         return "../../order_list";
 
     }
-    //    @GetMapping("/orders_list")
-//    public ModelAndView openList() {
-//        List<OrderResponse> List = orderService.findAll();
-//        ModelAndView mav = new ModelAndView("orders_list");
-//        mav.addObject("listOrders", List);
-//        return mav;
-//    }
-    //    //Получаем карточку по id
-//    @GetMapping(value = "/{IdCard}", produces = APPLICATION_JSON_VALUE)
-//    public CardResponse findById(@PathVariable Integer IdCard) {
-//        return cardService.findById(IdCard);
-//    }
-//    @RequestMapping( value ="new_order", method =  RequestMethod.POST/*, consumes = MediaType.ALL_VALUE*/)
-//    public String createOrder(/*@ModelAttribute*/ CreateOrderRequest request){
-//        ModelAndView mav = new ModelAndView("order_create");
-//        OrderResponse orderResponse =  orderService.create(request);
-//        return "orders_list.html";
-//    }
-//    @PostMapping( "/card_edit/save_card_change/{idCards}")
-//    public String updateCard(/*@ModelAttribute*/ CreateCardRequest request, @PathVariable Integer idCards) {
-//        ModelAndView mav = new ModelAndView("card_edit");
-//        System.out.println(request);
-//        //CardResponse cardResponse = cardService.findById(idCards);
-////        mav.addObject("cardsKorr", request);
-////        CardServiceImpl imp = new CardServiceImpl();
-////        cardRepository.save(imp.buildCardRequest(request));
-//        CardResponse cardResponse = cardService.update(idCards,request);
-//        return "redirect:../../card_view/"+idCards;
-//    }
-//    //Создаем карту
-//    @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-//    public CardResponse create(@RequestBody CreateCardRequest request) {
-//        return cardService.createCard(request);
-//    }
-//    @RequestMapping( value ="/new_order", method =  RequestMethod.POST/*, consumes = MediaType.ALL_VALUE*/)
-//    public String create(/*@ModelAttribute*/ CreateOrderRequest request){
-//        ModelAndView mav = new ModelAndView("order_create");
-//        OrderResponse orderResponse =  orderService.create(request);
-//        System.out.println(orderResponse);
-//        return "redirect:order_list";
-//    }
-//    //Обновляем карту по id
-//    @PatchMapping(value = "/{IdCard}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-//    public CardResponse update(@PathVariable Integer IdCard, @RequestBody CreateCardRequest request) {
-//        return cardService.update(IdCard, request);
-//    }
-//    //Удаляем карту по id
-//    @ResponseStatus(HttpStatus.NO_CONTENT)
-//    @DeleteMapping(value = "/{IdCard}", produces = APPLICATION_JSON_VALUE)
-//    public void delete(@PathVariable Integer IdCard) {
-//        cardService.delete(IdCard);
-//    }
+
 }
