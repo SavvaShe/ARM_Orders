@@ -18,7 +18,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 
 
 @SpringBootApplication
-public class ArmApplication /*extends WebMvcConfigurationSupport */{
+public class ArmApplication /*extends WebMvcConfigurationSupport */ {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ArmApplication.class, args);
@@ -27,7 +27,8 @@ public class ArmApplication /*extends WebMvcConfigurationSupport */{
 
 //	@Override
 //	protected void addResourceHandlers(ResourceHandlerRegistry registry) {
-//		registry.addResourceHandler("/static/**").addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX + "/static/");
-//		super.addResourceHandlers(registry);
+////		registry.addResourceHandler("/static/**").addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX + "/static/");
+////		super.addResourceHandlers(registry);
 //	}
+//}
 }
